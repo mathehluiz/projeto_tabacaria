@@ -21,7 +21,12 @@ namespace Projeto_Tabacaria
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 30, 30));
+        }
+
+        private void btSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

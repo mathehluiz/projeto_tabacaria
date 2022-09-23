@@ -90,7 +90,7 @@ namespace Projeto_Tabacaria.Models
             int smoothSize = 2;
             if (borderSize > 0)
                 smoothSize = borderSize;
-            if (borderRadius > 2) //Rounded button
+            if (borderRadius > 2)
             {
                 using (GraphicsPath pathSurface = GetFigurePath(rectSurface, borderRadius))
                 using (GraphicsPath pathBorder = GetFigurePath(rectBorder, borderRadius - borderSize))
@@ -98,22 +98,16 @@ namespace Projeto_Tabacaria.Models
                 using (Pen penBorder = new Pen(borderColor, borderSize))
                 {
                     pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                    //Button surface
                     this.Region = new Region(pathSurface);
-                    //Draw surface border for HD result
-                    pevent.Graphics.DrawPath(penSurface, pathSurface);
-                    //Button border                    
+                    pevent.Graphics.DrawPath(penSurface, pathSurface);       
                     if (borderSize >= 1)
-                        //Draw control border
                         pevent.Graphics.DrawPath(penBorder, pathBorder);
                 }
             }
-            else //Normal button
+            else
             {
                 pevent.Graphics.SmoothingMode = SmoothingMode.None;
-                //Button surface
                 this.Region = new Region(rectSurface);
-                //Button border
                 if (borderSize >= 1)
                 {
                     using (Pen penBorder = new Pen(borderColor, borderSize))
