@@ -49,7 +49,7 @@
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(68, 147);
+            this.label1.Location = new System.Drawing.Point(68, 160);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 16);
             this.label1.TabIndex = 0;
@@ -61,7 +61,7 @@
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(68, 213);
+            this.label2.Location = new System.Drawing.Point(68, 226);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 16);
             this.label2.TabIndex = 1;
@@ -70,7 +70,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Projeto_Tabacaria.Properties.Resources.id_card;
-            this.pictureBox1.Location = new System.Drawing.Point(33, 167);
+            this.pictureBox1.Location = new System.Drawing.Point(33, 180);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 31);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -80,7 +80,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Projeto_Tabacaria.Properties.Resources._lock;
-            this.pictureBox2.Location = new System.Drawing.Point(33, 233);
+            this.pictureBox2.Location = new System.Drawing.Point(33, 246);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(30, 31);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -106,6 +106,7 @@
             this.btEntrar.Text = "Entrar";
             this.btEntrar.TextColor = System.Drawing.Color.Black;
             this.btEntrar.UseVisualStyleBackColor = false;
+            this.btEntrar.Click += new System.EventHandler(this.btEntrar_Click);
             // 
             // btSair
             // 
@@ -147,7 +148,7 @@
             this.txtUsername.BorderSize = 2;
             this.txtUsername.Font = new System.Drawing.Font("Gadugi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtUsername.Location = new System.Drawing.Point(70, 167);
+            this.txtUsername.Location = new System.Drawing.Point(70, 180);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Multiline = false;
             this.txtUsername.Name = "txtUsername";
@@ -169,7 +170,7 @@
             this.txtPassword.BorderSize = 2;
             this.txtPassword.Font = new System.Drawing.Font("Gadugi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtPassword.Location = new System.Drawing.Point(70, 233);
+            this.txtPassword.Location = new System.Drawing.Point(70, 246);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";

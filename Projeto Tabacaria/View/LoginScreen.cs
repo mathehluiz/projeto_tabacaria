@@ -1,3 +1,4 @@
+using Projeto_Tabacaria.View;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 
@@ -27,6 +28,13 @@ namespace Projeto_Tabacaria
         private void btSair_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btEntrar_Click(object sender, EventArgs e)
+        {
+            MenuScreen dashboardScreen = new();
+            dashboardScreen.Show();
+            this.Dispose();
         }
     }
 }
