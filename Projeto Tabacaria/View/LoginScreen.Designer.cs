@@ -134,7 +134,7 @@
             this.pictureBox3.Image = global::Projeto_Tabacaria.Properties.Resources.a2n;
             this.pictureBox3.Location = new System.Drawing.Point(33, 23);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(254, 97);
+            this.pictureBox3.Size = new System.Drawing.Size(280, 134);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 10;
             this.pictureBox3.TabStop = false;

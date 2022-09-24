@@ -68,6 +68,13 @@ namespace Projeto_Tabacaria.View
             pnlNav.Height = btnStock.Height;
             pnlNav.Top = btnStock.Top;
             btnStock.BackColor = Color.FromArgb(150, 75, 0);
+
+            this.PnlFormLoader.Controls.Clear();
+            InventoryScreen iventoryScreen = new() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            iventoryScreen.FormBorderStyle = FormBorderStyle.None;
+            this.PnlFormLoader.Controls.Add(iventoryScreen);
+            iventoryScreen.Show();
+
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -108,6 +115,18 @@ namespace Projeto_Tabacaria.View
         private void btnCostumer_Leave(object sender, EventArgs e)
         {
             btnCostumer.BackColor = Color.FromArgb(37, 34, 9);
+        }
+
+        private void picMinimize_Click(object sender, EventArgs e)
+        {
+                this.WindowState = FormWindowState.Minimized;
+            
+        }
+
+        private void picClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+
         }
     }
 }
