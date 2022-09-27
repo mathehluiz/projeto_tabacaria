@@ -27,13 +27,23 @@ namespace Projeto_Tabacaria.View
             this.Dispose();
         }
 
-        private void txtBuyValue_Leave(object sender, EventArgs e)
+        private void txtQtd__TextChanged(object sender, EventArgs e)
         {
-            int a = txtQtd.Texts != "" ? Convert.ToInt32(txtQtd.Texts) : 0;
-            int b = txtBuyValue.Texts != "" ? Convert.ToInt32(txtBuyValue.Texts) : 0;
-            int total = a * b;
+            double a = txtQtd.Texts != "" ? Convert.ToDouble(txtQtd.Texts) : 0;
+            double b = txtBuyValue.Texts != "" ? Convert.ToDouble(txtBuyValue.Texts) : 0;
+            double total = a * b;
 
-            txtTotal.Texts = total.ToString();
+            txtTotal.Texts = "R$ " + total.ToString();
+        }
+
+        private void txtBuyValue__TextChanged(object sender, EventArgs e)
+        {
+            double a = txtQtd.Texts != "" ? Convert.ToDouble(txtQtd.Texts) : 0;
+            double b = txtBuyValue.Texts != "" ? Convert.ToDouble(txtBuyValue.Texts) : 0;
+            double total = a * b;
+            total = (double)System.Math.Round(total, 2);
+
+            txtTotal.Texts = "R$ " + total.ToString();
         }
     }
 }

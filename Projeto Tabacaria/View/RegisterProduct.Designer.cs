@@ -157,7 +157,7 @@
             this.txtBuyValue.TabStop = false;
             this.txtBuyValue.Texts = "";
             this.txtBuyValue.UnderlinedStyle = false;
-            this.txtBuyValue.Leave += new System.EventHandler(this.txtBuyValue_Leave);
+            this.txtBuyValue._TextChanged += new System.EventHandler(this.txtBuyValue__TextChanged);
             // 
             // txtSaleValue
             // 
@@ -273,6 +273,7 @@
             this.txtQtd.TabStop = false;
             this.txtQtd.Texts = "";
             this.txtQtd.UnderlinedStyle = false;
+            this.txtQtd._TextChanged += new System.EventHandler(this.txtQtd__TextChanged);
             // 
             // RegisterProduct
             // 
