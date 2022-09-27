@@ -94,6 +94,7 @@
             this.btnCreateProduct.Text = "       Cadastrar Produto";
             this.btnCreateProduct.TextColor = System.Drawing.Color.Black;
             this.btnCreateProduct.UseVisualStyleBackColor = false;
+            this.btnCreateProduct.Click += new System.EventHandler(this.btnCreateProduct_Click);
             // 
             // btnEditProduct
             // 

@@ -32,8 +32,12 @@ namespace Projeto_Tabacaria.View
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 30, 30));
         }
 
+        private void btnCreateProduct_Click(object sender, EventArgs e)
+        {
 
-
-        
+            RegisterProduct registerProduct = new RegisterProduct();
+            registerProduct.FormBorderStyle = FormBorderStyle.None;
+            registerProduct.Show();
+        }
     }
 }
