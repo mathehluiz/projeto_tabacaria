@@ -119,8 +119,7 @@ namespace Projeto_Tabacaria.View
 
         private void picMinimize_Click(object sender, EventArgs e)
         {
-                this.WindowState = FormWindowState.Minimized;
-            
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void picClose_Click(object sender, EventArgs e)

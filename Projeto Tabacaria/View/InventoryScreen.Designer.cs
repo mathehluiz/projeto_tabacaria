@@ -46,7 +46,7 @@
             this.txtSearchProduct.BorderSize = 2;
             this.txtSearchProduct.Font = new System.Drawing.Font("Gadugi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtSearchProduct.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtSearchProduct.Location = new System.Drawing.Point(13, 26);
+            this.txtSearchProduct.Location = new System.Drawing.Point(89, 26);
             this.txtSearchProduct.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearchProduct.Multiline = false;
             this.txtSearchProduct.Name = "txtSearchProduct";
@@ -66,7 +66,7 @@
             this.picSearchIcon_Inventory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.picSearchIcon_Inventory.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picSearchIcon_Inventory.Image = global::Projeto_Tabacaria.Properties.Resources.SearchIcon;
-            this.picSearchIcon_Inventory.Location = new System.Drawing.Point(288, 26);
+            this.picSearchIcon_Inventory.Location = new System.Drawing.Point(364, 26);
             this.picSearchIcon_Inventory.Name = "picSearchIcon_Inventory";
             this.picSearchIcon_Inventory.Size = new System.Drawing.Size(32, 29);
             this.picSearchIcon_Inventory.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -83,7 +83,7 @@
             this.btnCreateProduct.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCreateProduct.FlatAppearance.BorderSize = 0;
             this.btnCreateProduct.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCreateProduct.Font = new System.Drawing.Font("Ink Free", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCreateProduct.Font = new System.Drawing.Font("Gadugi", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnCreateProduct.ForeColor = System.Drawing.Color.Black;
             this.btnCreateProduct.Image = global::Projeto_Tabacaria.Properties.Resources.registro1;
             this.btnCreateProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -106,7 +106,7 @@
             this.btnEditProduct.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditProduct.FlatAppearance.BorderSize = 0;
             this.btnEditProduct.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEditProduct.Font = new System.Drawing.Font("Ink Free", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnEditProduct.Font = new System.Drawing.Font("Gadugi", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnEditProduct.ForeColor = System.Drawing.Color.Black;
             this.btnEditProduct.Image = global::Projeto_Tabacaria.Properties.Resources.editar_documento__1_;
             this.btnEditProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -128,7 +128,7 @@
             this.mnButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.mnButton2.FlatAppearance.BorderSize = 0;
             this.mnButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.mnButton2.Font = new System.Drawing.Font("Ink Free", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.mnButton2.Font = new System.Drawing.Font("Gadugi", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.mnButton2.ForeColor = System.Drawing.Color.Black;
             this.mnButton2.Image = global::Projeto_Tabacaria.Properties.Resources.excluir__1_;
             this.mnButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
