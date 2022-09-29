@@ -38,6 +38,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.txtUsername = new CustomControls.RJControls.RJTextBox();
             this.txtPassword = new CustomControls.RJControls.RJTextBox();
+            this.lblReturnDB = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -183,12 +184,24 @@
             this.txtPassword.Texts = "";
             this.txtPassword.UnderlinedStyle = false;
             // 
+            // lblReturnDB
+            // 
+            this.lblReturnDB.AutoSize = true;
+            this.lblReturnDB.Enabled = false;
+            this.lblReturnDB.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblReturnDB.Location = new System.Drawing.Point(151, 291);
+            this.lblReturnDB.Name = "lblReturnDB";
+            this.lblReturnDB.Size = new System.Drawing.Size(38, 15);
+            this.lblReturnDB.TabIndex = 13;
+            this.lblReturnDB.Text = "label3";
+            // 
             // LoginScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(19)))));
             this.ClientSize = new System.Drawing.Size(347, 472);
+            this.Controls.Add(this.lblReturnDB);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.pictureBox3);
@@ -222,5 +235,6 @@
         private PictureBox pictureBox3;
         private CustomControls.RJControls.RJTextBox txtUsername;
         private CustomControls.RJControls.RJTextBox txtPassword;
+        private Label lblReturnDB;
     }
 }

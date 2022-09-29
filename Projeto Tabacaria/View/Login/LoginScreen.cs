@@ -1,3 +1,4 @@
+using Projeto_Tabacaria.DB;
 using Projeto_Tabacaria.View;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
@@ -32,6 +33,8 @@ namespace Projeto_Tabacaria
 
         private void btEntrar_Click(object sender, EventArgs e)
         {
+            DBConnections dbCon = new();
+            lblReturnDB.Text = dbCon.SelectUser(txtUsername.Texts, txtPassword.Texts);
             MenuScreen dashboardScreen = new();
             dashboardScreen.Show();
             this.Dispose();
