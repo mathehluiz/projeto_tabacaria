@@ -8,33 +8,36 @@ namespace Projeto_Tabacaria.DB
 
         public void OpenConnection()
         {
-            string connectionString = "server=191.5.50.157;database=schema_barbearia;uid=tabacaria;pwd=Vi@r.1851;";
+            string connectionString = "server=191.5.50.157;database=schema_tabacaria;uid=tabacaria;pwd=Vi@r.1851;";
             conn = new MySqlConnection(connectionString);
             conn.Open();
         }
 
         public void CloseConnection()
         {
-            string connectionString = "server=191.5.50.157;database=schema_barbearia;uid=tabacaria;pwd=Vi@r.1851;";
+            string connectionString = "server=191.5.50.157;database=schema_tabacaria;uid=tabacaria;pwd=Vi@r.1851;";
             conn = new MySqlConnection(connectionString);
             conn.Close();
         }
 
         public string SelectUser(string user, string password)
         {
-            OpenConnection();
             MySqlCommand cmd = new MySqlCommand();
             try
             {
-                cmd.CommandText = "SELECT USER from schema_tabacaria WHERE user = @user";
-                cmd.Parameters.AddWithValue("@nome", user);
-                cmd.CommandText = "SELECT PASSWORD from schema_tabacaria WHERE password = @password";
+                OpenConnection();
+                cmd.CommandText = "select * from tb_user where Username=@user and Password=@password";
+                cmd.Parameters.AddWithValue("@user", user);
                 cmd.Parameters.AddWithValue("@password", password);
-                return "Conectado com sucesso";
+                cmd.ExecuteNonQuery();
+                CloseConnection();
+                return ("Conectado com sucesso");
             }
             catch (Exception e)
             {
-                return $"Usuário ou senha inválidos {e}";
+
+                Console.WriteLine(e);
+                return ($"Usuário ou senha inválidos{e}");
             }
         }
     }

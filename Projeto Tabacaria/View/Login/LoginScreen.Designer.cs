@@ -187,13 +187,13 @@
             // lblReturnDB
             // 
             this.lblReturnDB.AutoSize = true;
+            this.lblReturnDB.BackColor = System.Drawing.Color.IndianRed;
             this.lblReturnDB.Enabled = false;
-            this.lblReturnDB.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblReturnDB.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.lblReturnDB.Location = new System.Drawing.Point(151, 291);
             this.lblReturnDB.Name = "lblReturnDB";
-            this.lblReturnDB.Size = new System.Drawing.Size(38, 15);
+            this.lblReturnDB.Size = new System.Drawing.Size(0, 15);
             this.lblReturnDB.TabIndex = 13;
-            this.lblReturnDB.Text = "label3";
             // 
             // LoginScreen
             // 

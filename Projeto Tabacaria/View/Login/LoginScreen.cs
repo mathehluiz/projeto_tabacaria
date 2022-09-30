@@ -12,9 +12,9 @@ namespace Projeto_Tabacaria
         private static extern IntPtr CreateRoundRectRgn
         (
             int nLeftRect,
-            int nTopRect,    
+            int nTopRect,
             int nRightRect,
-            int nBottomRect, 
+            int nBottomRect,
             int nWidthEllipse,
             int nHeightEllipse
         );
@@ -35,6 +35,9 @@ namespace Projeto_Tabacaria
         {
             DBConnections dbCon = new();
             lblReturnDB.Text = dbCon.SelectUser(txtUsername.Texts, txtPassword.Texts);
+            lblReturnDB.Refresh();
+            MessageBox.Show(lblReturnDB.Text);
+            System.Threading.Thread.Sleep(10000);
             MenuScreen dashboardScreen = new();
             dashboardScreen.Show();
             this.Dispose();
