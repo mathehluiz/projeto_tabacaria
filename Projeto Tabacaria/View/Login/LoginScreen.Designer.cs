@@ -187,12 +187,12 @@
             // lblReturnDB
             // 
             this.lblReturnDB.AutoSize = true;
-            this.lblReturnDB.BackColor = System.Drawing.Color.IndianRed;
-            this.lblReturnDB.Enabled = false;
-            this.lblReturnDB.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.lblReturnDB.Location = new System.Drawing.Point(151, 291);
+            this.lblReturnDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblReturnDB.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblReturnDB.ForeColor = System.Drawing.Color.Red;
+            this.lblReturnDB.Location = new System.Drawing.Point(91, 293);
             this.lblReturnDB.Name = "lblReturnDB";
-            this.lblReturnDB.Size = new System.Drawing.Size(0, 15);
+            this.lblReturnDB.Size = new System.Drawing.Size(0, 16);
             this.lblReturnDB.TabIndex = 13;
             // 
             // LoginScreen
