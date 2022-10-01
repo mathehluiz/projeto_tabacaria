@@ -33,10 +33,8 @@ namespace Projeto_Tabacaria
 
         private void btEntrar_Click(object sender, EventArgs e)
         {
-            DBConnections dbCon = new();
-            lblReturnDB.Text = dbCon.SelectUser(txtUsername.Texts, txtPassword.Texts);
-            lblReturnDB.Refresh();
-            MessageBox.Show(lblReturnDB.Text);
+            DBConnections dbCon = new(txtUsername.Texts, txtPassword.Texts);
+            MessageBox.Show(dbCon.testes());
             System.Threading.Thread.Sleep(10000);
             MenuScreen dashboardScreen = new();
             dashboardScreen.Show();

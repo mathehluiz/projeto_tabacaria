@@ -1,44 +1,56 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using MySql.Data.MySqlClient;
 
 namespace Projeto_Tabacaria.DB
 {
     public class DBConnections
     {
+
         public MySqlConnection? conn;
+        testDB testDB1 = new testDB();
+        private string strSQL;
+        private string? Username { get; set; }
+        private string? Password { get; set; }
 
-        public void OpenConnection()
+        public DBConnections(string? username, string? password)
         {
-            string connectionString = "server=191.5.50.157;database=schema_tabacaria;uid=tabacaria;pwd=Vi@r.1851;";
-            conn = new MySqlConnection(connectionString);
-            conn.Open();
+            Username = username;
+            Password = password;
+
+            strSQL = "INSERT INTO tb_user(Username, Password, Nome, Descricao) VALUES (@username, @password, @nome, @descricao";
         }
 
-        public void CloseConnection()
+        public string testes()
         {
-            string connectionString = "server=191.5.50.157;database=schema_tabacaria;uid=tabacaria;pwd=Vi@r.1851;";
-            conn = new MySqlConnection(connectionString);
-            conn.Close();
-        }
-
-        public string SelectUser(string user, string password)
-        {
-            MySqlCommand cmd = new MySqlCommand();
             try
             {
-                OpenConnection();
-                cmd.CommandText = "select * from tb_user where Username=@user and Password=@password";
-                cmd.Parameters.AddWithValue("@user", user);
-                cmd.Parameters.AddWithValue("@password", password);
+                testDB1.OpenConnection();
+                MySqlCommand cmd = new MySqlCommand(strSQL, conn);
+                //cmd.connection = conn;
+                //string connectionString = "server=192.168.1.104;port=3306;database=schema_tabacaria;uid=tabacaria;pwd=Vi@r.1851;";
+                //conn = new MySqlConnection(connectionString);
+                //cmd.ExecuteReader();
+                //cmd.CommandType = CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@username", Username);
+                cmd.Parameters.AddWithValue("@password", Password);
+                cmd.Parameters.AddWithValue("@nome", Password);
+                cmd.Parameters.AddWithValue("@descricao", Password);
+
+
                 cmd.ExecuteNonQuery();
-                CloseConnection();
-                return ("Conectado com sucesso");
+                return "teste funcionou";
             }
             catch (Exception e)
             {
+                return $"teste n funfo {e}";
 
-                Console.WriteLine(e);
-                return ($"Usuário ou senha inválidos{e}");
             }
+            
+        }
+       
+           
+
+                
         }
     }
-}
