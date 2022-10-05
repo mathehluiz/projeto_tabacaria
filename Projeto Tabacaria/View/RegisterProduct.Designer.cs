@@ -30,8 +30,6 @@
         {
             this.txtProdCod = new CustomControls.RJControls.RJTextBox();
             this.txtProdName = new CustomControls.RJControls.RJTextBox();
-            this.txtBarCode = new CustomControls.RJControls.RJTextBox();
-            this.txtUnit = new CustomControls.RJControls.RJTextBox();
             this.txtBuyValue = new CustomControls.RJControls.RJTextBox();
             this.txtSaleValue = new CustomControls.RJControls.RJTextBox();
             this.lblCod = new System.Windows.Forms.Label();
@@ -39,6 +37,12 @@
             this.mnButton1 = new Projeto_Tabacaria.Models.MNButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtQtd = new CustomControls.RJControls.RJTextBox();
+            this.cmbGrupo = new System.Windows.Forms.ComboBox();
+            this.lblGrupo = new System.Windows.Forms.Label();
+            this.cmbMarca = new System.Windows.Forms.ComboBox();
+            this.lblMarca = new System.Windows.Forms.Label();
+            this.cmbUnidade_De_Medida = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,7 +79,7 @@
             this.txtProdName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtProdName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtProdName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtProdName.Location = new System.Drawing.Point(13, 73);
+            this.txtProdName.Location = new System.Drawing.Point(14, 111);
             this.txtProdName.Margin = new System.Windows.Forms.Padding(4);
             this.txtProdName.Multiline = false;
             this.txtProdName.Name = "txtProdName";
@@ -89,52 +93,6 @@
             this.txtProdName.Texts = "";
             this.txtProdName.UnderlinedStyle = false;
             // 
-            // txtBarCode
-            // 
-            this.txtBarCode.BackColor = System.Drawing.SystemColors.Window;
-            this.txtBarCode.BorderColor = System.Drawing.Color.White;
-            this.txtBarCode.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
-            this.txtBarCode.BorderRadius = 6;
-            this.txtBarCode.BorderSize = 2;
-            this.txtBarCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtBarCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtBarCode.Location = new System.Drawing.Point(13, 120);
-            this.txtBarCode.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBarCode.Multiline = false;
-            this.txtBarCode.Name = "txtBarCode";
-            this.txtBarCode.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtBarCode.PasswordChar = false;
-            this.txtBarCode.PlaceholderColor = System.Drawing.Color.Gray;
-            this.txtBarCode.PlaceholderText = "Código de barras";
-            this.txtBarCode.Size = new System.Drawing.Size(341, 31);
-            this.txtBarCode.TabIndex = 2;
-            this.txtBarCode.TabStop = false;
-            this.txtBarCode.Texts = "";
-            this.txtBarCode.UnderlinedStyle = false;
-            // 
-            // txtUnit
-            // 
-            this.txtUnit.BackColor = System.Drawing.SystemColors.Window;
-            this.txtUnit.BorderColor = System.Drawing.Color.White;
-            this.txtUnit.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
-            this.txtUnit.BorderRadius = 6;
-            this.txtUnit.BorderSize = 2;
-            this.txtUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtUnit.Location = new System.Drawing.Point(13, 210);
-            this.txtUnit.Margin = new System.Windows.Forms.Padding(4);
-            this.txtUnit.Multiline = false;
-            this.txtUnit.Name = "txtUnit";
-            this.txtUnit.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtUnit.PasswordChar = false;
-            this.txtUnit.PlaceholderColor = System.Drawing.Color.Gray;
-            this.txtUnit.PlaceholderText = "Unidade de Medida";
-            this.txtUnit.Size = new System.Drawing.Size(341, 31);
-            this.txtUnit.TabIndex = 3;
-            this.txtUnit.TabStop = false;
-            this.txtUnit.Texts = "";
-            this.txtUnit.UnderlinedStyle = false;
-            // 
             // txtBuyValue
             // 
             this.txtBuyValue.BackColor = System.Drawing.SystemColors.Window;
@@ -144,7 +102,7 @@
             this.txtBuyValue.BorderSize = 2;
             this.txtBuyValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtBuyValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtBuyValue.Location = new System.Drawing.Point(13, 256);
+            this.txtBuyValue.Location = new System.Drawing.Point(14, 228);
             this.txtBuyValue.Margin = new System.Windows.Forms.Padding(4);
             this.txtBuyValue.Multiline = false;
             this.txtBuyValue.Name = "txtBuyValue";
@@ -168,7 +126,7 @@
             this.txtSaleValue.BorderSize = 2;
             this.txtSaleValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtSaleValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtSaleValue.Location = new System.Drawing.Point(13, 306);
+            this.txtSaleValue.Location = new System.Drawing.Point(14, 267);
             this.txtSaleValue.Margin = new System.Windows.Forms.Padding(4);
             this.txtSaleValue.Multiline = false;
             this.txtSaleValue.Name = "txtSaleValue";
@@ -203,7 +161,7 @@
             this.txtTotal.Enabled = false;
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtTotal.Location = new System.Drawing.Point(13, 355);
+            this.txtTotal.Location = new System.Drawing.Point(15, 306);
             this.txtTotal.Margin = new System.Windows.Forms.Padding(4);
             this.txtTotal.Multiline = false;
             this.txtTotal.Name = "txtTotal";
@@ -232,13 +190,14 @@
             this.mnButton1.ForeColor = System.Drawing.Color.Black;
             this.mnButton1.Image = global::Projeto_Tabacaria.Properties.Resources.registro1;
             this.mnButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mnButton1.Location = new System.Drawing.Point(98, 401);
+            this.mnButton1.Location = new System.Drawing.Point(106, 359);
             this.mnButton1.Name = "mnButton1";
             this.mnButton1.Size = new System.Drawing.Size(168, 49);
             this.mnButton1.TabIndex = 7;
             this.mnButton1.Text = "Registrar";
             this.mnButton1.TextColor = System.Drawing.Color.Black;
             this.mnButton1.UseVisualStyleBackColor = false;
+            this.mnButton1.Click += new System.EventHandler(this.mnButton1_Click);
             // 
             // pictureBox1
             // 
@@ -260,7 +219,7 @@
             this.txtQtd.BorderSize = 2;
             this.txtQtd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtQtd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtQtd.Location = new System.Drawing.Point(14, 166);
+            this.txtQtd.Location = new System.Drawing.Point(15, 150);
             this.txtQtd.Margin = new System.Windows.Forms.Padding(4);
             this.txtQtd.Multiline = false;
             this.txtQtd.Name = "txtQtd";
@@ -275,12 +234,81 @@
             this.txtQtd.UnderlinedStyle = false;
             this.txtQtd._TextChanged += new System.EventHandler(this.txtQtd__TextChanged);
             // 
+            // cmbGrupo
+            // 
+            this.cmbGrupo.FormattingEnabled = true;
+            this.cmbGrupo.Location = new System.Drawing.Point(80, 81);
+            this.cmbGrupo.Name = "cmbGrupo";
+            this.cmbGrupo.Size = new System.Drawing.Size(93, 23);
+            this.cmbGrupo.TabIndex = 11;
+            this.cmbGrupo.SelectedIndexChanged += new System.EventHandler(this.cmbGrupo_SelectedIndexChanged);
+            // 
+            // lblGrupo
+            // 
+            this.lblGrupo.AutoSize = true;
+            this.lblGrupo.Font = new System.Drawing.Font("Gadugi", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblGrupo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
+            this.lblGrupo.Location = new System.Drawing.Point(12, 81);
+            this.lblGrupo.Name = "lblGrupo";
+            this.lblGrupo.Size = new System.Drawing.Size(53, 19);
+            this.lblGrupo.TabIndex = 12;
+            this.lblGrupo.Text = "Grupo";
+            // 
+            // cmbMarca
+            // 
+            this.cmbMarca.FormattingEnabled = true;
+            this.cmbMarca.Location = new System.Drawing.Point(261, 81);
+            this.cmbMarca.Name = "cmbMarca";
+            this.cmbMarca.Size = new System.Drawing.Size(93, 23);
+            this.cmbMarca.TabIndex = 13;
+            this.cmbMarca.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // lblMarca
+            // 
+            this.lblMarca.AutoSize = true;
+            this.lblMarca.Font = new System.Drawing.Font("Gadugi", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblMarca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
+            this.lblMarca.Location = new System.Drawing.Point(203, 81);
+            this.lblMarca.Name = "lblMarca";
+            this.lblMarca.Size = new System.Drawing.Size(52, 19);
+            this.lblMarca.TabIndex = 14;
+            this.lblMarca.Text = "Marca";
+            // 
+            // cmbUnidade_De_Medida
+            // 
+            this.cmbUnidade_De_Medida.FormattingEnabled = true;
+            this.cmbUnidade_De_Medida.Items.AddRange(new object[] {
+            "ML",
+            "LT",
+            "UN"});
+            this.cmbUnidade_De_Medida.Location = new System.Drawing.Point(165, 188);
+            this.cmbUnidade_De_Medida.Name = "cmbUnidade_De_Medida";
+            this.cmbUnidade_De_Medida.Size = new System.Drawing.Size(64, 23);
+            this.cmbUnidade_De_Medida.TabIndex = 16;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Gadugi", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
+            this.label1.Location = new System.Drawing.Point(15, 192);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(144, 19);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Unidade de Medida";
+            // 
             // RegisterProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ClientSize = new System.Drawing.Size(379, 491);
+            this.ClientSize = new System.Drawing.Size(379, 420);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cmbUnidade_De_Medida);
+            this.Controls.Add(this.lblMarca);
+            this.Controls.Add(this.cmbMarca);
+            this.Controls.Add(this.lblGrupo);
+            this.Controls.Add(this.cmbGrupo);
             this.Controls.Add(this.txtQtd);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.mnButton1);
@@ -288,14 +316,13 @@
             this.Controls.Add(this.lblCod);
             this.Controls.Add(this.txtSaleValue);
             this.Controls.Add(this.txtBuyValue);
-            this.Controls.Add(this.txtUnit);
-            this.Controls.Add(this.txtBarCode);
             this.Controls.Add(this.txtProdName);
             this.Controls.Add(this.txtProdCod);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RegisterProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegisterProduct";
+            this.Load += new System.EventHandler(this.RegisterProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -306,8 +333,6 @@
 
         private CustomControls.RJControls.RJTextBox txtProdCod;
         private CustomControls.RJControls.RJTextBox txtProdName;
-        private CustomControls.RJControls.RJTextBox txtBarCode;
-        private CustomControls.RJControls.RJTextBox txtUnit;
         private CustomControls.RJControls.RJTextBox txtBuyValue;
         private CustomControls.RJControls.RJTextBox txtSaleValue;
         private Label lblCod;
@@ -315,5 +340,11 @@
         private Models.MNButton mnButton1;
         private PictureBox pictureBox1;
         private CustomControls.RJControls.RJTextBox txtQtd;
+        private ComboBox cmbGrupo;
+        private Label lblGrupo;
+        private ComboBox cmbMarca;
+        private Label lblMarca;
+        private ComboBox cmbUnidade_De_Medida;
+        private Label label1;
     }
 }
