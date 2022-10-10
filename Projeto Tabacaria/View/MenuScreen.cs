@@ -117,15 +117,14 @@ namespace Projeto_Tabacaria.View
             btnCostumer.BackColor = Color.FromArgb(37, 34, 9);
         }
 
-        private void picMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void picClose_Click(object sender, EventArgs e)
+        private void picCloseForm_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
 
+        private void picMinimizeForm_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

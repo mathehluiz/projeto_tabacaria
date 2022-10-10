@@ -49,31 +49,50 @@ namespace Projeto_Tabacaria.View
             txtTotal.Texts = "R$ " + total.ToString();
         }
 
-        private void mnButton1_Click(object sender, EventArgs e)
+        private void butRegisterProduct_Click(object sender, EventArgs e)
         {
-            conn.Open();
-            string consulta_marca = "SELECT marca_cod FROM tb_marca WHERE marca_nome='@Id_Marca'";
-            string consulta_grupo = "SELECT grupo_id FROM tb_grupos WHERE grupo_nome='@Id_Grupo";
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd_GetGroup = new MySqlCommand("SELECT grupo_id from tb_grupos where grupo_nome='" + cmbGrupo.Text + "'", conn);
+                MySqlCommand cmd_GetBrand = new MySqlCommand("SELECT marca_cod from tb_marca where marca_nome='" + cmbMarca.Text + "'", conn);
 
-            MySqlCommand cmd = new MySqlCommand("insert into tb_produtos (prod_nome,prod_unidade,prod_id_grupo,prod_id_marca) values (@Nome,@Unidade')",conn);
-            cmd.Parameters.Add("@Nome", MySqlDbType.VarChar, 150).Value = txtProdName.Texts;
-            cmd.Parameters.Add("@Unidade", MySqlDbType.VarChar, 10).Value = cmbUnidade_De_Medida.Text;
-            cmd.Parameters.Add("@Id_Grupo", MySqlDbType.Int32, 10).Value = cmbGrupo.Text;    
-            cmd.Parameters.Add("@Id_Marca", MySqlDbType.Int32, 10).Value = cmbMarca.Text;
-            cmd.ExecuteNonQuery();
-            conn.Close();
+                var GroupQueryResult = Convert.ToInt32(cmd_GetGroup.ExecuteScalar());
+                var brandQueryResult = Convert.ToInt32(cmd_GetBrand.ExecuteScalar());
 
-        }
 
-        private void cmbGrupo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-           
-        }
+                double a = txtQtd.Texts != "" ? Convert.ToDouble(txtQtd.Texts) : 0;
+                double b = txtBuyValue.Texts != "" ? Convert.ToDouble(txtBuyValue.Texts) : 0;
+                double total = a * b;
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+                MySqlCommand cmd = new MySqlCommand("insert into tb_produtos (prod_nome,prod_unidade,prod_id_grupo,prod_id_marca) values (@Nome,@Unidade, @Id_grupo, @Id_marca);" +
+                    "insert into tb_estoque(estoque_cod,estoque_quantidade) values (@Id_Prod,@Quantidade);" +
+                    "insert into tb_precos(id_produto,preco_unit_compra,preco_unit_venda,preco_total_gasto) values (@Id_Prod,@Valor_Unitario_Compra,@Valor_Unitario_Venda,@Valor_Total)", conn);
 
+                cmd.Parameters.Add("@Id_Grupo", MySqlDbType.Int32, 10).Value = GroupQueryResult;
+                cmd.Parameters.Add("@Id_Marca", MySqlDbType.Int32, 10).Value = brandQueryResult;
+                cmd.Parameters.Add("@Nome", MySqlDbType.VarChar, 150).Value = txtProdName.Texts;
+                cmd.Parameters.Add("@Quantidade", MySqlDbType.Float, 10).Value = Convert.ToDouble(txtQtd.Texts);
+                cmd.Parameters.Add("@Id_Prod", MySqlDbType.Int32, 10).Value = Convert.ToInt32(txtProdCod.Texts);
+                cmd.Parameters.Add("@Unidade", MySqlDbType.VarChar, 10).Value = cmbUnidade_De_Medida.Text;
+                cmd.Parameters.Add("@Valor_Unitario_Compra", MySqlDbType.Float, 10).Value = Convert.ToDouble(txtBuyValue.Texts);
+                cmd.Parameters.Add("@Valor_Unitario_Venda", MySqlDbType.Float, 10).Value = Convert.ToDouble(txtSaleValue.Texts);
+                cmd.Parameters.Add("@Valor_Total", MySqlDbType.Float, 10).Value = total;
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                MessageBox.Show("Produto registrado!!");
+                txtProdName.Texts = "";
+                txtQtd.Texts = "";
+                txtBuyValue.Texts = "";
+                txtSaleValue.Texts = "";
+                txtTotal.Texts = "";
+                this.Refresh();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Erro!!" + ex);
+                conn.Close();
+            }
         }
 
         private void RegisterProduct_Load(object sender, EventArgs e)

@@ -117,6 +117,7 @@
             this.btnEditProduct.Text = "       Editar Produto";
             this.btnEditProduct.TextColor = System.Drawing.Color.Black;
             this.btnEditProduct.UseVisualStyleBackColor = false;
+            this.btnEditProduct.Click += new System.EventHandler(this.btnEditProduct_Click);
             // 
             // mnButton2
             // 

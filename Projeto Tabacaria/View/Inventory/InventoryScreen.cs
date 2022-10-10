@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projeto_Tabacaria.View.Inventory;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,6 +39,13 @@ namespace Projeto_Tabacaria.View
             RegisterProduct registerProduct = new RegisterProduct();
             registerProduct.FormBorderStyle = FormBorderStyle.None;
             registerProduct.Show();
+        }
+
+        private void btnEditProduct_Click(object sender, EventArgs e)
+        {
+            EditProduct editProduct = new();
+            editProduct.FormBorderStyle = FormBorderStyle.None;
+            editProduct.Show();
         }
     }
 }

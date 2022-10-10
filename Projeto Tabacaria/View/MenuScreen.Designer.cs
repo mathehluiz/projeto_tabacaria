@@ -41,14 +41,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlNav = new System.Windows.Forms.Panel();
             this.PnlFormLoader = new System.Windows.Forms.Panel();
-            this.picMinimize = new System.Windows.Forms.PictureBox();
-            this.picClose = new System.Windows.Forms.PictureBox();
+            this.picCloseForm = new System.Windows.Forms.PictureBox();
+            this.picMinimizeForm = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCloseForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMinimizeForm)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -231,29 +231,27 @@
             this.PnlFormLoader.Size = new System.Drawing.Size(1094, 690);
             this.PnlFormLoader.TabIndex = 2;
             // 
-            // picMinimize
+            // picCloseForm
             // 
-            this.picMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picMinimize.Image = global::Projeto_Tabacaria.Properties.Resources.minimize;
-            this.picMinimize.Location = new System.Drawing.Point(1209, 0);
-            this.picMinimize.Name = "picMinimize";
-            this.picMinimize.Size = new System.Drawing.Size(27, 28);
-            this.picMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picMinimize.TabIndex = 20;
-            this.picMinimize.TabStop = false;
-            this.picMinimize.Click += new System.EventHandler(this.picMinimize_Click);
+            this.picCloseForm.Image = global::Projeto_Tabacaria.Properties.Resources.Close;
+            this.picCloseForm.Location = new System.Drawing.Point(1179, 0);
+            this.picCloseForm.Name = "picCloseForm";
+            this.picCloseForm.Size = new System.Drawing.Size(29, 31);
+            this.picCloseForm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCloseForm.TabIndex = 3;
+            this.picCloseForm.TabStop = false;
+            this.picCloseForm.Click += new System.EventHandler(this.picCloseForm_Click);
             // 
-            // picClose
+            // picMinimizeForm
             // 
-            this.picClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picClose.Image = global::Projeto_Tabacaria.Properties.Resources.Close;
-            this.picClose.Location = new System.Drawing.Point(1242, 0);
-            this.picClose.Name = "picClose";
-            this.picClose.Size = new System.Drawing.Size(26, 28);
-            this.picClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picClose.TabIndex = 19;
-            this.picClose.TabStop = false;
-            this.picClose.Click += new System.EventHandler(this.picClose_Click);
+            this.picMinimizeForm.Image = global::Projeto_Tabacaria.Properties.Resources.minimize;
+            this.picMinimizeForm.Location = new System.Drawing.Point(1144, 0);
+            this.picMinimizeForm.Name = "picMinimizeForm";
+            this.picMinimizeForm.Size = new System.Drawing.Size(29, 31);
+            this.picMinimizeForm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picMinimizeForm.TabIndex = 4;
+            this.picMinimizeForm.TabStop = false;
+            this.picMinimizeForm.Click += new System.EventHandler(this.picMinimizeForm_Click);
             // 
             // MenuScreen
             // 
@@ -261,8 +259,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.ClientSize = new System.Drawing.Size(1280, 720);
-            this.Controls.Add(this.picClose);
-            this.Controls.Add(this.picMinimize);
+            this.Controls.Add(this.picMinimizeForm);
+            this.Controls.Add(this.picCloseForm);
             this.Controls.Add(this.PnlFormLoader);
             this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.panel1);
@@ -276,8 +274,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCloseForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMinimizeForm)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -297,7 +295,7 @@
         private Panel pnlNav;
         private Panel PnlFormLoader;
         private PictureBox pictureBox2;
-        private PictureBox picMinimize;
-        private PictureBox picClose;
+        private PictureBox picCloseForm;
+        private PictureBox picMinimizeForm;
     }
 }

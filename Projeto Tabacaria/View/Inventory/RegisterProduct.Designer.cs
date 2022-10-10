@@ -34,7 +34,7 @@
             this.txtSaleValue = new CustomControls.RJControls.RJTextBox();
             this.lblCod = new System.Windows.Forms.Label();
             this.txtTotal = new CustomControls.RJControls.RJTextBox();
-            this.mnButton1 = new Projeto_Tabacaria.Models.MNButton();
+            this.butRegisterProduct = new Projeto_Tabacaria.Models.MNButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtQtd = new CustomControls.RJControls.RJTextBox();
             this.cmbGrupo = new System.Windows.Forms.ComboBox();
@@ -175,29 +175,29 @@
             this.txtTotal.Texts = "";
             this.txtTotal.UnderlinedStyle = false;
             // 
-            // mnButton1
+            // butRegisterProduct
             // 
-            this.mnButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(113)))), ((int)(((byte)(49)))));
-            this.mnButton1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(113)))), ((int)(((byte)(49)))));
-            this.mnButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mnButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
-            this.mnButton1.BorderRadius = 20;
-            this.mnButton1.BorderSize = 0;
-            this.mnButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mnButton1.FlatAppearance.BorderSize = 0;
-            this.mnButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.mnButton1.Font = new System.Drawing.Font("Gadugi", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.mnButton1.ForeColor = System.Drawing.Color.Black;
-            this.mnButton1.Image = global::Projeto_Tabacaria.Properties.Resources.registro1;
-            this.mnButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mnButton1.Location = new System.Drawing.Point(106, 359);
-            this.mnButton1.Name = "mnButton1";
-            this.mnButton1.Size = new System.Drawing.Size(168, 49);
-            this.mnButton1.TabIndex = 7;
-            this.mnButton1.Text = "Registrar";
-            this.mnButton1.TextColor = System.Drawing.Color.Black;
-            this.mnButton1.UseVisualStyleBackColor = false;
-            this.mnButton1.Click += new System.EventHandler(this.mnButton1_Click);
+            this.butRegisterProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(113)))), ((int)(((byte)(49)))));
+            this.butRegisterProduct.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(113)))), ((int)(((byte)(49)))));
+            this.butRegisterProduct.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.butRegisterProduct.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
+            this.butRegisterProduct.BorderRadius = 20;
+            this.butRegisterProduct.BorderSize = 0;
+            this.butRegisterProduct.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.butRegisterProduct.FlatAppearance.BorderSize = 0;
+            this.butRegisterProduct.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.butRegisterProduct.Font = new System.Drawing.Font("Gadugi", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.butRegisterProduct.ForeColor = System.Drawing.Color.Black;
+            this.butRegisterProduct.Image = global::Projeto_Tabacaria.Properties.Resources.registro1;
+            this.butRegisterProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.butRegisterProduct.Location = new System.Drawing.Point(106, 359);
+            this.butRegisterProduct.Name = "butRegisterProduct";
+            this.butRegisterProduct.Size = new System.Drawing.Size(168, 49);
+            this.butRegisterProduct.TabIndex = 7;
+            this.butRegisterProduct.Text = "Registrar";
+            this.butRegisterProduct.TextColor = System.Drawing.Color.Black;
+            this.butRegisterProduct.UseVisualStyleBackColor = false;
+            this.butRegisterProduct.Click += new System.EventHandler(this.butRegisterProduct_Click);
             // 
             // pictureBox1
             // 
@@ -241,7 +241,6 @@
             this.cmbGrupo.Name = "cmbGrupo";
             this.cmbGrupo.Size = new System.Drawing.Size(93, 23);
             this.cmbGrupo.TabIndex = 11;
-            this.cmbGrupo.SelectedIndexChanged += new System.EventHandler(this.cmbGrupo_SelectedIndexChanged);
             // 
             // lblGrupo
             // 
@@ -261,7 +260,6 @@
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(93, 23);
             this.cmbMarca.TabIndex = 13;
-            this.cmbMarca.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // lblMarca
             // 
@@ -311,7 +309,7 @@
             this.Controls.Add(this.cmbGrupo);
             this.Controls.Add(this.txtQtd);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.mnButton1);
+            this.Controls.Add(this.butRegisterProduct);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.lblCod);
             this.Controls.Add(this.txtSaleValue);
@@ -337,7 +335,7 @@
         private CustomControls.RJControls.RJTextBox txtSaleValue;
         private Label lblCod;
         private CustomControls.RJControls.RJTextBox txtTotal;
-        private Models.MNButton mnButton1;
+        private Models.MNButton butRegisterProduct;
         private PictureBox pictureBox1;
         private CustomControls.RJControls.RJTextBox txtQtd;
         private ComboBox cmbGrupo;

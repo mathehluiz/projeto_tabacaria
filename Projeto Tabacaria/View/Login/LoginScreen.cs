@@ -46,6 +46,7 @@ namespace Projeto_Tabacaria
                     MenuScreen menuScreen = new MenuScreen();
                     menuScreen.Show();
                     this.Close();
+                    conn.Close();
                 }
                 else
                 {
