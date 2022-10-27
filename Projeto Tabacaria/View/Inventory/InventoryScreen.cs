@@ -1,20 +1,17 @@
-﻿using Projeto_Tabacaria.View.Inventory;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using MySql.Data.MySqlClient;
+using Projeto_Tabacaria.DB;
+using Projeto_Tabacaria.View.Inventory;
 using System.Data;
-using System.Drawing;
-using System.Linq;
+using System.Globalization;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Timer = System.Threading.Timer;
 
 namespace Projeto_Tabacaria.View
 {
     public partial class InventoryScreen : Form
     {
+        int contador = 0;
+        DBConnections dbConnections = new();
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
         (
@@ -27,7 +24,6 @@ namespace Projeto_Tabacaria.View
         );
         public InventoryScreen()
         {
-            
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 30, 30));
@@ -35,17 +31,152 @@ namespace Projeto_Tabacaria.View
 
         private void btnCreateProduct_Click(object sender, EventArgs e)
         {
-
+            
             RegisterProduct registerProduct = new RegisterProduct();
             registerProduct.FormBorderStyle = FormBorderStyle.None;
             registerProduct.Show();
+
         }
 
         private void btnEditProduct_Click(object sender, EventArgs e)
         {
-            EditProduct editProduct = new();
+            lblSendBrandProduct.Text = "";
+            lblSendNameProduct.Text = "";
+            EditProduct editProduct = new(lblSendNameProduct.Text,lblSendBrandProduct.Text);
             editProduct.FormBorderStyle = FormBorderStyle.None;
             editProduct.Show();
+        }
+
+        private void mnButton2_Click(object sender, EventArgs e)
+        {
+            lblSendBrandProduct.Text = "Selecione uma Marca";
+            lblSendNameProduct.Text = "Selecione um Produto";
+            lblSendGroupName.Text = "Selecione um Grupo";
+            DeleteProduct deleteProduct = new DeleteProduct(lblSendNameProduct.Text, lblSendBrandProduct.Text,lblSendGroupName.Text);
+            deleteProduct.FormBorderStyle = FormBorderStyle.None;
+            deleteProduct.Show();
+        }
+
+        private void InventoryScreen_Load(object sender, EventArgs e)
+        {
+            lblSendBrandProduct.Visible = false;
+            lblSendNameProduct.Visible = false;
+            lblSendGroupName.Visible = false;
+            if (dbConnections.connection.State != ConnectionState.Open)
+            {
+                dbConnections.OpenConnection();
+            }
+
+            string loadProduct = "select tb_produtos.prod_nome, tb_marca.marca_nome, tb_estoque.estoque_quantidade,tb_precos.preco_unit_compra, tb_precos.preco_unit_venda " +
+                "FROM tb_produtos " +
+                "INNER JOIN tb_estoque ON tb_estoque.estoque_cod = tb_produtos.prod_cod " +
+                "INNER JOIN tb_precos ON tb_precos.id_produto = tb_produtos.prod_cod " +
+                "INNER JOIN tb_marca ON tb_marca.marca_cod = tb_produtos.prod_id_marca";
+            MySqlDataAdapter daProduct = new MySqlDataAdapter(loadProduct, dbConnections.connection);
+            DataTable dtProduct = new DataTable();
+            daProduct.Fill(dtProduct);
+            dgvProducts.DataSource = dtProduct;
+            dgvProducts.Columns["prod_nome"].HeaderText = "Nome";
+            dgvProducts.Columns["marca_nome"].HeaderText = "Marca";
+            dgvProducts.Columns["estoque_quantidade"].HeaderText = "Quantidade";
+            dgvProducts.Columns["preco_unit_compra"].HeaderText = "Preço de compra";
+            dgvProducts.Columns["preco_unit_venda"].HeaderText = "Preço de venda";
+            dbConnections.CloseConnection();
+            dgvProducts.Columns[5].DefaultCellStyle.Format = "c2";
+            dgvProducts.Columns[5].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+            dgvProducts.Columns[6].DefaultCellStyle.Format = "c2";
+            dgvProducts.Columns[6].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (dbConnections.connection.State != ConnectionState.Open)
+            {
+                dbConnections.OpenConnection();
+            }
+
+            string loadProduct = "select tb_produtos.prod_nome, tb_marca.marca_nome, tb_estoque.estoque_quantidade,tb_precos.preco_unit_compra, tb_precos.preco_unit_venda " +
+                "FROM tb_produtos " +
+                "INNER JOIN tb_estoque ON tb_estoque.estoque_cod = tb_produtos.prod_cod " +
+                "INNER JOIN tb_precos ON tb_precos.id_produto = tb_produtos.prod_cod " +
+                "INNER JOIN tb_marca ON tb_marca.marca_cod = tb_produtos.prod_id_marca";
+            MySqlDataAdapter daProduct = new MySqlDataAdapter(loadProduct, dbConnections.connection);
+            DataTable dtProduct = new DataTable();
+            daProduct.Fill(dtProduct);
+            dgvProducts.DataSource = dtProduct;
+            dgvProducts.Columns["prod_nome"].HeaderText = "Nome";
+            dgvProducts.Columns["marca_nome"].HeaderText = "Marca";
+            dgvProducts.Columns["estoque_quantidade"].HeaderText = "Quantidade";
+            dgvProducts.Columns["preco_unit_compra"].HeaderText = "Preço de compra";
+            dgvProducts.Columns["preco_unit_venda"].HeaderText = "Preço de venda";
+            dbConnections.CloseConnection();
+            dgvProducts.Columns[5].DefaultCellStyle.Format = "c2";
+            dgvProducts.Columns[5].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+            dgvProducts.Columns[6].DefaultCellStyle.Format = "c2";
+            dgvProducts.Columns[6].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+        }
+
+        private void btnRegGroup_Click(object sender, EventArgs e)
+        {
+            RegisterGroup registerGroup = new RegisterGroup();
+            registerGroup.Show();
+        }
+
+        private void btnRegBrand_Click(object sender, EventArgs e)
+        {
+            RegisterBrand registerBrand = new RegisterBrand();
+            registerBrand.Show();
+        }
+
+        private void dgvProducts_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            dgvProducts.Rows[e.RowIndex].Cells["editar"].ToolTipText = "Clique aqui para editar";
+            dgvProducts.Rows[e.RowIndex].Cells["excluir"].ToolTipText = "Clique aqui para excluir";
+
+        }
+
+        private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+
+            if (dgvProducts.Columns[e.ColumnIndex] == dgvProducts.Columns["editar"])
+            {
+                string nameProd = dgvProducts.Rows[e.RowIndex].Cells["prod_nome"].Value.ToString();
+                string nameBrand = dgvProducts.Rows[e.RowIndex].Cells["marca_nome"].Value.ToString();
+                //lblSendNameProduct.Text = nameProd;
+                //lblSendBrandProduct.Text = nameBrand;
+                EditProduct editProduct = new EditProduct (nameProd,nameBrand);
+                editProduct.Show();
+
+            }
+            if (dgvProducts.Columns[e.ColumnIndex] == dgvProducts.Columns["excluir"])
+            {
+                
+                string nameProd = dgvProducts.Rows[e.RowIndex].Cells["prod_nome"].Value.ToString();
+                //string nameBrand = dgvProducts.Rows[e.RowIndex].Cells["marca_nome"].Value.ToString();
+                string selectGroupName = "SELECT grupo_nome from tb_grupos,tb_produtos WHERE prod_nome = '" + nameProd + "' AND prod_id_grupo = grupo_id";
+                dbConnections.OpenConnection();
+
+                if (dbConnections.connection.State != ConnectionState.Open)
+                {
+                    dbConnections.OpenConnection();
+                }
+
+                try
+                {
+                    MySqlCommand cmd_delete_product = new MySqlCommand("DELETE FROM tb_produtos WHERE prod_nome = '" + nameProd + "'", dbConnections.connection);
+                    cmd_delete_product.CommandType = CommandType.Text;
+                    cmd_delete_product.ExecuteNonQuery();
+                    dbConnections.CloseConnection();
+                    timer1_Tick(sender, e);
+
+                }
+                catch
+                {
+                    MessageBox.Show("Erro");
+                }
+            }
         }
     }
 }

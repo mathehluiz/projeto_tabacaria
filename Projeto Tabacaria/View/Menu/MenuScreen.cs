@@ -1,10 +1,15 @@
-﻿using System.Runtime.InteropServices;
+﻿using MySql.Data.MySqlClient;
+using Projeto_Tabacaria.DB;
+using System.Runtime.InteropServices;
 
 namespace Projeto_Tabacaria.View
 {
     public partial class MenuScreen : Form
     {
+        DBConnections dbConnections = new DBConnections();
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+
+        
         private static extern IntPtr CreateRoundRectRgn
         (
             int nLeftRect,
@@ -19,55 +24,60 @@ namespace Projeto_Tabacaria.View
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 30, 30));
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
 
             DashboardForm dashboardForm = new() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             dashboardForm.FormBorderStyle = FormBorderStyle.None;
+            pnlNav.Height = btnDashboard.Height;
+            pnlNav.Top = btnDashboard.Top;
             this.PnlFormLoader.Controls.Add(dashboardForm);
             dashboardForm.Show();
-            btnDashboard.BackColor = Color.FromArgb(150, 75, 0);
+
+
+            dbConnections.OpenConnection();
+            string selectUser = "Select Nome from tb_user";
+            MySqlCommand cmdSelectUser = new MySqlCommand(selectUser, dbConnections.connection);
+            MySqlDataReader readerUser;
+            readerUser = cmdSelectUser.ExecuteReader();
+            readerUser.Read();
+            lblUsername.Text = readerUser.GetString(0);
+            dbConnections.CloseConnection();
         }
 
-        private void DashboardScreen_Load(object sender, EventArgs e)
-        {
-        }
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
+            
             pnlNav.Height = btnDashboard.Height;
             pnlNav.Top = btnDashboard.Top;
-            pnlNav.Left = btnDashboard.Left;
-            btnDashboard.BackColor = Color.FromArgb(150, 75, 0);
+            btnDashboard.BackColor = Color.FromArgb(46, 51, 73);
 
             this.PnlFormLoader.Controls.Clear();
             DashboardForm dashboardForm = new() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             dashboardForm.FormBorderStyle = FormBorderStyle.None;
             this.PnlFormLoader.Controls.Add(dashboardForm);
-            dashboardForm.Show();
-            
+            dashboardForm.Show(); 
         }
 
         private void btnSale_Click(object sender, EventArgs e)
         {
-            btnSale.BackColor = Color.FromArgb(150, 75, 0);
             pnlNav.Height = btnSale.Height;
             pnlNav.Top = btnSale.Top;
-            pnlNav.Left = btnDashboard.Left;
-            btnSale.BackColor = Color.FromArgb(150, 75, 0);
+            btnSale.BackColor = Color.FromArgb(46, 51, 73);
 
             this.PnlFormLoader.Controls.Clear();
             SaleForm saleForm = new() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             saleForm.FormBorderStyle = FormBorderStyle.None;
             this.PnlFormLoader.Controls.Add(saleForm);
             saleForm.Show();
+            
         }
 
         private void btnStock_Click(object sender, EventArgs e)
         {
-
             pnlNav.Height = btnStock.Height;
             pnlNav.Top = btnStock.Top;
-            btnStock.BackColor = Color.FromArgb(150, 75, 0);
+            btnStock.BackColor = Color.FromArgb(46, 51, 73);
 
             this.PnlFormLoader.Controls.Clear();
             InventoryScreen iventoryScreen = new() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
@@ -81,40 +91,47 @@ namespace Projeto_Tabacaria.View
         {
             pnlNav.Height = btnReport.Height;
             pnlNav.Top = btnReport.Top;
-            btnReport.BackColor = Color.FromArgb(150, 75, 0);
+            btnReport.BackColor = Color.FromArgb(46, 51, 73);
         }
 
         private void btnCostumer_Click(object sender, EventArgs e)
         {
             pnlNav.Height = btnCostumer.Height;
             pnlNav.Top = btnCostumer.Top;
-            btnCostumer.BackColor = Color.FromArgb(150, 75, 0);
+            btnCostumer.BackColor = Color.FromArgb(46, 51, 73);
+
+            this.PnlFormLoader.Controls.Clear();
+            CostumerScreen clienteScreen = new() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            clienteScreen.FormBorderStyle = FormBorderStyle.None;
+            this.PnlFormLoader.Controls.Add(clienteScreen);
+            clienteScreen.Show();
+            
         }
 
         private void btnDashboard_Leave(object sender, EventArgs e)
         {
-            btnDashboard.BackColor = Color.FromArgb(37, 34, 9);
+            btnDashboard.BackColor = Color.FromArgb(24, 30, 54);
 
         }
 
         private void btnSale_Leave(object sender, EventArgs e)
         {
-            btnSale.BackColor = Color.FromArgb(37, 34, 9);
+            btnSale.BackColor = Color.FromArgb(24, 30, 54);
         }
 
         private void btnStock_Leave(object sender, EventArgs e)
         {
-            btnStock.BackColor = Color.FromArgb(37, 34, 9);
+            btnStock.BackColor = Color.FromArgb(24, 30, 54);
         }
 
         private void btnReport_Leave(object sender, EventArgs e)
         {
-            btnReport.BackColor = Color.FromArgb(37, 34, 9);
+            btnReport.BackColor = Color.FromArgb(24, 30, 54);
         }
 
         private void btnCostumer_Leave(object sender, EventArgs e)
         {
-            btnCostumer.BackColor = Color.FromArgb(37, 34, 9);
+            btnCostumer.BackColor = Color.FromArgb(24, 30, 54);
         }
 
         private void picCloseForm_Click(object sender, EventArgs e)

@@ -70,7 +70,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Projeto_Tabacaria.Properties.Resources.id_card;
+            this.pictureBox1.Image = global::Projeto_Tabacaria.Properties.Resources.user_correto;
             this.pictureBox1.Location = new System.Drawing.Point(33, 180);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 31);
@@ -80,7 +80,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::Projeto_Tabacaria.Properties.Resources._lock;
+            this.pictureBox2.Image = global::Projeto_Tabacaria.Properties.Resources.cadeado;
             this.pictureBox2.Location = new System.Drawing.Point(33, 246);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(30, 31);
@@ -90,43 +90,43 @@
             // 
             // btEntrar
             // 
-            this.btEntrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
-            this.btEntrar.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
+            this.btEntrar.BackColor = System.Drawing.Color.Teal;
+            this.btEntrar.BackgroundColor = System.Drawing.Color.Teal;
             this.btEntrar.BorderColor = System.Drawing.Color.Black;
             this.btEntrar.BorderRadius = 10;
             this.btEntrar.BorderSize = 0;
             this.btEntrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btEntrar.FlatAppearance.BorderSize = 0;
             this.btEntrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btEntrar.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btEntrar.ForeColor = System.Drawing.Color.Black;
+            this.btEntrar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btEntrar.ForeColor = System.Drawing.Color.White;
             this.btEntrar.Location = new System.Drawing.Point(111, 335);
             this.btEntrar.Name = "btEntrar";
             this.btEntrar.Size = new System.Drawing.Size(117, 33);
             this.btEntrar.TabIndex = 8;
             this.btEntrar.Text = "Entrar";
-            this.btEntrar.TextColor = System.Drawing.Color.Black;
+            this.btEntrar.TextColor = System.Drawing.Color.White;
             this.btEntrar.UseVisualStyleBackColor = false;
             this.btEntrar.Click += new System.EventHandler(this.btEntrar_Click);
             // 
             // btSair
             // 
-            this.btSair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
-            this.btSair.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
+            this.btSair.BackColor = System.Drawing.Color.Teal;
+            this.btSair.BackgroundColor = System.Drawing.Color.Teal;
             this.btSair.BorderColor = System.Drawing.Color.Black;
             this.btSair.BorderRadius = 10;
             this.btSair.BorderSize = 0;
             this.btSair.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSair.FlatAppearance.BorderSize = 0;
             this.btSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btSair.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btSair.ForeColor = System.Drawing.Color.Black;
+            this.btSair.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btSair.ForeColor = System.Drawing.Color.White;
             this.btSair.Location = new System.Drawing.Point(111, 384);
             this.btSair.Name = "btSair";
             this.btSair.Size = new System.Drawing.Size(117, 33);
             this.btSair.TabIndex = 9;
             this.btSair.Text = "Sair";
-            this.btSair.TextColor = System.Drawing.Color.Black;
+            this.btSair.TextColor = System.Drawing.Color.White;
             this.btSair.UseVisualStyleBackColor = false;
             this.btSair.Click += new System.EventHandler(this.btSair_Click);
             // 
@@ -144,7 +144,7 @@
             // 
             this.txtUsername.BackColor = System.Drawing.SystemColors.Window;
             this.txtUsername.BorderColor = System.Drawing.Color.White;
-            this.txtUsername.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
+            this.txtUsername.BorderFocusColor = System.Drawing.Color.White;
             this.txtUsername.BorderRadius = 10;
             this.txtUsername.BorderSize = 2;
             this.txtUsername.Font = new System.Drawing.Font("Gadugi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -166,7 +166,7 @@
             // 
             this.txtPassword.BackColor = System.Drawing.SystemColors.Window;
             this.txtPassword.BorderColor = System.Drawing.Color.White;
-            this.txtPassword.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
+            this.txtPassword.BorderFocusColor = System.Drawing.Color.White;
             this.txtPassword.BorderRadius = 10;
             this.txtPassword.BorderSize = 2;
             this.txtPassword.Font = new System.Drawing.Font("Gadugi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -199,8 +199,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(19)))));
-            this.ClientSize = new System.Drawing.Size(347, 472);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.ClientSize = new System.Drawing.Size(347, 441);
             this.Controls.Add(this.lblReturnDB);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);

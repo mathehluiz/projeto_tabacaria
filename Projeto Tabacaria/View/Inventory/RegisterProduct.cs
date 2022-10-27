@@ -1,12 +1,17 @@
 ﻿using MySql.Data.MySqlClient;
+using Projeto_Tabacaria.DB;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Runtime.InteropServices;
 
-namespace Projeto_Tabacaria.View
+namespace Projeto_Tabacaria.View.Inventory
 {
     public partial class RegisterProduct : Form
     {
-        MySqlConnection conn = new MySqlConnection("server = 192.168.1.104; port = 3306; database = schema_tabacaria; uid = tabacaria; pwd = Vi@r.1851");
+        DBConnections dbConnections = new DBConnections();
+        int contador = 0;
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -24,6 +29,7 @@ namespace Projeto_Tabacaria.View
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 30, 30));
         }
+            
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -32,96 +38,293 @@ namespace Projeto_Tabacaria.View
 
         private void txtQtd__TextChanged(object sender, EventArgs e)
         {
-            double a = txtQtd.Texts != "" ? Convert.ToDouble(txtQtd.Texts) : 0;
-            double b = txtBuyValue.Texts != "" ? Convert.ToDouble(txtBuyValue.Texts) : 0;
-            double total = a * b;
+            double parsedValue;
+            if (!double.TryParse(txtQtd.Text, out parsedValue))
+            {
+                txtQtd.Text = "";
 
-            txtTotal.Texts = "R$ " + total.ToString();
+            }
+            decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
+            decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
+            decimal total = a * b;
+
+            txtTotal.Text = total.ToString();
+            txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
         }
 
         private void txtBuyValue__TextChanged(object sender, EventArgs e)
         {
-            double a = txtQtd.Texts != "" ? Convert.ToDouble(txtQtd.Texts) : 0;
-            double b = txtBuyValue.Texts != "" ? Convert.ToDouble(txtBuyValue.Texts) : 0;
-            double total = a * b;
-            total = (double)System.Math.Round(total, 2);
+            double parsedValue;
+            if (!double.TryParse(txtBuyValue.Text, out parsedValue))
+            {
+                txtBuyValue.Text = "";
+            }
 
-            txtTotal.Texts = "R$ " + total.ToString();
+            decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
+            decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
+            decimal total = a * b;
+            total = (decimal)System.Math.Round(total, 2);
+            txtTotal.Text = total.ToString();
+
+            txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
         }
 
-        private void butRegisterProduct_Click(object sender, EventArgs e)
+        public void butRegisterProduct_Click(object sender, EventArgs e)
         {
+            RefreshForm.Enabled = true;
             try
             {
-                conn.Open();
-                MySqlCommand cmd_GetGroup = new MySqlCommand("SELECT grupo_id from tb_grupos where grupo_nome='" + cmbGrupo.Text + "'", conn);
-                MySqlCommand cmd_GetBrand = new MySqlCommand("SELECT marca_cod from tb_marca where marca_nome='" + cmbMarca.Text + "'", conn);
+                if (cmbUnidade_De_Medida.Text != "")
+                {
+                    if (dbConnections.connection.State != ConnectionState.Open)
+                    {
+                        dbConnections.OpenConnection();
+                    }
 
-                var GroupQueryResult = Convert.ToInt32(cmd_GetGroup.ExecuteScalar());
-                var brandQueryResult = Convert.ToInt32(cmd_GetBrand.ExecuteScalar());
+                    var quantity = Convert.ToDouble(txtQtd.Text);
+                    var quantityInventoryMin = Convert.ToDouble(txtInventoryMin.Text);
+                    if (quantity <= 0 && quantityInventoryMin <= 0)
+                    {
+                        MessageBox.Show("A quantidade não pode ser 0", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    else
+                    {
+                        if (dbConnections.connection.State != ConnectionState.Open)
+                        {
+                            dbConnections.OpenConnection();
+                        }
 
 
-                double a = txtQtd.Texts != "" ? Convert.ToDouble(txtQtd.Texts) : 0;
-                double b = txtBuyValue.Texts != "" ? Convert.ToDouble(txtBuyValue.Texts) : 0;
-                double total = a * b;
+                        MySqlCommand cmdGetGroup = new MySqlCommand("SELECT grupo_id from tb_grupos where grupo_nome='" + cmbGrupo.Text + "'", dbConnections.connection);
+                        MySqlCommand cmdGetBrand = new MySqlCommand("SELECT marca_cod from tb_marca where marca_nome='" + cmbMarca.Text + "'", dbConnections.connection);
 
-                MySqlCommand cmd = new MySqlCommand("insert into tb_produtos (prod_nome,prod_unidade,prod_id_grupo,prod_id_marca) values (@Nome,@Unidade, @Id_grupo, @Id_marca);" +
-                    "insert into tb_estoque(estoque_cod,estoque_quantidade) values (@Id_Prod,@Quantidade);" +
-                    "insert into tb_precos(id_produto,preco_unit_compra,preco_unit_venda,preco_total_gasto) values (@Id_Prod,@Valor_Unitario_Compra,@Valor_Unitario_Venda,@Valor_Total)", conn);
+                        var GroupQueryResult = Convert.ToInt32(cmdGetGroup.ExecuteScalar());
+                        var brandQueryResult = Convert.ToInt32(cmdGetBrand.ExecuteScalar());
 
-                cmd.Parameters.Add("@Id_Grupo", MySqlDbType.Int32, 10).Value = GroupQueryResult;
-                cmd.Parameters.Add("@Id_Marca", MySqlDbType.Int32, 10).Value = brandQueryResult;
-                cmd.Parameters.Add("@Nome", MySqlDbType.VarChar, 150).Value = txtProdName.Texts;
-                cmd.Parameters.Add("@Quantidade", MySqlDbType.Float, 10).Value = Convert.ToDouble(txtQtd.Texts);
-                cmd.Parameters.Add("@Id_Prod", MySqlDbType.Int32, 10).Value = Convert.ToInt32(txtProdCod.Texts);
-                cmd.Parameters.Add("@Unidade", MySqlDbType.VarChar, 10).Value = cmbUnidade_De_Medida.Text;
-                cmd.Parameters.Add("@Valor_Unitario_Compra", MySqlDbType.Float, 10).Value = Convert.ToDouble(txtBuyValue.Texts);
-                cmd.Parameters.Add("@Valor_Unitario_Venda", MySqlDbType.Float, 10).Value = Convert.ToDouble(txtSaleValue.Texts);
-                cmd.Parameters.Add("@Valor_Total", MySqlDbType.Float, 10).Value = total;
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                MessageBox.Show("Produto registrado!!");
-                txtProdName.Texts = "";
-                txtQtd.Texts = "";
-                txtBuyValue.Texts = "";
-                txtSaleValue.Texts = "";
-                txtTotal.Texts = "";
-                this.Refresh();
+
+                        double a = txtQtd.Text != "" ? Convert.ToDouble(txtQtd.Text) : 0;
+                        double b = txtBuyValue.Text != "" ? Convert.ToDouble(txtBuyValue.Text) : 0;
+                        double total = a * b;
+
+                        MySqlCommand cmd = new MySqlCommand("insert into tb_produtos (prod_nome,prod_last_update,prod_unidade,prod_id_grupo,prod_id_marca) values (@Nome,@Time,@Unidade,@Id_grupo, @Id_marca);" +
+                            "insert into tb_estoque(estoque_quantidade,estoque_lastupdate,estoque_minimo) values (@Quantidade,@Time,@EstoqueMin);" +
+                            "insert into tb_precos(preco_unit_compra,preco_unit_venda,preco_total_gasto,preco_last_update, preco_total_lucro) values (@Valor_Unitario_Compra,@Valor_Unitario_Venda,@Valor_Total,@Time,@Lucro)", dbConnections.connection);
+                        cmd.Parameters.Add("@Id_Grupo", MySqlDbType.Int32, 10).Value = GroupQueryResult;
+                        cmd.Parameters.Add("@Id_Marca", MySqlDbType.Int32, 10).Value = brandQueryResult;
+                        cmd.Parameters.Add("@Nome", MySqlDbType.VarChar, 150).Value = txtProdName.Text;
+                        cmd.Parameters.Add("@Quantidade", MySqlDbType.Float, 10).Value = quantity;
+                        cmd.Parameters.Add("@Unidade", MySqlDbType.VarChar, 10).Value = cmbUnidade_De_Medida.Text;
+                        cmd.Parameters.Add("@Valor_Unitario_Compra", MySqlDbType.Decimal, 9).Value = Convert.ToDouble(txtBuyValue.Text);
+                        cmd.Parameters.Add("@Valor_Unitario_Venda", MySqlDbType.Decimal, 9).Value = Convert.ToDouble(txtSaleValue.Text);
+                        cmd.Parameters.Add("@Lucro", MySqlDbType.Decimal, 9).Value = (Convert.ToDecimal(txtSaleValue.Text) - Convert.ToDecimal(txtBuyValue.Text));
+                        cmd.Parameters.Add("@Valor_Total", MySqlDbType.Decimal, 9).Value = total;
+                        DateTime dateTime = DateTime.Now;
+                        var dateTimeDate = DateOnly.FromDateTime(dateTime);
+                        cmd.Parameters.Add("@Time", MySqlDbType.Date).Value = dateTimeDate;
+                        cmd.Parameters.Add("@EstoqueMin", MySqlDbType.Float, 10).Value = quantityInventoryMin;
+
+
+                        if (String.IsNullOrEmpty(cmbUnidade_De_Medida.Text))
+                        {
+                            MessageBox.Show("O valor não pode ser nulo!");
+                        }
+                        else
+                        {
+                            cmd.ExecuteNonQuery();
+                            dbConnections.CloseConnection();
+                            lblReturnDB.Visible = true;
+                            lblReturnDB.Text = "Produto Registrado";
+                            txtProdName.Text = "";
+                            txtQtd.Text = "0";
+                            txtBuyValue.Text = "0";
+                            txtSaleValue.Text = "0";
+                            txtTotal.Text = "0";
+                            txtInventoryMin.Text = "";
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Unidade de medida não pode ser nula");
+                }
             }
-            catch(Exception ex)
+            catch(Exception ex1)
             {
-                MessageBox.Show("Erro!!" + ex);
-                conn.Close();
+                MessageBox.Show("" + ex1);
+                lblReturnDB.Visible = true;
+                lblReturnDB.Text = "ERRO";
+                dbConnections.CloseConnection();
             }
         }
 
         private void RegisterProduct_Load(object sender, EventArgs e)
         {
-            conn.Open();
-            string query_groups = "select grupo_nome from tb_grupos";
-            MySqlDataAdapter da = new MySqlDataAdapter(query_groups, conn);
-            DataSet ds = new DataSet();
-            da.Fill(ds, "tb_grupos");
-            this.cmbGrupo.DisplayMember = "GRUPO_NOME";
-            this.cmbGrupo.ValueMember = "GRUPO_ID";
-            this.cmbGrupo.DataSource = ds.Tables["tb_grupos"];
 
 
-            string query_marca = "select marca_nome from tb_marca";
-            MySqlDataAdapter da1 = new MySqlDataAdapter(query_marca, conn);
-            DataSet ds1 = new DataSet();
-            da1.Fill(ds1, "tb_marca");
-            this.cmbMarca.DisplayMember = "MARCA_NOME";
-            this.cmbMarca.ValueMember = "MARCA_COD";
-            this.cmbMarca.DataSource = ds1.Tables["tb_marca"];
+            lblReturnDB.Visible = false;
+            if (dbConnections.connection.State != ConnectionState.Open)
+            {
+                dbConnections.OpenConnection();
+            }
 
-            string query_next_prod = "SELECT COUNT(prod_cod)+1 FROM tb_produtos";
-            MySqlCommand cmd = new MySqlCommand(query_next_prod,conn);
-            MySqlDataReader reader;
-            reader = cmd.ExecuteReader();
-            reader.Read();
-            txtProdCod.Texts = reader.GetString(0);
-            conn.Close();
+            try
+            {
+                DataTable dt = new DataTable();
+                string cmd_search_brand_group = "SELECT grupo_nome FROM tb_grupos";
+                MySqlDataAdapter da1 = new MySqlDataAdapter(cmd_search_brand_group, dbConnections.connection);
+                DataSet ds1 = new DataSet();
+                da1.Fill(ds1, "tb_grupos");
+                this.cmbGrupo.DisplayMember = "grupo_nome";
+                this.cmbGrupo.ValueMember = "grupo_id";
+                this.cmbGrupo.DataSource = ds1.Tables["tb_grupos"];
+                dbConnections.CloseConnection();
+
+
+                if (dbConnections.connection.State != ConnectionState.Open)
+                {
+                    dbConnections.OpenConnection();
+                }
+                MySqlCommand cmd_search_brand_groupname = new MySqlCommand("SELECT grupo_id FROM tb_grupos WHERE grupo_nome = '" + cmbGrupo.Text + "'", dbConnections.connection);
+                int GroupQueryResult = Convert.ToInt32(cmd_search_brand_groupname.ExecuteScalar());
+                string query_brand_group = "SELECT marca_nome, marca_cod FROM tb_marca WHERE id_grupo_marca = '" + GroupQueryResult + "'";
+                var cmd = dbConnections.connection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = query_brand_group;
+                cmd.ExecuteNonQuery();
+                cmbGrupo.Text = "Selecione o grupo";
+
+                MySqlDataAdapter da2 = new MySqlDataAdapter(cmd);
+                da2.Fill(dt);
+
+                if (cmbMarca.Items.Count > 0)
+                {
+                    cmbMarca.SelectedIndex = 0;
+                    cmbMarca.Items.Clear();
+                }
+                foreach (DataRow dr in dt.Rows)
+                {
+                    cmbMarca.Items.Add(dr["marca_nome"].ToString());
+                    cmbMarca.Text = cmbMarca.Items[0].ToString();
+                    cmbMarca.Text = "Selecione a marca";
+                }
+
+                dbConnections.CloseConnection();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro" + Convert.ToString(ex));
+            }
+            dbConnections.CloseConnection();
+
+        }
+
+        private void RefreshForm_Tick(object sender, EventArgs e)
+        {
+            contador++;
+            if (contador == 1)
+            {
+                contador = 0;
+                RefreshForm.Enabled = false;
+                if (dbConnections.connection.State != ConnectionState.Open)
+                {
+                    dbConnections.OpenConnection();
+                }
+                string query_groups = "select grupo_nome from tb_grupos";
+                MySqlDataAdapter da = new MySqlDataAdapter(query_groups, dbConnections.connection);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "tb_grupos");
+                this.cmbGrupo.DisplayMember = "GRUPO_NOME";
+                this.cmbGrupo.ValueMember = "GRUPO_ID";
+                this.cmbGrupo.DataSource = ds.Tables["tb_grupos"];
+
+
+                string query_marca = "select marca_nome from tb_marca";
+                MySqlDataAdapter da1 = new MySqlDataAdapter(query_marca, dbConnections.connection);
+                DataSet ds1 = new DataSet();
+                da1.Fill(ds1, "tb_marca");
+                this.cmbMarca.DisplayMember = "MARCA_NOME";
+                this.cmbMarca.ValueMember = "MARCA_COD";
+                this.cmbMarca.DataSource = ds1.Tables["tb_marca"];
+
+                dbConnections.CloseConnection();
+
+                txtSaleValue.Text = "0";
+                txtTotal.Text = "0";
+                txtBuyValue.Text = "0";
+                txtQtd.Text = "0";
+            }
+
+        }
+
+        private void txtSaleValue__TextChanged(object sender, EventArgs e)
+        {
+            double parsedValue;
+            if (!double.TryParse(txtSaleValue.Text, out parsedValue))
+            {
+                txtSaleValue.Text = "";
+
+            }
+
+            decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
+            decimal b = txtSaleValue.Text != "" ? Convert.ToDecimal(txtSaleValue.Text) : 0;
+            decimal total = a * b;
+            total = (decimal)System.Math.Round(total, 2);
+            txtTotalSale.Text = total.ToString();
+
+            txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
+        }
+
+        private void cmbGrupo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dbConnections.connection.State != ConnectionState.Open)
+            {
+                dbConnections.OpenConnection();
+            }
+            DataTable dt = new DataTable();
+
+            try
+            {
+
+                if (dbConnections.connection.State != ConnectionState.Open)
+                {
+                    dbConnections.OpenConnection();
+                }
+                MySqlCommand cmdsearchBrandGroupname = new MySqlCommand("SELECT grupo_id FROM tb_grupos WHERE grupo_nome = '" + cmbGrupo.Text + "'", dbConnections.connection);
+                int GroupQueryResult = Convert.ToInt32(cmdsearchBrandGroupname.ExecuteScalar());
+                string queryBrandGroup = "SELECT marca_nome, marca_cod FROM tb_marca WHERE id_grupo_marca = '" + GroupQueryResult + "'";
+                var cmd = dbConnections.connection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = queryBrandGroup;
+                cmd.ExecuteNonQuery();
+
+
+                if (cmbMarca.Items.Count > 0)
+                {
+                    dt.Rows.Clear();
+                    cmbMarca.Items.Clear();
+                }
+
+
+                MySqlDataAdapter da2 = new MySqlDataAdapter(cmd);
+                da2.Fill(dt);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    cmbMarca.Items.Add(dr["marca_nome"].ToString());
+
+                }
+                cmbMarca.SelectedIndex = 0;
+
+
+                dbConnections.CloseConnection();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro" + Convert.ToString(ex));
+            }
+            dbConnections.CloseConnection();
         }
     }
 }
