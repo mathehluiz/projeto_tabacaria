@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CostumerScreen));
             this.btnDeleteClient = new Projeto_Tabacaria.Models.MNButton();
             this.btnEditClient = new Projeto_Tabacaria.Models.MNButton();
             this.btnCreateClient = new Projeto_Tabacaria.Models.MNButton();
@@ -200,6 +201,7 @@
             this.Controls.Add(this.btnEditClient);
             this.Controls.Add(this.btnCreateClient);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CostumerScreen";
             this.Text = "Clients";
             this.Load += new System.EventHandler(this.Clients_Load);

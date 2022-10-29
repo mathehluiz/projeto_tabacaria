@@ -51,7 +51,6 @@
             this.lblProdMinProfit = new System.Windows.Forms.Label();
             this.lblProdProfit = new System.Windows.Forms.Label();
             this.lblProducts = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblTotalSaleMonthValue = new System.Windows.Forms.Label();
             this.lblTotalSaleMonth = new System.Windows.Forms.Label();
             this.lblDateMonthValue = new System.Windows.Forms.Label();
@@ -248,7 +247,6 @@
             this.panel6.Controls.Add(this.lblProdMinProfit);
             this.panel6.Controls.Add(this.lblProdProfit);
             this.panel6.Controls.Add(this.lblProducts);
-            this.panel6.Controls.Add(this.label3);
             this.panel6.Location = new System.Drawing.Point(402, 336);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(292, 280);
@@ -259,7 +257,7 @@
             this.lblMinSale.AutoSize = true;
             this.lblMinSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblMinSale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(146)))), ((int)(((byte)(249)))));
-            this.lblMinSale.Location = new System.Drawing.Point(4, 127);
+            this.lblMinSale.Location = new System.Drawing.Point(3, 168);
             this.lblMinSale.Name = "lblMinSale";
             this.lblMinSale.Size = new System.Drawing.Size(144, 13);
             this.lblMinSale.TabIndex = 11;
@@ -270,7 +268,7 @@
             this.lblMaxSale.AutoSize = true;
             this.lblMaxSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblMaxSale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(146)))), ((int)(((byte)(249)))));
-            this.lblMaxSale.Location = new System.Drawing.Point(4, 103);
+            this.lblMaxSale.Location = new System.Drawing.Point(3, 144);
             this.lblMaxSale.Name = "lblMaxSale";
             this.lblMaxSale.Size = new System.Drawing.Size(137, 13);
             this.lblMaxSale.TabIndex = 10;
@@ -281,7 +279,7 @@
             this.lblProdMinProfit.AutoSize = true;
             this.lblProdMinProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblProdMinProfit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(146)))), ((int)(((byte)(249)))));
-            this.lblProdMinProfit.Location = new System.Drawing.Point(4, 80);
+            this.lblProdMinProfit.Location = new System.Drawing.Point(3, 121);
             this.lblProdMinProfit.Name = "lblProdMinProfit";
             this.lblProdMinProfit.Size = new System.Drawing.Size(156, 13);
             this.lblProdMinProfit.TabIndex = 9;
@@ -292,7 +290,7 @@
             this.lblProdProfit.AutoSize = true;
             this.lblProdProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblProdProfit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(146)))), ((int)(((byte)(249)))));
-            this.lblProdProfit.Location = new System.Drawing.Point(4, 58);
+            this.lblProdProfit.Location = new System.Drawing.Point(3, 99);
             this.lblProdProfit.Name = "lblProdProfit";
             this.lblProdProfit.Size = new System.Drawing.Size(152, 13);
             this.lblProdProfit.TabIndex = 8;
@@ -308,17 +306,6 @@
             this.lblProducts.Size = new System.Drawing.Size(95, 25);
             this.lblProducts.TabIndex = 1;
             this.lblProducts.Text = "Produtos";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Nirmala UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(151)))), ((int)(((byte)(176)))));
-            this.label3.Location = new System.Drawing.Point(29, 197);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(244, 45);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Costumer Value";
             // 
             // lblTotalSaleMonthValue
             // 
@@ -418,7 +405,6 @@
         private Panel panel6;
         private Label lblProdProfit;
         private Label lblProducts;
-        private Label label3;
         private Label lblProdMinProfit;
         private Label lblMinSale;
         private Label lblMaxSale;

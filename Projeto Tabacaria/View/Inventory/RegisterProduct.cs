@@ -1,8 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using Projeto_Tabacaria.DB;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Runtime.InteropServices;
 
@@ -41,31 +38,109 @@ namespace Projeto_Tabacaria.View.Inventory
             double parsedValue;
             if (!double.TryParse(txtQtd.Text, out parsedValue))
             {
-                txtQtd.Text = "";
+                txtQtd.Text = "0";
 
             }
-            decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
-            decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
-            decimal total = a * b;
+            if (!double.TryParse(txtSaleValue.Text, out parsedValue))
+            {
+                txtSaleValue.Text = "0";
 
-            txtTotal.Text = total.ToString();
+            }
+            if (!double.TryParse(txtBuyValue.Text, out parsedValue))
+            {
+                txtBuyValue.Text = "0";
+
+            }
+            string ml = "ML";
+            if (cmbUnidade_De_Medida.Text == ml || cmbUnidade_De_Medida.Text == "LT")
+            {
+                txtTotal.Text = txtBuyValue.Text;
+                txtTotalSale.Text = txtSaleValue.Text;
+            }
+            else
+            {
+                decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
+                decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
+                decimal total = a * b;
+
+                txtTotal.Text = total.ToString();
+                txtTotalSale.Text = (Convert.ToInt32(txtQtd.Text) * Convert.ToInt32(txtSaleValue.Text)).ToString();
+            }
             txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
         }
 
         private void txtBuyValue__TextChanged(object sender, EventArgs e)
         {
             double parsedValue;
+            if (!double.TryParse(txtQtd.Text, out parsedValue))
+            {
+                txtQtd.Text = "0";
+
+            }
+            if (!double.TryParse(txtSaleValue.Text, out parsedValue))
+            {
+                txtSaleValue.Text = "0";
+
+            }
             if (!double.TryParse(txtBuyValue.Text, out parsedValue))
             {
-                txtBuyValue.Text = "";
+                txtBuyValue.Text = "0";
+
+            }
+            string ml = "ML";
+            if (cmbUnidade_De_Medida.Text == ml)
+            {
+                txtTotal.Text = txtBuyValue.Text;
+                txtTotalSale.Text = txtSaleValue.Text;
+            }
+            else
+            {
+                decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
+                decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
+                decimal total = a * b;
+                total = (decimal)System.Math.Round(total, 2);
+                txtTotal.Text = total.ToString();
+                txtTotalSale.Text = (Convert.ToInt32(txtQtd.Text) * Convert.ToInt32(txtSaleValue.Text)).ToString();
             }
 
-            decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
-            decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
-            decimal total = a * b;
-            total = (decimal)System.Math.Round(total, 2);
-            txtTotal.Text = total.ToString();
+            
+            txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
+        }
+        private void txtSaleValue__TextChanged(object sender, EventArgs e)
+        {
+            double parsedValue;
+            if (!double.TryParse(txtQtd.Text, out parsedValue))
+            {
+                txtQtd.Text = "0";
 
+            }
+            if (!double.TryParse(txtSaleValue.Text, out parsedValue))
+            {
+                txtSaleValue.Text = "0";
+
+            }
+            if (!double.TryParse(txtBuyValue.Text, out parsedValue))
+            {
+                txtBuyValue.Text = "0";
+
+            }
+            string ml = "ML";
+            if (cmbUnidade_De_Medida.Text == ml)
+            {
+                txtTotal.Text = txtBuyValue.Text;
+                txtTotalSale.Text = txtSaleValue.Text;
+            }
+            else
+            {
+                decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
+                decimal b = txtSaleValue.Text != "" ? Convert.ToDecimal(txtSaleValue.Text) : 0;
+                decimal total = a * b;
+                total = (decimal)System.Math.Round(total, 2);
+                txtTotalSale.Text = total.ToString();
+                txtTotalSale.Text = (Convert.ToInt32(txtQtd.Text) * Convert.ToInt32(txtSaleValue.Text)).ToString();
+            }
+
+            
             txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
         }
 
@@ -113,6 +188,10 @@ namespace Projeto_Tabacaria.View.Inventory
                         cmd.Parameters.Add("@Id_Grupo", MySqlDbType.Int32, 10).Value = GroupQueryResult;
                         cmd.Parameters.Add("@Id_Marca", MySqlDbType.Int32, 10).Value = brandQueryResult;
                         cmd.Parameters.Add("@Nome", MySqlDbType.VarChar, 150).Value = txtProdName.Text;
+                        if(cmbUnidade_De_Medida.Text == "LT")
+                        {
+                            quantity = quantity * 1000;
+                        }
                         cmd.Parameters.Add("@Quantidade", MySqlDbType.Float, 10).Value = quantity;
                         cmd.Parameters.Add("@Unidade", MySqlDbType.VarChar, 10).Value = cmbUnidade_De_Medida.Text;
                         cmd.Parameters.Add("@Valor_Unitario_Compra", MySqlDbType.Decimal, 9).Value = Convert.ToDouble(txtBuyValue.Text);
@@ -258,24 +337,6 @@ namespace Projeto_Tabacaria.View.Inventory
 
         }
 
-        private void txtSaleValue__TextChanged(object sender, EventArgs e)
-        {
-            double parsedValue;
-            if (!double.TryParse(txtSaleValue.Text, out parsedValue))
-            {
-                txtSaleValue.Text = "";
-
-            }
-
-            decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
-            decimal b = txtSaleValue.Text != "" ? Convert.ToDecimal(txtSaleValue.Text) : 0;
-            decimal total = a * b;
-            total = (decimal)System.Math.Round(total, 2);
-            txtTotalSale.Text = total.ToString();
-
-            txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
-        }
-
         private void cmbGrupo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dbConnections.connection.State != ConnectionState.Open)
@@ -325,6 +386,13 @@ namespace Projeto_Tabacaria.View.Inventory
                 MessageBox.Show("Erro" + Convert.ToString(ex));
             }
             dbConnections.CloseConnection();
+        }
+
+        private void mnButton1_Click(object sender, EventArgs e)
+        {
+            RegisterCup registerCup = new RegisterCup();
+            registerCup.Show();
+            this.Dispose();
         }
     }
 }

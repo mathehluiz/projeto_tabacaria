@@ -42,6 +42,7 @@ namespace Projeto_Tabacaria.View.Inventory
             lblSendNameProduct.Visible = false;
             lblSendGroupName.Visible = false;
 
+
             
 
             try
@@ -108,7 +109,7 @@ namespace Projeto_Tabacaria.View.Inventory
                 txtBuyValue.Text = reader_Products.GetString(5);//preco de compra
                 txtSaleValue.Text = reader_Products.GetString(6);//preco de venda
                 txtTotalSpent.Texts = reader_Products.GetString(7);//preco total gasto
-  
+
                 decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
                 decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
                 decimal total = a * b;
@@ -117,10 +118,23 @@ namespace Projeto_Tabacaria.View.Inventory
                 decimal d = txtSaleValue.Text != "" ? Convert.ToDecimal(txtSaleValue.Text) : 0;
 
                 decimal total1 = c * d;
+                if (cmbUnidade_De_Medida.Text == "ML" || cmbUnidade_De_Medida.Text == "LT")
+                {
+                    txtTotalSpent.Texts = txtBuyValue.Text;
+                    txtTotalSale.Texts = txtSaleValue.Text;
+                    total1 = Convert.ToDecimal(txtBuyValue.Text);
+                    decimal total2 = Convert.ToDecimal(txtSaleValue.Text);
+                    decimal value = total2 - total1;
 
-                txtTotalSpent.Texts = total.ToString();
-                txtTotalSale.Texts = total1.ToString();
-                txtTotalProfitPresumed.Texts = (total1 - total).ToString();
+                    txtTotalProfitPresumed.Texts = value.ToString();
+                }
+                else
+                {
+                    txtTotalSpent.Texts = total.ToString();
+                    txtTotalSale.Texts = total1.ToString();
+                    txtTotalProfitPresumed.Texts = (total1 - total).ToString();
+                }
+                
             }
             catch (Exception ex)
             {
@@ -157,6 +171,8 @@ namespace Projeto_Tabacaria.View.Inventory
                 lblReturnDB.Visible = true;
                 lblReturnDB.Text = "Produto alterado";
 
+                EditProduct_Load(sender, e);
+
 
             }
             catch (Exception ex)
@@ -169,6 +185,7 @@ namespace Projeto_Tabacaria.View.Inventory
 
         private void txtQtd_TextChanged(object sender, EventArgs e)
         {
+
             double parsedValue;
             if (!double.TryParse(txtQtd.Text, out parsedValue))
             {
@@ -183,10 +200,22 @@ namespace Projeto_Tabacaria.View.Inventory
             decimal d = txtSaleValue.Text != "" ? Convert.ToDecimal(txtSaleValue.Text) : 0;
 
             decimal total1 = c * d;
+            if (cmbUnidade_De_Medida.Text == "ML" || cmbUnidade_De_Medida.Text == "LT")
+            {
+                txtTotalSpent.Texts = txtBuyValue.Text;
+                txtTotalSale.Texts = txtSaleValue.Text;
+                decimal total3 = Convert.ToDecimal(txtBuyValue.Text);
+                decimal total2 = Convert.ToDecimal(txtSaleValue.Text);
+                decimal value = total2 - total3;
 
-            txtTotalSpent.Texts = total.ToString();
-            txtTotalSale.Texts = total1.ToString();
-            txtTotalProfitPresumed.Texts = (total1 - total).ToString();
+                txtTotalProfitPresumed.Texts = value.ToString();
+            }
+            else
+            {
+                txtTotalSpent.Texts = total.ToString();
+                txtTotalSale.Texts = total1.ToString();
+                txtTotalProfitPresumed.Texts = (total1 - total).ToString();
+            }
         }
 
         private void txtBuyValue_TextChanged(object sender, EventArgs e)
@@ -206,9 +235,24 @@ namespace Projeto_Tabacaria.View.Inventory
 
             decimal total1 = c * d;
 
-            txtTotalSpent.Texts = total.ToString();
-            txtTotalSale.Texts = total1.ToString();
-            txtTotalProfitPresumed.Texts = (total1 - total).ToString();
+            if (cmbUnidade_De_Medida.Text == "ML" || cmbUnidade_De_Medida.Text == "LT")
+            {
+                txtTotalSpent.Texts = txtBuyValue.Text;
+                txtTotalSale.Texts = txtSaleValue.Text;
+                decimal total3 = Convert.ToDecimal(txtBuyValue.Text);
+                decimal total2 = Convert.ToDecimal(txtSaleValue.Text);
+                decimal value = total2 - total3;
+
+                txtTotalProfitPresumed.Texts = value.ToString();
+            }
+            else
+            {
+                txtTotalSpent.Texts = total.ToString();
+                txtTotalSale.Texts = total1.ToString();
+                txtTotalProfitPresumed.Texts = (total1 - total).ToString();
+            }
+
+            
         }
 
         private void txtSaleValue_TextChanged(object sender, EventArgs e)
@@ -228,9 +272,22 @@ namespace Projeto_Tabacaria.View.Inventory
 
             decimal total1 = c * d;
 
-            txtTotalSpent.Texts = total.ToString();
-            txtTotalSale.Texts = total1.ToString();
-            txtTotalProfitPresumed.Texts = (total1 - total).ToString();
+            if (cmbUnidade_De_Medida.Text == "ML" || cmbUnidade_De_Medida.Text == "LT")
+            {
+                txtTotalSpent.Texts = txtBuyValue.Text;
+                txtTotalSale.Texts = txtSaleValue.Text;
+                decimal total3 = Convert.ToDecimal(txtBuyValue.Text);
+                decimal total2 = Convert.ToDecimal(txtSaleValue.Text);
+                decimal value = total2 - total3;
+
+                txtTotalProfitPresumed.Texts = value.ToString();
+            }
+            else
+            {
+                txtTotalSpent.Texts = total.ToString();
+                txtTotalSale.Texts = total1.ToString();
+                txtTotalProfitPresumed.Texts = (total1 - total).ToString();
+            }
         }
     }
 }

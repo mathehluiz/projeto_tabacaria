@@ -182,10 +182,14 @@ namespace Projeto_Tabacaria.View.Inventory
                 lblReturnDB.Visible = true;
                 lblReturnDB.Text = "Erro";
             }
-            
-           
-            
 
+        }
+
+        private void mnButton1_Click(object sender, EventArgs e)
+        {
+            DeteCup deleteCup = new();
+            deleteCup.Show();
+            this.Dispose();
         }
     }
 }

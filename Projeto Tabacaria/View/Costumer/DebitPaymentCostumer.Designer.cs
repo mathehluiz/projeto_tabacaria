@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DebitPaymentCostumer));
             this.txtNameCostumer = new System.Windows.Forms.TextBox();
             this.txtTotalPay = new System.Windows.Forms.TextBox();
             this.btnPayDebit = new Projeto_Tabacaria.Models.MNButton();
@@ -159,6 +160,7 @@
             this.Controls.Add(this.txtTotalPay);
             this.Controls.Add(this.txtNameCostumer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DebitPaymentCostumer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DebitPaymentCostumer";

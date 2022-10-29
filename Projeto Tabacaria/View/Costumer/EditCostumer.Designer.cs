@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditCostumer));
             this.cmbSelectClient = new System.Windows.Forms.ComboBox();
             this.txtNameClient = new System.Windows.Forms.TextBox();
             this.txtPhoneClient = new System.Windows.Forms.TextBox();
@@ -157,6 +158,7 @@
             this.Controls.Add(this.txtNameClient);
             this.Controls.Add(this.cmbSelectClient);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditCostumer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditClient";

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeleteCostumer));
             this.cmbSearchClient = new System.Windows.Forms.ComboBox();
             this.btnDeleteClient = new Projeto_Tabacaria.Models.MNButton();
             this.picCloseEditProduct = new System.Windows.Forms.PictureBox();
@@ -121,6 +122,7 @@
             this.Controls.Add(this.btnDeleteClient);
             this.Controls.Add(this.cmbSearchClient);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DeleteCostumer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DeleteClient";

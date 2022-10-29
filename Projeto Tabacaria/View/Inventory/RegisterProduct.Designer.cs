@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterProduct));
             this.lblReturnDB = new System.Windows.Forms.Label();
             this.txtInventoryMin = new System.Windows.Forms.TextBox();
             this.lblRegisterGroup = new System.Windows.Forms.Label();
@@ -52,6 +53,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.mnButton1 = new Projeto_Tabacaria.Models.MNButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +65,7 @@
             this.lblReturnDB.AutoSize = true;
             this.lblReturnDB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblReturnDB.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblReturnDB.Location = new System.Drawing.Point(123, 360);
+            this.lblReturnDB.Location = new System.Drawing.Point(129, 373);
             this.lblReturnDB.Name = "lblReturnDB";
             this.lblReturnDB.Size = new System.Drawing.Size(93, 19);
             this.lblReturnDB.TabIndex = 43;
@@ -71,7 +76,6 @@
             this.txtInventoryMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtInventoryMin.Location = new System.Drawing.Point(274, 196);
             this.txtInventoryMin.Name = "txtInventoryMin";
-            this.txtInventoryMin.PlaceholderText = "Quantidade mínima de estoque";
             this.txtInventoryMin.Size = new System.Drawing.Size(83, 22);
             this.txtInventoryMin.TabIndex = 4;
             // 
@@ -133,7 +137,7 @@
             // 
             this.txtTotal.Enabled = false;
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTotal.Location = new System.Drawing.Point(16, 309);
+            this.txtTotal.Location = new System.Drawing.Point(15, 321);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.PlaceholderText = "Total Compra";
             this.txtTotal.Size = new System.Drawing.Size(105, 22);
@@ -228,15 +232,15 @@
             this.butRegisterProduct.Cursor = System.Windows.Forms.Cursors.Hand;
             this.butRegisterProduct.FlatAppearance.BorderSize = 0;
             this.butRegisterProduct.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.butRegisterProduct.Font = new System.Drawing.Font("Gadugi", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.butRegisterProduct.Font = new System.Drawing.Font("Gadugi", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.butRegisterProduct.ForeColor = System.Drawing.Color.White;
             this.butRegisterProduct.Image = global::Projeto_Tabacaria.Properties.Resources.registrar;
             this.butRegisterProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.butRegisterProduct.Location = new System.Drawing.Point(107, 382);
+            this.butRegisterProduct.Location = new System.Drawing.Point(12, 403);
             this.butRegisterProduct.Name = "butRegisterProduct";
             this.butRegisterProduct.Size = new System.Drawing.Size(168, 49);
             this.butRegisterProduct.TabIndex = 8;
-            this.butRegisterProduct.Text = "Registrar";
+            this.butRegisterProduct.Text = "        Registrar Produto";
             this.butRegisterProduct.TextColor = System.Drawing.Color.White;
             this.butRegisterProduct.UseVisualStyleBackColor = false;
             this.butRegisterProduct.Click += new System.EventHandler(this.butRegisterProduct_Click);
@@ -249,7 +253,7 @@
             // 
             this.txtTotalSale.Enabled = false;
             this.txtTotalSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTotalSale.Location = new System.Drawing.Point(136, 309);
+            this.txtTotalSale.Location = new System.Drawing.Point(135, 321);
             this.txtTotalSale.Name = "txtTotalSale";
             this.txtTotalSale.PlaceholderText = "Total Venda";
             this.txtTotalSale.Size = new System.Drawing.Size(105, 22);
@@ -261,7 +265,7 @@
             // 
             this.txtTotalProfit.Enabled = false;
             this.txtTotalProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTotalProfit.Location = new System.Drawing.Point(251, 309);
+            this.txtTotalProfit.Location = new System.Drawing.Point(250, 321);
             this.txtTotalProfit.Name = "txtTotalProfit";
             this.txtTotalProfit.PlaceholderText = "Lucro";
             this.txtTotalProfit.Size = new System.Drawing.Size(105, 22);
@@ -273,7 +277,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Gadugi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(17, 168);
+            this.label2.Location = new System.Drawing.Point(14, 171);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 19);
             this.label2.TabIndex = 46;
@@ -312,12 +316,73 @@
             this.label5.TabIndex = 49;
             this.label5.Text = "Valor de Venda";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(143, 346);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(91, 16);
+            this.label6.TabIndex = 51;
+            this.label6.Text = "Valor de Venda";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(17, 346);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(99, 16);
+            this.label7.TabIndex = 50;
+            this.label7.Text = "Valor de Compra";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(286, 346);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 16);
+            this.label8.TabIndex = 52;
+            this.label8.Text = "Lucro";
+            // 
+            // mnButton1
+            // 
+            this.mnButton1.BackColor = System.Drawing.Color.Teal;
+            this.mnButton1.BackgroundColor = System.Drawing.Color.Teal;
+            this.mnButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.mnButton1.BorderColor = System.Drawing.Color.Teal;
+            this.mnButton1.BorderRadius = 10;
+            this.mnButton1.BorderSize = 0;
+            this.mnButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.mnButton1.FlatAppearance.BorderSize = 0;
+            this.mnButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.mnButton1.Font = new System.Drawing.Font("Gadugi", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.mnButton1.ForeColor = System.Drawing.Color.White;
+            this.mnButton1.Image = global::Projeto_Tabacaria.Properties.Resources.registrar;
+            this.mnButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mnButton1.Location = new System.Drawing.Point(189, 403);
+            this.mnButton1.Name = "mnButton1";
+            this.mnButton1.Size = new System.Drawing.Size(168, 49);
+            this.mnButton1.TabIndex = 53;
+            this.mnButton1.Text = "        Registrar Copo";
+            this.mnButton1.TextColor = System.Drawing.Color.White;
+            this.mnButton1.UseVisualStyleBackColor = false;
+            this.mnButton1.Click += new System.EventHandler(this.mnButton1_Click);
+            // 
             // RegisterProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(382, 464);
+            this.Controls.Add(this.mnButton1);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -341,6 +406,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.butRegisterProduct);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RegisterProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registrar Produto";
@@ -376,5 +442,9 @@
         private Label label3;
         private Label label4;
         private Label label5;
+        private Label label6;
+        private Label label7;
+        private Label label8;
+        private Models.MNButton mnButton1;
     }
 }

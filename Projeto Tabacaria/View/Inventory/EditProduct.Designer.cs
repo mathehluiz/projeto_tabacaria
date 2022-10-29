@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditProduct));
             this.picCloseEditProduct = new System.Windows.Forms.PictureBox();
             this.lblMarca = new System.Windows.Forms.Label();
             this.cmbMarca = new System.Windows.Forms.ComboBox();
@@ -244,7 +245,7 @@
             this.btnEditProduct.ForeColor = System.Drawing.Color.White;
             this.btnEditProduct.Image = global::Projeto_Tabacaria.Properties.Resources.editar1;
             this.btnEditProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditProduct.Location = new System.Drawing.Point(142, 427);
+            this.btnEditProduct.Location = new System.Drawing.Point(129, 429);
             this.btnEditProduct.Name = "btnEditProduct";
             this.btnEditProduct.Size = new System.Drawing.Size(193, 58);
             this.btnEditProduct.TabIndex = 8;
@@ -280,6 +281,7 @@
             this.txtQtd.Size = new System.Drawing.Size(92, 23);
             this.txtQtd.TabIndex = 4;
             this.txtQtd.TabStop = false;
+            this.txtQtd.Text = "0";
             this.txtQtd.TextChanged += new System.EventHandler(this.txtQtd_TextChanged);
             // 
             // txtBuyValue
@@ -290,6 +292,7 @@
             this.txtBuyValue.Size = new System.Drawing.Size(92, 23);
             this.txtBuyValue.TabIndex = 6;
             this.txtBuyValue.TabStop = false;
+            this.txtBuyValue.Text = "0";
             this.txtBuyValue.TextChanged += new System.EventHandler(this.txtBuyValue_TextChanged);
             // 
             // txtSaleValue
@@ -300,6 +303,7 @@
             this.txtSaleValue.Size = new System.Drawing.Size(92, 23);
             this.txtSaleValue.TabIndex = 7;
             this.txtSaleValue.TabStop = false;
+            this.txtSaleValue.Text = "0";
             this.txtSaleValue.TextChanged += new System.EventHandler(this.txtSaleValue_TextChanged);
             // 
             // label3
@@ -486,6 +490,7 @@
             this.Controls.Add(this.cmbMarca);
             this.Controls.Add(this.picCloseEditProduct);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditProduct";

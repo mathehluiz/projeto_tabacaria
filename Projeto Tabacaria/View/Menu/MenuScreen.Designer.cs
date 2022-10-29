@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuScreen));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnCostumer = new System.Windows.Forms.Button();
@@ -110,6 +111,7 @@
             this.btnReport.Text = "Relatórios";
             this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnReport.UseVisualStyleBackColor = false;
+            this.btnReport.Visible = false;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             this.btnReport.Leave += new System.EventHandler(this.btnReport_Leave);
             // 
@@ -262,6 +264,7 @@
             this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MenuScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Area Hookah";
