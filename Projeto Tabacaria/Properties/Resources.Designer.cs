@@ -113,6 +113,16 @@ namespace Projeto_Tabacaria.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bloco_de_anotacoes {
+            get {
+                object obj = ResourceManager.GetObject("bloco-de-anotacoes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bolsa {
             get {
                 object obj = ResourceManager.GetObject("bolsa", resourceCulture);
@@ -516,6 +526,26 @@ namespace Projeto_Tabacaria.Properties {
         internal static System.Drawing.Bitmap relatorio_correto {
             get {
                 object obj = ResourceManager.GetObject("relatorio_correto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap remover_do_carrinho {
+            get {
+                object obj = ResourceManager.GetObject("remover-do-carrinho", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap remover_do_carrinho1 {
+            get {
+                object obj = ResourceManager.GetObject("remover-do-carrinho1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

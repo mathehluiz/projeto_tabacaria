@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuScreen));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnGroupAndBrand = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnCostumer = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
@@ -55,6 +56,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.panel1.Controls.Add(this.btnGroupAndBrand);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.btnCostumer);
             this.panel1.Controls.Add(this.btnReport);
@@ -67,6 +69,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(184, 720);
             this.panel1.TabIndex = 0;
+            // 
+            // btnGroupAndBrand
+            // 
+            this.btnGroupAndBrand.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnGroupAndBrand.FlatAppearance.BorderSize = 0;
+            this.btnGroupAndBrand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGroupAndBrand.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnGroupAndBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnGroupAndBrand.Image = global::Projeto_Tabacaria.Properties.Resources.bloco_de_anotacoes;
+            this.btnGroupAndBrand.Location = new System.Drawing.Point(0, 354);
+            this.btnGroupAndBrand.Name = "btnGroupAndBrand";
+            this.btnGroupAndBrand.Size = new System.Drawing.Size(184, 42);
+            this.btnGroupAndBrand.TabIndex = 6;
+            this.btnGroupAndBrand.Text = "Grupos e Marcas";
+            this.btnGroupAndBrand.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnGroupAndBrand.UseVisualStyleBackColor = false;
+            this.btnGroupAndBrand.Click += new System.EventHandler(this.btnGroupAndBrand_Click);
             // 
             // pictureBox2
             // 
@@ -296,5 +315,6 @@
         private PictureBox pictureBox2;
         private PictureBox picCloseForm;
         private PictureBox picMinimizeForm;
+        private Button btnGroupAndBrand;
     }
 }

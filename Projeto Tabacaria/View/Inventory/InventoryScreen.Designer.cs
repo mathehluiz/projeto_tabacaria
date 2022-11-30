@@ -41,8 +41,6 @@
             this.editar = new System.Windows.Forms.DataGridViewImageColumn();
             this.excluir = new System.Windows.Forms.DataGridViewImageColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnRegBrand = new Projeto_Tabacaria.Models.MNButton();
-            this.btnRegGroup = new Projeto_Tabacaria.Models.MNButton();
             this.lblSendNameProduct = new System.Windows.Forms.Label();
             this.lblSendBrandProduct = new System.Windows.Forms.Label();
             this.lblSendGroupName = new System.Windows.Forms.Label();
@@ -64,7 +62,7 @@
             this.btnCreateProduct.ForeColor = System.Drawing.Color.White;
             this.btnCreateProduct.Image = global::Projeto_Tabacaria.Properties.Resources.registrar;
             this.btnCreateProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCreateProduct.Location = new System.Drawing.Point(464, 16);
+            this.btnCreateProduct.Location = new System.Drawing.Point(11, 12);
             this.btnCreateProduct.Name = "btnCreateProduct";
             this.btnCreateProduct.Size = new System.Drawing.Size(212, 51);
             this.btnCreateProduct.TabIndex = 14;
@@ -87,7 +85,7 @@
             this.btnEditProduct.ForeColor = System.Drawing.Color.White;
             this.btnEditProduct.Image = global::Projeto_Tabacaria.Properties.Resources.editar1;
             this.btnEditProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditProduct.Location = new System.Drawing.Point(682, 16);
+            this.btnEditProduct.Location = new System.Drawing.Point(229, 12);
             this.btnEditProduct.Name = "btnEditProduct";
             this.btnEditProduct.Size = new System.Drawing.Size(189, 51);
             this.btnEditProduct.TabIndex = 15;
@@ -110,7 +108,7 @@
             this.btnDeleteProduct.ForeColor = System.Drawing.Color.White;
             this.btnDeleteProduct.Image = global::Projeto_Tabacaria.Properties.Resources.lixeira_de_reciclagem;
             this.btnDeleteProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteProduct.Location = new System.Drawing.Point(877, 16);
+            this.btnDeleteProduct.Location = new System.Drawing.Point(424, 12);
             this.btnDeleteProduct.Name = "btnDeleteProduct";
             this.btnDeleteProduct.Size = new System.Drawing.Size(192, 51);
             this.btnDeleteProduct.TabIndex = 16;
@@ -220,52 +218,6 @@
             this.timer1.Interval = 10000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // btnRegBrand
-            // 
-            this.btnRegBrand.BackColor = System.Drawing.Color.Teal;
-            this.btnRegBrand.BackgroundColor = System.Drawing.Color.Teal;
-            this.btnRegBrand.BorderColor = System.Drawing.Color.Black;
-            this.btnRegBrand.BorderRadius = 10;
-            this.btnRegBrand.BorderSize = 0;
-            this.btnRegBrand.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegBrand.FlatAppearance.BorderSize = 0;
-            this.btnRegBrand.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRegBrand.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnRegBrand.ForeColor = System.Drawing.Color.White;
-            this.btnRegBrand.Image = global::Projeto_Tabacaria.Properties.Resources.registrar;
-            this.btnRegBrand.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegBrand.Location = new System.Drawing.Point(246, 16);
-            this.btnRegBrand.Name = "btnRegBrand";
-            this.btnRegBrand.Size = new System.Drawing.Size(212, 51);
-            this.btnRegBrand.TabIndex = 18;
-            this.btnRegBrand.Text = "     Cadastrar Marca";
-            this.btnRegBrand.TextColor = System.Drawing.Color.White;
-            this.btnRegBrand.UseVisualStyleBackColor = false;
-            this.btnRegBrand.Click += new System.EventHandler(this.btnRegBrand_Click);
-            // 
-            // btnRegGroup
-            // 
-            this.btnRegGroup.BackColor = System.Drawing.Color.Teal;
-            this.btnRegGroup.BackgroundColor = System.Drawing.Color.Teal;
-            this.btnRegGroup.BorderColor = System.Drawing.Color.Black;
-            this.btnRegGroup.BorderRadius = 10;
-            this.btnRegGroup.BorderSize = 0;
-            this.btnRegGroup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegGroup.FlatAppearance.BorderSize = 0;
-            this.btnRegGroup.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRegGroup.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnRegGroup.ForeColor = System.Drawing.Color.White;
-            this.btnRegGroup.Image = global::Projeto_Tabacaria.Properties.Resources.registrar;
-            this.btnRegGroup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegGroup.Location = new System.Drawing.Point(28, 16);
-            this.btnRegGroup.Name = "btnRegGroup";
-            this.btnRegGroup.Size = new System.Drawing.Size(212, 51);
-            this.btnRegGroup.TabIndex = 19;
-            this.btnRegGroup.Text = "    Cadastrar Grupo";
-            this.btnRegGroup.TextColor = System.Drawing.Color.White;
-            this.btnRegGroup.UseVisualStyleBackColor = false;
-            this.btnRegGroup.Click += new System.EventHandler(this.btnRegGroup_Click);
-            // 
             // lblSendNameProduct
             // 
             this.lblSendNameProduct.AutoSize = true;
@@ -303,8 +255,6 @@
             this.Controls.Add(this.lblSendGroupName);
             this.Controls.Add(this.lblSendBrandProduct);
             this.Controls.Add(this.lblSendNameProduct);
-            this.Controls.Add(this.btnRegGroup);
-            this.Controls.Add(this.btnRegBrand);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnDeleteProduct);
             this.Controls.Add(this.btnEditProduct);
@@ -329,8 +279,6 @@
         private Panel panel1;
         private DataGridView dgvProducts;
         private System.Windows.Forms.Timer timer1;
-        private Models.MNButton btnRegBrand;
-        private Models.MNButton btnRegGroup;
         private DataGridViewImageColumn editar;
         private DataGridViewImageColumn excluir;
         private Label lblSendNameProduct;

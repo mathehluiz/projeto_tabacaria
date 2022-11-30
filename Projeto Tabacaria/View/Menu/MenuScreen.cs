@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Projeto_Tabacaria.DB;
+using Projeto_Tabacaria.View.Group_and_Brand;
 using System.Runtime.InteropServices;
 
 namespace Projeto_Tabacaria.View
@@ -142,6 +143,20 @@ namespace Projeto_Tabacaria.View
         private void picMinimizeForm_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnGroupAndBrand_Click(object sender, EventArgs e)
+        {
+            pnlNav.Height = btnStock.Height;
+            pnlNav.Top = btnStock.Top;
+            btnStock.BackColor = Color.FromArgb(46, 51, 73);
+
+            this.PnlFormLoader.Controls.Clear();
+            GroupBrandScreen groupbrandScreen = new() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            groupbrandScreen.FormBorderStyle = FormBorderStyle.None;
+            this.PnlFormLoader.Controls.Add(groupbrandScreen);
+            groupbrandScreen.Show();
+
         }
     }
 }

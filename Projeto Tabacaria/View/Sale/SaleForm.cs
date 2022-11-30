@@ -233,17 +233,38 @@ namespace Projeto_Tabacaria.View
                 return;
             }
             else
-            { 
-                dgvProducts.Rows.RemoveAt(dgvProducts.CurrentRow.Index);
-                double SumAmounts = 0;
-                foreach (DataGridViewRow row in dgvProducts.Rows)
+            {
+                if (dbConnections.connection.State != ConnectionState.Open)
                 {
-                    double amount = Convert.ToDouble(row.Cells[dgvProducts.Columns[3].Index].Value);
-                    SumAmounts += amount;
-                    SumAmounts = (double)System.Math.Round(SumAmounts, 2);
-                    txtSubtotal.Texts = SumAmounts.ToString();
+                    dbConnections.OpenConnection();
+                }
+                double SumAmounts = 0;
+                foreach (var row in this.dgvProducts.Rows)
+                {
+                    var dataGridViewRow = row as DataGridViewRow;
+
+                    var cellName = dataGridViewRow.Cells[0];
+                    var valueName = cellName.Value;
+                    string valueConverted = valueName.ToString();
+
+                    var cellQtd = dataGridViewRow.Cells[1].Value;
+                    int tet2 = Convert.ToInt32(cellQtd.ToString());
+                    intQtd = tet2;
+
+
+                    string searchCodProd = "SELECT prod_cod FROM tb_produtos WHERE prod_nome = '" + valueConverted + "'";
+                    MySqlCommand cmdsearchCodProd = new MySqlCommand(searchCodProd, dbConnections.connection);
+                    int codProd = Convert.ToInt32(cmdsearchCodProd.ExecuteScalar());
+
+                    string updateInventory = "update tb_estoque set estoque_quantidade='" + valQtd.AddQuantity(intQtd, codProd) + "' where estoque_cod = '" + codProd + "'";
+                    MySqlCommand cmdupdateInvetory = new MySqlCommand(updateInventory, dbConnections.connection);
+                    cmdupdateInvetory.ExecuteNonQuery();
+
+                    dgvProducts.Rows.RemoveAt(dgvProducts.CurrentRow.Index);
+
                 }
             }
+            dbConnections.CloseConnection();
         }
 
         public void txtSubtotal__TextChanged(object sender, EventArgs e)
@@ -529,6 +550,8 @@ namespace Projeto_Tabacaria.View
                     MessageBox.Show("Venda Cancelada!");
                     txtSubtotal.Texts = "";
                     txtTotalValue.Texts = "";
+                    lblReturnDB.Visible = false;
+                    lblReturnQuantity.Visible = false;
                     cmbSaleProduct.Text = "Selecione um Produto";
                     cmbCostumer.Items.Clear();
                     cmbSaleProduct.Items.Clear();

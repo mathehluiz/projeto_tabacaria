@@ -64,7 +64,7 @@ namespace Projeto_Tabacaria.View.Inventory
                 decimal total = a * b;
 
                 txtTotal.Text = total.ToString();
-                txtTotalSale.Text = (Convert.ToInt32(txtQtd.Text) * Convert.ToInt32(txtSaleValue.Text)).ToString();
+                txtTotalSale.Text = (Convert.ToDouble(txtQtd.Text) * Convert.ToDouble(txtSaleValue.Text)).ToString();
             }
             txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
         }
@@ -100,7 +100,7 @@ namespace Projeto_Tabacaria.View.Inventory
                 decimal total = a * b;
                 total = (decimal)System.Math.Round(total, 2);
                 txtTotal.Text = total.ToString();
-                txtTotalSale.Text = (Convert.ToInt32(txtQtd.Text) * Convert.ToInt32(txtSaleValue.Text)).ToString();
+                txtTotalSale.Text = (Convert.ToDouble(txtQtd.Text) * Convert.ToDouble(txtSaleValue.Text)).ToString();
             }
 
             
@@ -137,7 +137,7 @@ namespace Projeto_Tabacaria.View.Inventory
                 decimal total = a * b;
                 total = (decimal)System.Math.Round(total, 2);
                 txtTotalSale.Text = total.ToString();
-                txtTotalSale.Text = (Convert.ToInt32(txtQtd.Text) * Convert.ToInt32(txtSaleValue.Text)).ToString();
+                txtTotalSale.Text = (Convert.ToDouble(txtQtd.Text) * Convert.ToDouble(txtSaleValue.Text)).ToString();
             }
 
             
