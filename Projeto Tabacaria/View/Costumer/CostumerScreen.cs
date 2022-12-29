@@ -126,5 +126,32 @@ namespace Projeto_Tabacaria.View
         {
             RefreshDgvCostumer.Enabled = true;
         }
+
+        private void picCloseEditProduct_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dbConnections.connection.State != ConnectionState.Open)
+                {
+                    dbConnections.OpenConnection();
+                }
+
+                string loadProduct = "SELECT cli_nome, cli_telefone, cli_total FROM tb_clientes where cli_nome != '[A] Sem cliente' ORDER BY  cli_total desc";
+                MySqlDataAdapter daProduct = new MySqlDataAdapter(loadProduct, dbConnections.connection);
+                DataTable dtProduct = new DataTable();
+                daProduct.Fill(dtProduct);
+                dgvCostumers.DataSource = dtProduct;
+                dgvCostumers.Columns["cli_nome"].HeaderText = "Nome";
+                dgvCostumers.Columns["cli_telefone"].HeaderText = "Telefone";
+                dgvCostumers.Columns["cli_total"].HeaderText = "Valor em fiado";
+                dbConnections.CloseConnection();
+                dgvCostumers.Columns[2].DefaultCellStyle.Format = "c2";
+                dgvCostumers.Columns[2].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro" + ex);
+            }
+        }
     }
 }

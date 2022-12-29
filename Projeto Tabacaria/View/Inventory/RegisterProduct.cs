@@ -191,7 +191,7 @@ namespace Projeto_Tabacaria.View.Inventory
                         var codprod = cmdSelectProdCod.ExecuteScalar();
 
                         //registar preço
-                        MySqlCommand cmdRegisterPrice = new MySqlCommand("insert into tb_precos (preco_unit_compra, preco_unit_venda,preco_lucro) values (@Valor_Unitario_Compra, @Valor_Unitario_Venda,@Lucro)", dbConnections.connection);
+                        MySqlCommand cmdRegisterPrice = new MySqlCommand("insert into tb_precos (id_produto,preco_unit_compra, preco_unit_venda,preco_lucro) values ('"+ codprod + "',@Valor_Unitario_Compra, @Valor_Unitario_Venda,@Lucro)", dbConnections.connection);
                         cmdRegisterPrice.Parameters.Add("@Valor_Unitario_Compra", MySqlDbType.Decimal, 9).Value = Convert.ToDouble(txtBuyValue.Text);
                         cmdRegisterPrice.Parameters.Add("@Valor_Unitario_Venda", MySqlDbType.Decimal, 9).Value = Convert.ToDouble(txtSaleValue.Text);
                         cmdRegisterPrice.Parameters.Add("@Lucro", MySqlDbType.Decimal, 9).Value = (Convert.ToDecimal(txtSaleValue.Text) - Convert.ToDecimal(txtBuyValue.Text));

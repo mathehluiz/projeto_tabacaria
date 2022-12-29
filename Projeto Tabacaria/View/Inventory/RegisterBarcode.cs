@@ -104,7 +104,7 @@ namespace Projeto_Tabacaria.View.Inventory
             {
                 try
                 {
-                    dbConnections.OpenConnection();
+                    
                     //selecionar cod do produto
                     MySqlCommand cmdSelectProdCod = new MySqlCommand("SELECT prod_cod FROM tb_produtos where prod_nome = '" + cmbSearchProduct.Text + "'", dbConnections.connection);
                     var codprod = cmdSelectProdCod.ExecuteScalar();

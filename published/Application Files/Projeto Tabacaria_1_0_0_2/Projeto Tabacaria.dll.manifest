@@ -116,22 +116,22 @@
       <dsig:DigestValue>3Sc4kJABQmrJTdLFlEsoUh60D3r23XRBSuTZfL5y/hY=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Projeto Tabacaria.dll" size="4473344">
+  <file name="Projeto Tabacaria.dll" size="4487680">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>6bMOdbh7W6zurGa24LZDrxHO/Vz8yf8gezhaC9pSraA=</dsig:DigestValue>
+      <dsig:DigestValue>NoKjoQ/03scirnVJbikPsr1JqiXZ95U/gkZOHnCk39g=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Projeto Tabacaria.exe" size="147968">
+  <file name="Projeto Tabacaria.exe" size="147456">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>/BxttsdCXRVgEoQlq0vPO78dk+4j26tKeFS8kHzM9og=</dsig:DigestValue>
+      <dsig:DigestValue>NYMWLVo5thBdO/wUbtU93hCWbiel5VD9kyPtyiyhRgk=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Projeto Tabacaria.runtimeconfig.json" size="372">

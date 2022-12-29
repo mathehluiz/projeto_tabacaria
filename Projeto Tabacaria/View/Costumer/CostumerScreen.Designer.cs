@@ -40,7 +40,9 @@
             this.dgvCostumers = new System.Windows.Forms.DataGridView();
             this.pagamento = new System.Windows.Forms.DataGridViewImageColumn();
             this.RefreshDgvCostumer = new System.Windows.Forms.Timer(this.components);
+            this.picCloseEditProduct = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCostumers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCloseEditProduct)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDeleteClient
@@ -190,12 +192,25 @@
             // 
             this.RefreshDgvCostumer.Tick += new System.EventHandler(this.RefreshDgvCostumer_Tick);
             // 
+            // picCloseEditProduct
+            // 
+            this.picCloseEditProduct.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picCloseEditProduct.Image = global::Projeto_Tabacaria.Properties.Resources.refresh;
+            this.picCloseEditProduct.Location = new System.Drawing.Point(648, 35);
+            this.picCloseEditProduct.Name = "picCloseEditProduct";
+            this.picCloseEditProduct.Size = new System.Drawing.Size(42, 38);
+            this.picCloseEditProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCloseEditProduct.TabIndex = 51;
+            this.picCloseEditProduct.TabStop = false;
+            this.picCloseEditProduct.Click += new System.EventHandler(this.picCloseEditProduct_Click);
+            // 
             // CostumerScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(1094, 666);
+            this.Controls.Add(this.picCloseEditProduct);
             this.Controls.Add(this.dgvCostumers);
             this.Controls.Add(this.btnDeleteClient);
             this.Controls.Add(this.btnEditClient);
@@ -206,6 +221,7 @@
             this.Text = "Clients";
             this.Load += new System.EventHandler(this.Clients_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCostumers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCloseEditProduct)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -217,5 +233,6 @@
         private DataGridView dgvCostumers;
         private DataGridViewImageColumn pagamento;
         private System.Windows.Forms.Timer RefreshDgvCostumer;
+        private PictureBox picCloseEditProduct;
     }
 }
