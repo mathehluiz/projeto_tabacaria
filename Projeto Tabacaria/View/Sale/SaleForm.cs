@@ -862,8 +862,13 @@ namespace Projeto_Tabacaria.View
                         txtSubtotal.Texts = SumAmounts.ToString();
                     }
                     
+
                 }
+                txtBarCode.Clear();
+                txtBarCode.Select();
+
             }
+            
         }
 
         private void cmbSaleProduct_SelectedIndexChanged(object sender, EventArgs e)

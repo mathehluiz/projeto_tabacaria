@@ -75,6 +75,7 @@
             this.cmbSearchProduct.Size = new System.Drawing.Size(150, 23);
             this.cmbSearchProduct.TabIndex = 43;
             this.cmbSearchProduct.TabStop = false;
+            this.cmbSearchProduct.TextChanged += new System.EventHandler(this.cmbSearchProduct_TextChanged);
             // 
             // lblMarca
             // 
@@ -128,6 +129,7 @@
             this.txtBarcode.PlaceholderText = "CÓDIGO DE BARRA";
             this.txtBarcode.Size = new System.Drawing.Size(239, 22);
             this.txtBarcode.TabIndex = 0;
+            this.txtBarcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBarcode_KeyPress);
             // 
             // btnRegBarcode
             // 
@@ -213,6 +215,7 @@
             this.Controls.Add(this.cmbMarca);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RegisterBarcode";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegisterBarcode";
             this.Load += new System.EventHandler(this.RegisterBarcode_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
