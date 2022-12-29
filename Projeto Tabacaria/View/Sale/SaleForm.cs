@@ -33,6 +33,7 @@ namespace Projeto_Tabacaria.View
             cmbSaleProduct.Enabled = false;
             txtQtd.Enabled = false;
             txtSubtotal.Enabled = false;
+            txtTroco.Enabled = false;
             txtDiscount.Enabled = false;
             btnDeleteItem.Enabled = false;
             btnEndSale.Enabled = false;
@@ -167,7 +168,8 @@ namespace Projeto_Tabacaria.View
                                     {
                                         if (unityDB == "LT" || unityDB == "ML")
                                         {
-                                            dgvProducts.Rows.Add(reader[0], txtQtd.Text.Trim(), reader[1], reader[2], reader[2]);
+
+                                            dgvProducts.Rows.Add(reader[0], txtQtd.Text.Trim(), reader[1], reader[2], double.Parse(txtQtd.Text) * double.Parse(reader[2].ToString()));
                                             dgvProducts.Columns[3].DefaultCellStyle.Format = "c2";
                                             dgvProducts.Columns[3].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
                                             dgvProducts.Columns[4].DefaultCellStyle.Format = "c2";
@@ -258,6 +260,7 @@ namespace Projeto_Tabacaria.View
                     dbConnections.OpenConnection();
                 }
                 double SumAmounts = 0;
+
                 foreach (var row in this.dgvProducts.Rows)
                 {
                     var dataGridViewRow = row as DataGridViewRow;
@@ -309,9 +312,18 @@ namespace Projeto_Tabacaria.View
                         cmdRegisterBarcode.ExecuteNonQuery();
                     }
 
-
+                    
 
                     dgvProducts.Rows.RemoveAt(dgvProducts.CurrentRow.Index);
+
+                    double oma = 0;
+                    foreach (DataGridViewRow rows in dgvProducts.Rows)
+                    {
+                        double amount = Convert.ToDouble(rows.Cells[dgvProducts.Columns[4].Index].Value);
+                        oma += amount;
+                        oma = (double)System.Math.Round(oma, 2);
+                        txtSubtotal.Texts = oma.ToString();
+                    }
 
                 }
             }
@@ -933,6 +945,20 @@ namespace Projeto_Tabacaria.View
 
             }
             
+
+        }
+
+        private void txtMoneyPay_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                char[] amount = { 'R', '$' };
+                string outAmount = txtTotalValue.Texts.Trim(amount);
+                string outAmountDiscount = txtMoneyPay.Texts.Trim(amount);
+                double price = Convert.ToDouble(outAmountDiscount) - Convert.ToDouble(outAmount);
+                txtTroco.Texts = price.ToString();
+
+            }
 
         }
     }

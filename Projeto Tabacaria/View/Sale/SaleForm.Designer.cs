@@ -66,6 +66,10 @@
             this.cmbCups = new System.Windows.Forms.ComboBox();
             this.txtQtd = new System.Windows.Forms.TextBox();
             this.txtBarCode = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtMoneyPay = new CustomControls.RJControls.RJTextBox();
+            this.txtTroco = new CustomControls.RJControls.RJTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picSearchIcon_Sale)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -270,7 +274,7 @@
             this.lblTotalValue.AutoSize = true;
             this.lblTotalValue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTotalValue.ForeColor = System.Drawing.Color.White;
-            this.lblTotalValue.Location = new System.Drawing.Point(399, 636);
+            this.lblTotalValue.Location = new System.Drawing.Point(16, 643);
             this.lblTotalValue.Name = "lblTotalValue";
             this.lblTotalValue.Size = new System.Drawing.Size(95, 21);
             this.lblTotalValue.TabIndex = 27;
@@ -281,7 +285,7 @@
             this.lblDiscount.AutoSize = true;
             this.lblDiscount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblDiscount.ForeColor = System.Drawing.Color.White;
-            this.lblDiscount.Location = new System.Drawing.Point(215, 634);
+            this.lblDiscount.Location = new System.Drawing.Point(245, 606);
             this.lblDiscount.Name = "lblDiscount";
             this.lblDiscount.Size = new System.Drawing.Size(86, 21);
             this.lblDiscount.TabIndex = 26;
@@ -292,7 +296,7 @@
             this.lblSubtotal.AutoSize = true;
             this.lblSubtotal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblSubtotal.ForeColor = System.Drawing.Color.White;
-            this.lblSubtotal.Location = new System.Drawing.Point(18, 634);
+            this.lblSubtotal.Location = new System.Drawing.Point(18, 606);
             this.lblSubtotal.Name = "lblSubtotal";
             this.lblSubtotal.Size = new System.Drawing.Size(79, 21);
             this.lblSubtotal.TabIndex = 25;
@@ -308,7 +312,7 @@
             this.txtTotalValue.Enabled = false;
             this.txtTotalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtTotalValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtTotalValue.Location = new System.Drawing.Point(492, 629);
+            this.txtTotalValue.Location = new System.Drawing.Point(121, 639);
             this.txtTotalValue.Margin = new System.Windows.Forms.Padding(4);
             this.txtTotalValue.Multiline = false;
             this.txtTotalValue.Name = "txtTotalValue";
@@ -316,7 +320,7 @@
             this.txtTotalValue.PasswordChar = false;
             this.txtTotalValue.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtTotalValue.PlaceholderText = "";
-            this.txtTotalValue.Size = new System.Drawing.Size(170, 31);
+            this.txtTotalValue.Size = new System.Drawing.Size(112, 31);
             this.txtTotalValue.TabIndex = 24;
             this.txtTotalValue.TabStop = false;
             this.txtTotalValue.Texts = "";
@@ -331,7 +335,7 @@
             this.txtDiscount.BorderSize = 2;
             this.txtDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtDiscount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtDiscount.Location = new System.Drawing.Point(300, 629);
+            this.txtDiscount.Location = new System.Drawing.Point(330, 601);
             this.txtDiscount.Margin = new System.Windows.Forms.Padding(4);
             this.txtDiscount.Multiline = false;
             this.txtDiscount.Name = "txtDiscount";
@@ -339,7 +343,7 @@
             this.txtDiscount.PasswordChar = false;
             this.txtDiscount.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtDiscount.PlaceholderText = "";
-            this.txtDiscount.Size = new System.Drawing.Size(92, 31);
+            this.txtDiscount.Size = new System.Drawing.Size(90, 31);
             this.txtDiscount.TabIndex = 23;
             this.txtDiscount.TabStop = false;
             this.txtDiscount.Texts = "";
@@ -356,7 +360,7 @@
             this.txtSubtotal.Enabled = false;
             this.txtSubtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtSubtotal.Location = new System.Drawing.Point(97, 629);
+            this.txtSubtotal.Location = new System.Drawing.Point(121, 601);
             this.txtSubtotal.Margin = new System.Windows.Forms.Padding(4);
             this.txtSubtotal.Multiline = false;
             this.txtSubtotal.Name = "txtSubtotal";
@@ -364,7 +368,7 @@
             this.txtSubtotal.PasswordChar = false;
             this.txtSubtotal.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txtSubtotal.PlaceholderText = "";
-            this.txtSubtotal.Size = new System.Drawing.Size(97, 31);
+            this.txtSubtotal.Size = new System.Drawing.Size(112, 31);
             this.txtSubtotal.TabIndex = 22;
             this.txtSubtotal.TabStop = false;
             this.txtSubtotal.Texts = "";
@@ -519,12 +523,85 @@
             this.txtBarCode.Visible = false;
             this.txtBarCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBarCode_KeyPress);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(245, 646);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 21);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "Dinheiro:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(445, 606);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 21);
+            this.label2.TabIndex = 36;
+            this.label2.Text = "TROCO:";
+            // 
+            // txtMoneyPay
+            // 
+            this.txtMoneyPay.BackColor = System.Drawing.Color.White;
+            this.txtMoneyPay.BorderColor = System.Drawing.Color.White;
+            this.txtMoneyPay.BorderFocusColor = System.Drawing.Color.White;
+            this.txtMoneyPay.BorderRadius = 10;
+            this.txtMoneyPay.BorderSize = 2;
+            this.txtMoneyPay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtMoneyPay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtMoneyPay.Location = new System.Drawing.Point(330, 640);
+            this.txtMoneyPay.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMoneyPay.Multiline = false;
+            this.txtMoneyPay.Name = "txtMoneyPay";
+            this.txtMoneyPay.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtMoneyPay.PasswordChar = false;
+            this.txtMoneyPay.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtMoneyPay.PlaceholderText = "";
+            this.txtMoneyPay.Size = new System.Drawing.Size(90, 31);
+            this.txtMoneyPay.TabIndex = 40;
+            this.txtMoneyPay.TabStop = false;
+            this.txtMoneyPay.Texts = "";
+            this.txtMoneyPay.UnderlinedStyle = false;
+            this.txtMoneyPay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMoneyPay_KeyPress);
+            // 
+            // txtTroco
+            // 
+            this.txtTroco.BackColor = System.Drawing.Color.White;
+            this.txtTroco.BorderColor = System.Drawing.Color.White;
+            this.txtTroco.BorderFocusColor = System.Drawing.Color.White;
+            this.txtTroco.BorderRadius = 10;
+            this.txtTroco.BorderSize = 2;
+            this.txtTroco.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtTroco.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtTroco.Location = new System.Drawing.Point(519, 601);
+            this.txtTroco.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTroco.Multiline = false;
+            this.txtTroco.Name = "txtTroco";
+            this.txtTroco.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtTroco.PasswordChar = false;
+            this.txtTroco.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtTroco.PlaceholderText = "";
+            this.txtTroco.Size = new System.Drawing.Size(90, 31);
+            this.txtTroco.TabIndex = 41;
+            this.txtTroco.TabStop = false;
+            this.txtTroco.Texts = "";
+            this.txtTroco.UnderlinedStyle = false;
+            // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(1094, 690);
+            this.Controls.Add(this.txtTroco);
+            this.Controls.Add(this.txtMoneyPay);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBarCode);
             this.Controls.Add(this.txtQtd);
             this.Controls.Add(this.cmbCups);
@@ -594,5 +671,9 @@
         private DataGridViewTextBoxColumn Subtotal;
         private TextBox txtQtd;
         private TextBox txtBarCode;
+        private Label label1;
+        private Label label2;
+        private CustomControls.RJControls.RJTextBox txtMoneyPay;
+        private CustomControls.RJControls.RJTextBox txtTroco;
     }
 }
