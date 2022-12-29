@@ -65,6 +65,7 @@
             this.lblReturnQuantity = new System.Windows.Forms.Label();
             this.cmbCups = new System.Windows.Forms.ComboBox();
             this.txtQtd = new System.Windows.Forms.TextBox();
+            this.txtBarCode = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picSearchIcon_Sale)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -130,15 +131,13 @@
             this.cmbSaleProduct.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbSaleProduct.BackColor = System.Drawing.Color.White;
             this.cmbSaleProduct.FormattingEnabled = true;
-            this.cmbSaleProduct.Location = new System.Drawing.Point(97, 65);
+            this.cmbSaleProduct.Location = new System.Drawing.Point(97, 63);
             this.cmbSaleProduct.Name = "cmbSaleProduct";
-            this.cmbSaleProduct.Size = new System.Drawing.Size(221, 23);
+            this.cmbSaleProduct.Size = new System.Drawing.Size(136, 23);
             this.cmbSaleProduct.TabIndex = 19;
             this.cmbSaleProduct.TabStop = false;
             this.cmbSaleProduct.Text = "Selecione um Produto";
             this.cmbSaleProduct.SelectedIndexChanged += new System.EventHandler(this.cmbSaleProduct_SelectedIndexChanged);
-            this.cmbSaleProduct.SelectedValueChanged += new System.EventHandler(this.cmbSaleProduct_SelectedValueChanged);
-            this.cmbSaleProduct.TextChanged += new System.EventHandler(this.cmbSaleProduct_TextChanged);
             // 
             // PRODUTO
             // 
@@ -398,9 +397,9 @@
             this.cmbCostumer.BackColor = System.Drawing.Color.White;
             this.cmbCostumer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCostumer.FormattingEnabled = true;
-            this.cmbCostumer.Location = new System.Drawing.Point(614, 64);
+            this.cmbCostumer.Location = new System.Drawing.Point(663, 64);
             this.cmbCostumer.Name = "cmbCostumer";
-            this.cmbCostumer.Size = new System.Drawing.Size(173, 23);
+            this.cmbCostumer.Size = new System.Drawing.Size(124, 23);
             this.cmbCostumer.TabIndex = 23;
             this.cmbCostumer.TabStop = false;
             // 
@@ -409,7 +408,7 @@
             this.lblCostumer.AutoSize = true;
             this.lblCostumer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblCostumer.ForeColor = System.Drawing.Color.White;
-            this.lblCostumer.Location = new System.Drawing.Point(552, 65);
+            this.lblCostumer.Location = new System.Drawing.Point(598, 65);
             this.lblCostumer.Name = "lblCostumer";
             this.lblCostumer.Size = new System.Drawing.Size(64, 21);
             this.lblCostumer.TabIndex = 24;
@@ -420,7 +419,7 @@
             this.lblProduct.AutoSize = true;
             this.lblProduct.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblProduct.ForeColor = System.Drawing.Color.White;
-            this.lblProduct.Location = new System.Drawing.Point(24, 66);
+            this.lblProduct.Location = new System.Drawing.Point(25, 63);
             this.lblProduct.Name = "lblProduct";
             this.lblProduct.Size = new System.Drawing.Size(72, 21);
             this.lblProduct.TabIndex = 25;
@@ -495,19 +494,30 @@
             this.cmbCups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCups.Enabled = false;
             this.cmbCups.FormattingEnabled = true;
-            this.cmbCups.Location = new System.Drawing.Point(427, 66);
+            this.cmbCups.Location = new System.Drawing.Point(330, 63);
             this.cmbCups.Name = "cmbCups";
             this.cmbCups.Size = new System.Drawing.Size(90, 23);
             this.cmbCups.TabIndex = 31;
             // 
             // txtQtd
             // 
-            this.txtQtd.Location = new System.Drawing.Point(330, 66);
+            this.txtQtd.Location = new System.Drawing.Point(239, 63);
             this.txtQtd.Name = "txtQtd";
             this.txtQtd.PlaceholderText = "Quantidade";
             this.txtQtd.Size = new System.Drawing.Size(85, 23);
             this.txtQtd.TabIndex = 32;
             this.txtQtd.TabStop = false;
+            // 
+            // txtBarCode
+            // 
+            this.txtBarCode.Location = new System.Drawing.Point(426, 63);
+            this.txtBarCode.Name = "txtBarCode";
+            this.txtBarCode.PlaceholderText = "Codigo de Barras";
+            this.txtBarCode.Size = new System.Drawing.Size(146, 23);
+            this.txtBarCode.TabIndex = 33;
+            this.txtBarCode.TabStop = false;
+            this.txtBarCode.Visible = false;
+            this.txtBarCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBarCode_KeyPress);
             // 
             // SaleForm
             // 
@@ -515,6 +525,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(1094, 690);
+            this.Controls.Add(this.txtBarCode);
             this.Controls.Add(this.txtQtd);
             this.Controls.Add(this.cmbCups);
             this.Controls.Add(this.lblReturnQuantity);
@@ -582,5 +593,6 @@
         private DataGridViewTextBoxColumn Valor_unitario;
         private DataGridViewTextBoxColumn Subtotal;
         private TextBox txtQtd;
+        private TextBox txtBarCode;
     }
 }

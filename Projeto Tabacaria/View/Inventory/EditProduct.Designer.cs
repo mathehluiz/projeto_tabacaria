@@ -437,7 +437,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Gadugi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(27, 177);
+            this.label10.Location = new System.Drawing.Point(23, 179);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(250, 19);
             this.label10.TabIndex = 56;

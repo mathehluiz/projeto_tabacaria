@@ -92,16 +92,16 @@ namespace Projeto_Tabacaria.View
             foreach (var row in this.dgvProducts.Rows)
             {
                 var dataGridViewRow = row as DataGridViewRow;
-                string lt = "LT";
-                string ml = "ML";
-                if (Convert.ToString(dataGridViewRow.Cells[5].Value) == lt)
+
+                if (Convert.ToString(dataGridViewRow.Cells[5].Value) == "LT")
                 {
-                    dataGridViewRow.Cells[4].Value = Convert.ToDecimal(dataGridViewRow.Cells[4].Value) / 1000;
+                    var aa = dataGridViewRow.Cells[4].Value;
+                    dataGridViewRow.Cells[4].Value = (Convert.ToDecimal(dataGridViewRow.Cells[4].Value) / 1000).ToString();
                 }
-                if (Convert.ToString(dataGridViewRow.Cells[5].Value) == ml && (Convert.ToDecimal(dataGridViewRow.Cells[4].Value) >= 1000))
+                if (Convert.ToString(dataGridViewRow.Cells[5].Value) == "ML" && (Convert.ToDecimal(dataGridViewRow.Cells[4].Value) >= 1000))
                 {
                     dataGridViewRow.Cells[4].Value = Convert.ToDecimal(dataGridViewRow.Cells[4].Value) / 1000;
-                    dataGridViewRow.Cells[5].Value = lt;
+                    dataGridViewRow.Cells[5].Value = "LT";
                 }
                 dgvProducts.Update();
             }
@@ -110,49 +110,7 @@ namespace Projeto_Tabacaria.View
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (dbConnections.connection.State != ConnectionState.Open)
-            {
-                dbConnections.OpenConnection();
-            }
-
-            string loadProduct = "select tb_produtos.prod_nome, tb_marca.marca_nome, tb_estoque.estoque_quantidade, tb_produtos.prod_unidade, tb_precos.preco_unit_compra, tb_precos.preco_unit_venda " +
-                "FROM tb_produtos " +
-                "INNER JOIN tb_estoque ON tb_estoque.estoque_cod = tb_produtos.prod_cod " +
-                "INNER JOIN tb_precos ON tb_precos.id_produto = tb_produtos.prod_cod " +
-                "INNER JOIN tb_marca ON tb_marca.marca_cod = tb_produtos.prod_id_marca";
-            MySqlDataAdapter daProduct = new MySqlDataAdapter(loadProduct, dbConnections.connection);
-            DataTable dtProduct = new DataTable();
-            daProduct.Fill(dtProduct);
-            dgvProducts.DataSource = dtProduct;
-            dgvProducts.Columns["prod_nome"].HeaderText = "Nome";
-            dgvProducts.Columns["marca_nome"].HeaderText = "Marca";
-            dgvProducts.Columns["estoque_quantidade"].HeaderText = "Quantidade";
-            dgvProducts.Columns["prod_unidade"].HeaderText = "Unidade";
-            dgvProducts.Columns["preco_unit_compra"].HeaderText = "Preço de compra";
-            dgvProducts.Columns["preco_unit_venda"].HeaderText = "Preço de venda";
-            dbConnections.CloseConnection();
-            dgvProducts.Columns[6].DefaultCellStyle.Format = "c2";
-            dgvProducts.Columns[6].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
-            dgvProducts.Columns[7].DefaultCellStyle.Format = "c2";
-            dgvProducts.Columns[7].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
-
-
-            foreach (var row in this.dgvProducts.Rows)
-            {
-                var dataGridViewRow = row as DataGridViewRow;
-                string lt = "LT";
-                string ml = "ML";
-                if (Convert.ToString(dataGridViewRow.Cells[5].Value) == lt)
-                {
-                    dataGridViewRow.Cells[4].Value = Convert.ToDecimal(dataGridViewRow.Cells[4].Value) / 1000;
-                }
-                if (Convert.ToString(dataGridViewRow.Cells[5].Value) == ml && (Convert.ToDecimal(dataGridViewRow.Cells[4].Value) >= 1000))
-                {
-                    dataGridViewRow.Cells[4].Value = Convert.ToDecimal(dataGridViewRow.Cells[4].Value) / 1000;
-                    dataGridViewRow.Cells[5].Value = lt;
-                }
-                dgvProducts.Update();
-            }
+            
 
 
         }
@@ -209,13 +167,70 @@ namespace Projeto_Tabacaria.View
                     cmd_delete_product.CommandType = CommandType.Text;
                     cmd_delete_product.ExecuteNonQuery();
                     dbConnections.CloseConnection();
-                    timer1_Tick(sender, e);
+                    //timer1_Tick(sender, e);
 
                 }
                 catch
                 {
                     MessageBox.Show("Erro");
                 }
+            }
+        }
+
+        private void btnRegBarcode_Click(object sender, EventArgs e)
+        {
+            lblSendBrandProduct.Text = "";
+            lblSendNameProduct.Text = "";
+            RegisterBarcode registerBarcode = new RegisterBarcode(lblSendBrandProduct.Text, lblSendNameProduct.Text);
+            registerBarcode.Show();
+        }
+
+        private void picCloseEditProduct_Click(object sender, EventArgs e)
+        {
+            if (dbConnections.connection.State != ConnectionState.Open)
+            {
+                dbConnections.OpenConnection();
+            }
+
+            string loadProduct = "select tb_produtos.prod_nome, tb_marca.marca_nome, tb_estoque.estoque_quantidade, tb_produtos.prod_unidade, tb_precos.preco_unit_compra, tb_precos.preco_unit_venda " +
+                "FROM tb_produtos " +
+                "INNER JOIN tb_estoque ON tb_estoque.estoque_cod = tb_produtos.prod_cod " +
+                "INNER JOIN tb_precos ON tb_precos.id_produto = tb_produtos.prod_cod " +
+                "INNER JOIN tb_marca ON tb_marca.marca_cod = tb_produtos.prod_id_marca";
+            MySqlDataAdapter daProduct = new MySqlDataAdapter(loadProduct, dbConnections.connection);
+            DataTable dtProduct = new DataTable();
+            daProduct.Fill(dtProduct);
+            dgvProducts.DataSource = dtProduct;
+            dgvProducts.Columns["prod_nome"].HeaderText = "Nome";
+            dgvProducts.Columns["marca_nome"].HeaderText = "Marca";
+            dgvProducts.Columns["estoque_quantidade"].HeaderText = "Quantidade";
+            dgvProducts.Columns["prod_unidade"].HeaderText = "Unidade";
+            dgvProducts.Columns["preco_unit_compra"].HeaderText = "Preço de compra";
+            dgvProducts.Columns["preco_unit_venda"].HeaderText = "Preço de venda";
+            dbConnections.CloseConnection();
+            dgvProducts.Columns[6].DefaultCellStyle.Format = "c2";
+            dgvProducts.Columns[6].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+            dgvProducts.Columns[7].DefaultCellStyle.Format = "c2";
+            dgvProducts.Columns[7].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+
+
+            foreach (var row in this.dgvProducts.Rows)
+            {
+                var dataGridViewRow = row as DataGridViewRow;
+                string lt = "LT";
+                string ml = "ML";
+                if (Convert.ToString(dataGridViewRow.Cells[5].Value) == lt)
+                {
+                    var aa = dataGridViewRow.Cells[4].Value;
+
+                    dataGridViewRow.Cells[4].Value = Convert.ToDecimal(dataGridViewRow.Cells[4].Value) / 1000;
+                }
+                if (Convert.ToString(dataGridViewRow.Cells[5].Value) == ml && (Convert.ToDecimal(dataGridViewRow.Cells[4].Value) >= 1000))
+                {
+                    dataGridViewRow.Cells[4].Value = Convert.ToDecimal(dataGridViewRow.Cells[4].Value) / 1000;
+                    dataGridViewRow.Cells[5].Value = lt;
+                }
+                dgvProducts.Update();
             }
         }
     }

@@ -34,7 +34,7 @@
             this.txtInventoryMin = new System.Windows.Forms.TextBox();
             this.lblRegisterGroup = new System.Windows.Forms.Label();
             this.txtProdName = new System.Windows.Forms.TextBox();
-            this.txtQtd = new System.Windows.Forms.TextBox();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
             this.txtBuyValue = new System.Windows.Forms.TextBox();
             this.txtSaleValue = new System.Windows.Forms.TextBox();
             this.txtTotal = new System.Windows.Forms.TextBox();
@@ -100,16 +100,16 @@
             this.txtProdName.TabIndex = 2;
             this.txtProdName.TabStop = false;
             // 
-            // txtQtd
+            // txtQuantity
             // 
-            this.txtQtd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtQtd.Location = new System.Drawing.Point(274, 168);
-            this.txtQtd.Name = "txtQtd";
-            this.txtQtd.PlaceholderText = "Quantidade";
-            this.txtQtd.Size = new System.Drawing.Size(83, 22);
-            this.txtQtd.TabIndex = 3;
-            this.txtQtd.Text = "0";
-            this.txtQtd.TextChanged += new System.EventHandler(this.txtQtd__TextChanged);
+            this.txtQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtQuantity.Location = new System.Drawing.Point(274, 168);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.PlaceholderText = "Quantidade";
+            this.txtQuantity.Size = new System.Drawing.Size(83, 22);
+            this.txtQuantity.TabIndex = 3;
+            this.txtQuantity.Text = "0";
+            this.txtQuantity.TextChanged += new System.EventHandler(this.txtQtd__TextChanged);
             // 
             // txtBuyValue
             // 
@@ -393,7 +393,7 @@
             this.Controls.Add(this.txtInventoryMin);
             this.Controls.Add(this.lblRegisterGroup);
             this.Controls.Add(this.txtProdName);
-            this.Controls.Add(this.txtQtd);
+            this.Controls.Add(this.txtQuantity);
             this.Controls.Add(this.txtBuyValue);
             this.Controls.Add(this.txtSaleValue);
             this.Controls.Add(this.txtTotal);
@@ -409,7 +409,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RegisterProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Registrar Produto";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.RegisterProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -423,7 +423,7 @@
         private TextBox txtInventoryMin;
         private Label lblRegisterGroup;
         private TextBox txtProdName;
-        private TextBox txtQtd;
+        private TextBox txtQuantity;
         private TextBox txtBuyValue;
         private TextBox txtSaleValue;
         private TextBox txtTotal;

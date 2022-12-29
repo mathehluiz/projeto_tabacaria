@@ -52,6 +52,7 @@ namespace Projeto_Tabacaria.Validations
             int calculatedQtt = qtdReturned + qtd;
             return calculatedQtt;
         }
+
     }
     
 }

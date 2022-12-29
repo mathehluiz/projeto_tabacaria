@@ -60,7 +60,7 @@ namespace Projeto_Tabacaria.View
                 MySqlCommand cmdTotalSpun = new MySqlCommand(strQueryTotalSpun, dbConnections.connection);
                 var valueSpun = Convert.ToString(cmdTotalSpun.ExecuteScalar());
 
-                string strQueryBiggestProfit = "SELECT id_produto FROM tb_precos ORDER BY preco_total_lucro DESC LIMIT 1";
+                string strQueryBiggestProfit = "SELECT id_produto FROM tb_precos ORDER BY preco_lucro DESC LIMIT 1";
                 MySqlCommand cmdBiggestProfit = new MySqlCommand(strQueryBiggestProfit, dbConnections.connection);
                 int valueBiggestProfit = Convert.ToInt32(cmdBiggestProfit.ExecuteScalar());
 
@@ -68,7 +68,7 @@ namespace Projeto_Tabacaria.View
                 MySqlCommand cmdNameBiggestProfit = new MySqlCommand(strQueryNameBiggProfit, dbConnections.connection);
                 var nameBiggestProfit = Convert.ToString(cmdNameBiggestProfit.ExecuteScalar());
 
-                string strQueryMinProfit = "SELECT id_produto FROM tb_precos ORDER BY preco_total_lucro LIMIT 1;";
+                string strQueryMinProfit = "SELECT id_produto FROM tb_precos ORDER BY preco_lucro LIMIT 1;";
                 MySqlCommand cmdMinProfit = new MySqlCommand(strQueryMinProfit, dbConnections.connection);
                 int valueMinProfit = Convert.ToInt32(cmdMinProfit.ExecuteScalar());
 

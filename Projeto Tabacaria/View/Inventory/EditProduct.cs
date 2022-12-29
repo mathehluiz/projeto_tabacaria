@@ -95,7 +95,7 @@ namespace Projeto_Tabacaria.View.Inventory
             }
             try
             {
-                MySqlCommand cmd_table_products = new MySqlCommand("SELECT prod_nome,prod_unidade,prod_ativo,estoque_quantidade,estoque_minimo,preco_unit_compra,preco_unit_venda,preco_total_gasto FROM tb_estoque,tb_produtos,tb_precos WHERE estoque_cod = prod_cod AND id_produto = prod_cod and prod_nome = '" + cmbSearchProduct.Text + "'", dbConnections.connection);
+                MySqlCommand cmd_table_products = new MySqlCommand("SELECT prod_nome,prod_unidade,prod_ativo,estoque_quantidade,estoque_minimo,preco_unit_compra,preco_unit_venda,preco_lucro FROM tb_estoque,tb_produtos,tb_precos WHERE estoque_cod = prod_cod AND id_produto = prod_cod and prod_nome = '" + cmbSearchProduct.Text + "'", dbConnections.connection);
 
 
                 MySqlDataReader reader_Products;
@@ -162,11 +162,21 @@ namespace Projeto_Tabacaria.View.Inventory
                 Convert.ToInt32(prodCod);
                 dbConnections.CloseConnection();
 
+
                 dbConnections.OpenConnection();
                 txtBuyValue.Text = txtBuyValue.Text.Replace(",", ".");
                 txtSaleValue.Text = txtSaleValue.Text.Replace(",", ".");
-                MySqlCommand cmd_save = new MySqlCommand("update tb_estoque,tb_produtos,tb_precos set prod_nome='" + txtProdName.Text + "',prod_unidade='" + cmbUnidade_De_Medida.Text + "',prod_ativo='" + cmbActiveProd.Text + "',estoque_quantidade='" + txtQtd.Text + "',estoque_minimo='"+txtInventoryMin.Text+"',preco_unit_compra='" + txtBuyValue.Text + "',preco_unit_venda='" + txtSaleValue.Text + "' where estoque_cod = '" + prodCod + "' and prod_cod = '" + prodCod + "' and id_produto= '" + prodCod + "'", dbConnections.connection); ;
-                cmd_save.ExecuteNonQuery();
+                if (cmbUnidade_De_Medida.Text == "LT")
+                {
+                    MySqlCommand cmd_save = new MySqlCommand("update tb_estoque,tb_produtos,tb_precos set prod_nome='" + txtProdName.Text + "',prod_unidade='" + cmbUnidade_De_Medida.Text + "',prod_ativo='" + cmbActiveProd.Text + "',estoque_quantidade='" + Convert.ToDecimal(txtQtd.Text) * 1000 + "',estoque_minimo='"+txtInventoryMin.Text+"',preco_unit_compra='" + txtBuyValue.Text + "',preco_unit_venda='" + txtSaleValue.Text + "' where estoque_cod = '" + prodCod + "' and prod_cod = '" + prodCod + "' and id_produto= '" + prodCod + "'", dbConnections.connection);
+                    cmd_save.ExecuteNonQuery();
+                }
+                else
+                {
+                    MySqlCommand cmd_save = new MySqlCommand("update tb_estoque,tb_produtos,tb_precos set prod_nome='" + txtProdName.Text + "',prod_unidade='" + cmbUnidade_De_Medida.Text + "',prod_ativo='" + cmbActiveProd.Text + "',estoque_quantidade='" + txtQtd.Text + "',estoque_minimo='" + txtInventoryMin.Text + "',preco_unit_compra='" + txtBuyValue.Text + "',preco_unit_venda='" + txtSaleValue.Text + "' where estoque_cod = '" + prodCod + "' and prod_cod = '" + prodCod + "' and id_produto= '" + prodCod + "'", dbConnections.connection);
+                    cmd_save.ExecuteNonQuery();
+                }
+
                 dbConnections.CloseConnection();
                 lblReturnDB.Visible = true;
                 lblReturnDB.Text = "Produto alterado";

@@ -36,9 +36,9 @@ namespace Projeto_Tabacaria.View.Inventory
         private void txtQtd__TextChanged(object sender, EventArgs e)
         {
             double parsedValue;
-            if (!double.TryParse(txtQtd.Text, out parsedValue))
+            if (!double.TryParse(txtQuantity.Text, out parsedValue))
             {
-                txtQtd.Text = "0";
+                txtQuantity.Text = "0";
 
             }
             if (!double.TryParse(txtSaleValue.Text, out parsedValue))
@@ -59,12 +59,12 @@ namespace Projeto_Tabacaria.View.Inventory
             }
             else
             {
-                decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
+                decimal a = txtQuantity.Text != "" ? Convert.ToDecimal(txtQuantity.Text) : 0;
                 decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
                 decimal total = a * b;
 
                 txtTotal.Text = total.ToString();
-                txtTotalSale.Text = (Convert.ToDouble(txtQtd.Text) * Convert.ToDouble(txtSaleValue.Text)).ToString();
+                txtTotalSale.Text = (Convert.ToDouble(txtQuantity.Text) * Convert.ToDouble(txtSaleValue.Text)).ToString();
             }
             txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
         }
@@ -72,9 +72,9 @@ namespace Projeto_Tabacaria.View.Inventory
         private void txtBuyValue__TextChanged(object sender, EventArgs e)
         {
             double parsedValue;
-            if (!double.TryParse(txtQtd.Text, out parsedValue))
+            if (!double.TryParse(txtQuantity.Text, out parsedValue))
             {
-                txtQtd.Text = "0";
+                txtQuantity.Text = "0";
 
             }
             if (!double.TryParse(txtSaleValue.Text, out parsedValue))
@@ -95,23 +95,23 @@ namespace Projeto_Tabacaria.View.Inventory
             }
             else
             {
-                decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
+                decimal a = txtQuantity.Text != "" ? Convert.ToDecimal(txtQuantity.Text) : 0;
                 decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
                 decimal total = a * b;
                 total = (decimal)System.Math.Round(total, 2);
                 txtTotal.Text = total.ToString();
-                txtTotalSale.Text = (Convert.ToDouble(txtQtd.Text) * Convert.ToDouble(txtSaleValue.Text)).ToString();
+                txtTotalSale.Text = (Convert.ToDouble(txtQuantity.Text) * Convert.ToDouble(txtSaleValue.Text)).ToString();
             }
 
-            
+
             txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
         }
         private void txtSaleValue__TextChanged(object sender, EventArgs e)
         {
             double parsedValue;
-            if (!double.TryParse(txtQtd.Text, out parsedValue))
+            if (!double.TryParse(txtQuantity.Text, out parsedValue))
             {
-                txtQtd.Text = "0";
+                txtQuantity.Text = "0";
 
             }
             if (!double.TryParse(txtSaleValue.Text, out parsedValue))
@@ -132,15 +132,15 @@ namespace Projeto_Tabacaria.View.Inventory
             }
             else
             {
-                decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
+                decimal a = txtQuantity.Text != "" ? Convert.ToDecimal(txtQuantity.Text) : 0;
                 decimal b = txtSaleValue.Text != "" ? Convert.ToDecimal(txtSaleValue.Text) : 0;
                 decimal total = a * b;
                 total = (decimal)System.Math.Round(total, 2);
                 txtTotalSale.Text = total.ToString();
-                txtTotalSale.Text = (Convert.ToDouble(txtQtd.Text) * Convert.ToDouble(txtSaleValue.Text)).ToString();
+                txtTotalSale.Text = (Convert.ToDouble(txtQuantity.Text) * Convert.ToDouble(txtSaleValue.Text)).ToString();
             }
 
-            
+
             txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
         }
 
@@ -151,16 +151,11 @@ namespace Projeto_Tabacaria.View.Inventory
             {
                 if (cmbUnidade_De_Medida.Text != "")
                 {
-                    if (dbConnections.connection.State != ConnectionState.Open)
-                    {
-                        dbConnections.OpenConnection();
-                    }
-
-                    var quantity = Convert.ToDouble(txtQtd.Text);
+                  
                     var quantityInventoryMin = Convert.ToDouble(txtInventoryMin.Text);
-                    if (quantity <= 0 && quantityInventoryMin <= 0)
+                    if (quantityInventoryMin <= 0)
                     {
-                        MessageBox.Show("A quantidade não pode ser 0", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("A quantidade mínima não pode ser 0", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     }
                     else
@@ -178,30 +173,47 @@ namespace Projeto_Tabacaria.View.Inventory
                         var brandQueryResult = Convert.ToInt32(cmdGetBrand.ExecuteScalar());
 
 
-                        double a = txtQtd.Text != "" ? Convert.ToDouble(txtQtd.Text) : 0;
-                        double b = txtBuyValue.Text != "" ? Convert.ToDouble(txtBuyValue.Text) : 0;
-                        double total = a * b;
 
-                        MySqlCommand cmd = new MySqlCommand("insert into tb_produtos (prod_nome,prod_last_update,prod_unidade,prod_id_grupo,prod_id_marca) values (@Nome,@Time,@Unidade,@Id_grupo, @Id_marca);" +
-                            "insert into tb_estoque(estoque_quantidade,estoque_lastupdate,estoque_minimo) values (@Quantidade,@Time,@EstoqueMin);" +
-                            "insert into tb_precos(preco_unit_compra,preco_unit_venda,preco_total_gasto,preco_last_update, preco_total_lucro) values (@Valor_Unitario_Compra,@Valor_Unitario_Venda,@Valor_Total,@Time,@Lucro)", dbConnections.connection);
-                        cmd.Parameters.Add("@Id_Grupo", MySqlDbType.Int32, 10).Value = GroupQueryResult;
-                        cmd.Parameters.Add("@Id_Marca", MySqlDbType.Int32, 10).Value = brandQueryResult;
-                        cmd.Parameters.Add("@Nome", MySqlDbType.VarChar, 150).Value = txtProdName.Text;
-                        if(cmbUnidade_De_Medida.Text == "LT")
-                        {
-                            quantity = quantity * 1000;
-                        }
-                        cmd.Parameters.Add("@Quantidade", MySqlDbType.Float, 10).Value = quantity;
-                        cmd.Parameters.Add("@Unidade", MySqlDbType.VarChar, 10).Value = cmbUnidade_De_Medida.Text;
-                        cmd.Parameters.Add("@Valor_Unitario_Compra", MySqlDbType.Decimal, 9).Value = Convert.ToDouble(txtBuyValue.Text);
-                        cmd.Parameters.Add("@Valor_Unitario_Venda", MySqlDbType.Decimal, 9).Value = Convert.ToDouble(txtSaleValue.Text);
-                        cmd.Parameters.Add("@Lucro", MySqlDbType.Decimal, 9).Value = (Convert.ToDecimal(txtSaleValue.Text) - Convert.ToDecimal(txtBuyValue.Text));
-                        cmd.Parameters.Add("@Valor_Total", MySqlDbType.Decimal, 9).Value = total;
+                        //registrar produto
+                        MySqlCommand cmdRegisterProduct = new MySqlCommand("insert into tb_produtos (prod_nome,prod_last_update,prod_unidade,prod_id_grupo,prod_id_marca) values (@Nome,@Time,@Unidade,@Id_grupo, @Id_marca)", dbConnections.connection);
+                        cmdRegisterProduct.Parameters.Add("@Id_Grupo", MySqlDbType.Int32, 10).Value = GroupQueryResult;
+                        cmdRegisterProduct.Parameters.Add("@Id_Marca", MySqlDbType.Int32, 10).Value = brandQueryResult;
+                        cmdRegisterProduct.Parameters.Add("@Nome", MySqlDbType.VarChar, 150).Value = txtProdName.Text;
+                        cmdRegisterProduct.Parameters.Add("@Unidade", MySqlDbType.VarChar, 10).Value = cmbUnidade_De_Medida.Text;
                         DateTime dateTime = DateTime.Now;
                         var dateTimeDate = DateOnly.FromDateTime(dateTime);
-                        cmd.Parameters.Add("@Time", MySqlDbType.Date).Value = dateTimeDate;
-                        cmd.Parameters.Add("@EstoqueMin", MySqlDbType.Float, 10).Value = quantityInventoryMin;
+                        cmdRegisterProduct.Parameters.Add("@Time", MySqlDbType.Date).Value = dateTimeDate;
+
+                        cmdRegisterProduct.ExecuteNonQuery();
+
+                        //obter cod do produto
+                        MySqlCommand cmdSelectProdCod = new MySqlCommand("SELECT prod_cod FROM tb_produtos ORDER BY prod_cod DESC LIMIT 1", dbConnections.connection);
+                        var codprod = cmdSelectProdCod.ExecuteScalar();
+
+                        //registar preço
+                        MySqlCommand cmdRegisterPrice = new MySqlCommand("insert into tb_precos (preco_unit_compra, preco_unit_venda,preco_lucro) values (@Valor_Unitario_Compra, @Valor_Unitario_Venda,@Lucro)", dbConnections.connection);
+                        cmdRegisterPrice.Parameters.Add("@Valor_Unitario_Compra", MySqlDbType.Decimal, 9).Value = Convert.ToDouble(txtBuyValue.Text);
+                        cmdRegisterPrice.Parameters.Add("@Valor_Unitario_Venda", MySqlDbType.Decimal, 9).Value = Convert.ToDouble(txtSaleValue.Text);
+                        cmdRegisterPrice.Parameters.Add("@Lucro", MySqlDbType.Decimal, 9).Value = (Convert.ToDecimal(txtSaleValue.Text) - Convert.ToDecimal(txtBuyValue.Text));
+                        cmdRegisterPrice.ExecuteNonQuery();
+
+                        //registra estoque
+                        MySqlCommand cmd2 = new MySqlCommand("insert into tb_estoque(estoque_cod,estoque_quantidade,estoque_lastupdate,estoque_minimo) values (@Cod_prod,@Quantidade,@Time,@EstoqueMin)", dbConnections.connection);
+                        if (cmbUnidade_De_Medida.Text == "LT")
+                        {
+                            cmd2.Parameters.Add("@Quantidade", MySqlDbType.Float, 10).Value = Convert.ToDecimal(txtQuantity.Text) * 1000;
+                        }
+                        else
+                        {
+                            cmd2.Parameters.Add("@Quantidade", MySqlDbType.Float, 10).Value = txtQuantity.Text;
+                        }
+                        DateTime dateTime1 = DateTime.Now;
+                        var dateTimeDate1 = DateOnly.FromDateTime(dateTime1);
+                        cmd2.Parameters.Add("@Time", MySqlDbType.Date).Value = dateTimeDate1;
+                        cmd2.Parameters.Add("@EstoqueMin", MySqlDbType.Float, 10).Value = quantityInventoryMin;
+                        cmd2.Parameters.Add("@Cod_prod", MySqlDbType.Int32, 10).Value = codprod;
+                        cmd2.ExecuteNonQuery();
+                        dbConnections.CloseConnection();
 
 
                         if (String.IsNullOrEmpty(cmbUnidade_De_Medida.Text))
@@ -209,13 +221,12 @@ namespace Projeto_Tabacaria.View.Inventory
                             MessageBox.Show("O valor não pode ser nulo!");
                         }
                         else
-                        {
-                            cmd.ExecuteNonQuery();
-                            dbConnections.CloseConnection();
+                        {              
+                      
                             lblReturnDB.Visible = true;
                             lblReturnDB.Text = "Produto Registrado";
                             txtProdName.Text = "";
-                            txtQtd.Text = "0";
+                            txtQuantity.Text = "0";
                             txtBuyValue.Text = "0";
                             txtSaleValue.Text = "0";
                             txtTotal.Text = "0";
@@ -332,7 +343,7 @@ namespace Projeto_Tabacaria.View.Inventory
                 txtSaleValue.Text = "0";
                 txtTotal.Text = "0";
                 txtBuyValue.Text = "0";
-                txtQtd.Text = "0";
+                txtQuantity.Text = "0";
             }
 
         }

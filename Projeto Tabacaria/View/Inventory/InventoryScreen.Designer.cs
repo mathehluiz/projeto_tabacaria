@@ -44,8 +44,11 @@
             this.lblSendNameProduct = new System.Windows.Forms.Label();
             this.lblSendBrandProduct = new System.Windows.Forms.Label();
             this.lblSendGroupName = new System.Windows.Forms.Label();
+            this.btnRegBarcode = new Projeto_Tabacaria.Models.MNButton();
+            this.picCloseEditProduct = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCloseEditProduct)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCreateProduct
@@ -245,6 +248,41 @@
             this.lblSendGroupName.TabIndex = 48;
             this.lblSendGroupName.Text = "SendGroupName";
             // 
+            // btnRegBarcode
+            // 
+            this.btnRegBarcode.BackColor = System.Drawing.Color.Teal;
+            this.btnRegBarcode.BackgroundColor = System.Drawing.Color.Teal;
+            this.btnRegBarcode.BorderColor = System.Drawing.Color.Teal;
+            this.btnRegBarcode.BorderRadius = 10;
+            this.btnRegBarcode.BorderSize = 0;
+            this.btnRegBarcode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegBarcode.FlatAppearance.BorderSize = 0;
+            this.btnRegBarcode.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRegBarcode.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRegBarcode.ForeColor = System.Drawing.Color.White;
+            this.btnRegBarcode.Image = global::Projeto_Tabacaria.Properties.Resources.barcode;
+            this.btnRegBarcode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRegBarcode.Location = new System.Drawing.Point(622, 12);
+            this.btnRegBarcode.Name = "btnRegBarcode";
+            this.btnRegBarcode.Size = new System.Drawing.Size(212, 51);
+            this.btnRegBarcode.TabIndex = 49;
+            this.btnRegBarcode.Text = "       Cadastrar Código";
+            this.btnRegBarcode.TextColor = System.Drawing.Color.White;
+            this.btnRegBarcode.UseVisualStyleBackColor = false;
+            this.btnRegBarcode.Click += new System.EventHandler(this.btnRegBarcode_Click);
+            // 
+            // picCloseEditProduct
+            // 
+            this.picCloseEditProduct.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picCloseEditProduct.Image = global::Projeto_Tabacaria.Properties.Resources.refresh;
+            this.picCloseEditProduct.Location = new System.Drawing.Point(852, 20);
+            this.picCloseEditProduct.Name = "picCloseEditProduct";
+            this.picCloseEditProduct.Size = new System.Drawing.Size(42, 38);
+            this.picCloseEditProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCloseEditProduct.TabIndex = 50;
+            this.picCloseEditProduct.TabStop = false;
+            this.picCloseEditProduct.Click += new System.EventHandler(this.picCloseEditProduct_Click);
+            // 
             // InventoryScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -252,6 +290,8 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(1094, 690);
+            this.Controls.Add(this.picCloseEditProduct);
+            this.Controls.Add(this.btnRegBarcode);
             this.Controls.Add(this.lblSendGroupName);
             this.Controls.Add(this.lblSendBrandProduct);
             this.Controls.Add(this.lblSendNameProduct);
@@ -267,6 +307,7 @@
             this.Load += new System.EventHandler(this.InventoryScreen_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCloseEditProduct)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,5 +325,7 @@
         private Label lblSendNameProduct;
         private Label lblSendBrandProduct;
         private Label lblSendGroupName;
+        private Models.MNButton btnRegBarcode;
+        private PictureBox picCloseEditProduct;
     }
 }
