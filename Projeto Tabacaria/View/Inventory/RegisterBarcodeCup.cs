@@ -77,11 +77,11 @@ namespace Projeto_Tabacaria.View.Inventory
 
 
             //obter cod do produto
-            MySqlCommand cmdSelectProdCod = new MySqlCommand("SELECT prod_cod FROM tb_produtos where prod_nome = '" + cmbGarrafa.Text + "'", dbConnections.connection);
+            MySqlCommand cmdSelectProdCod = new MySqlCommand("SELECT cod_unidade FROM tb_unidade where prod_nome = '" + cmbGarrafa.Text + "'", dbConnections.connection);
             var codprod = cmdSelectProdCod.ExecuteScalar();
 
             //pega a quantidade de códigos de barra
-            string quantityProd = "SELECT COUNT(cod_barra) FROM tb_codigo_barra WHERE cod_barra_prod = '" + codprod + "'";
+            string quantityProd = "SELECT COUNT(cod_barra) FROM tb_codigo_barra WHERE cod_barra_copo = '" + codprod + "'";
             MySqlCommand cmdQuantityProd = new MySqlCommand(quantityProd, dbConnections.connection);
             lblQuantityBarcode.Text = "Existem " + Convert.ToString(cmdQuantityProd.ExecuteScalar()) + " códigos de barra deste produto";
 
@@ -103,21 +103,22 @@ namespace Projeto_Tabacaria.View.Inventory
             if (consult == null)
             {
                 try
+                
                 {
 
                     //selecionar cod da garrafa
-                    MySqlCommand cmdSelectProdCod = new MySqlCommand("SELECT prod_cod FROM tb_produtos where prod_nome = '" + cmbGarrafa.Text + "'", dbConnections.connection);
+                    MySqlCommand cmdSelectProdCod = new MySqlCommand("SELECT cod_unidade FROM tb_unidade where prod_nome = '" + cmbGarrafa.Text + "'", dbConnections.connection);
                     var codprod = cmdSelectProdCod.ExecuteScalar();
 
                     //registrar codigo de barra
-                    MySqlCommand cmdRegisterBarcode = new MySqlCommand("insert into tb_codigo_barra (cod_barra,cod_barra_prod) values (@BarCode,@Cod_prod)", dbConnections.connection);
+                    MySqlCommand cmdRegisterBarcode = new MySqlCommand("insert into tb_codigo_barra (cod_barra,cod_barra_copo) values (@BarCode,@Cod_prod)", dbConnections.connection);
                     cmdRegisterBarcode.Parameters.Add("@BarCode", MySqlDbType.VarChar, 20).Value = txtBarcode.Text;
                     cmdRegisterBarcode.Parameters.Add("@Cod_prod", MySqlDbType.Int32, 10).Value = codprod;
                     cmdRegisterBarcode.ExecuteNonQuery();
 
 
                     //pega a quantidade de códigos de barra
-                    string quantityProd = "SELECT COUNT(cod_barra) FROM tb_codigo_barra WHERE cod_barra_prod = '" + codprod + "'";
+                    string quantityProd = "SELECT COUNT(cod_barra) FROM tb_codigo_barra WHERE cod_barra_copo = '" + codprod + "'";
                     MySqlCommand cmdQuantityProd = new MySqlCommand(quantityProd, dbConnections.connection);
                     lblQuantityBarcode.Text = "Existem " + Convert.ToString(cmdQuantityProd.ExecuteScalar()) + " códigos de barra deste produto";
 

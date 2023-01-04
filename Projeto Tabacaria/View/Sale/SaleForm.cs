@@ -438,6 +438,7 @@ namespace Projeto_Tabacaria.View
 
 
                 intQtd = 1;
+                //quando eu apertar enter, preciso saber se o produto é da tabela unidade ou da tabela produto.
 
 
                 //Seleciona o código de barra do produto
