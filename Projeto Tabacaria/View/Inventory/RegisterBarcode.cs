@@ -42,9 +42,7 @@ namespace Projeto_Tabacaria.View.Inventory
                 this.cmbMarca.ValueMember = "MARCA_COD";
                 this.cmbMarca.DataSource = ds.Tables["tb_marca"];
                 cmbMarca.Text = lblSendBrandProduct.Text;
-
-                
-
+               
             }
             catch (Exception ex)
             {
@@ -61,10 +59,11 @@ namespace Projeto_Tabacaria.View.Inventory
             {
                 dbConnections.OpenConnection();
             }
+            //Seleciona o códigod da marca
             string query_marca_cod = "SELECT marca_cod from tb_marca where marca_nome = '" + cmbMarca.Text + "'";
             MySqlCommand cmd_GetBrand = new MySqlCommand(query_marca_cod, dbConnections.connection);
             var brandQueryResult = Convert.ToInt32(cmd_GetBrand.ExecuteScalar());
-
+            //Seleciona o produto pelo código da marca.
             string query_marca_prod = "SELECT prod_nome from tb_produtos where prod_id_marca= '" + brandQueryResult + "'";
             MySqlDataAdapter da1 = new MySqlDataAdapter(query_marca_prod, dbConnections.connection);
             DataSet ds1 = new DataSet();
@@ -76,6 +75,8 @@ namespace Projeto_Tabacaria.View.Inventory
             {
                 dbConnections.OpenConnection();
             }
+
+
             //obter cod do produto
             MySqlCommand cmdSelectProdCod = new MySqlCommand("SELECT prod_cod FROM tb_produtos where prod_nome = '"+cmbSearchProduct.Text+"'", dbConnections.connection);
             var codprod = cmdSelectProdCod.ExecuteScalar();
@@ -171,6 +172,12 @@ namespace Projeto_Tabacaria.View.Inventory
             lblQuantityBarcode.Text = "Existem " + Convert.ToString(cmdQuantityProd.ExecuteScalar()) + " códigos de barra deste produto";
 
             dbConnections.CloseConnection();
+        }
+
+        private void btnRegBarcodeCup_Click(object sender, EventArgs e)
+        {
+            RegisterBarcodeCup registerBarcodeCup = new RegisterBarcodeCup();
+            registerBarcodeCup.Show();
         }
     }
 }

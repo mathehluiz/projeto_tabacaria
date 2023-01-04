@@ -110,6 +110,7 @@
             this.txtQuantity.TabIndex = 3;
             this.txtQuantity.Text = "0";
             this.txtQuantity.TextChanged += new System.EventHandler(this.txtQtd__TextChanged);
+            this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
             // 
             // txtBuyValue
             // 
@@ -121,6 +122,7 @@
             this.txtBuyValue.TabIndex = 6;
             this.txtBuyValue.Text = "0";
             this.txtBuyValue.TextChanged += new System.EventHandler(this.txtBuyValue__TextChanged);
+            this.txtBuyValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuyValue_KeyPress);
             // 
             // txtSaleValue
             // 
@@ -132,6 +134,7 @@
             this.txtSaleValue.TabIndex = 7;
             this.txtSaleValue.Text = "0";
             this.txtSaleValue.TextChanged += new System.EventHandler(this.txtSaleValue__TextChanged);
+            this.txtSaleValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSaleValue_KeyPress);
             // 
             // txtTotal
             // 
@@ -161,7 +164,6 @@
             this.cmbUnidade_De_Medida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUnidade_De_Medida.FormattingEnabled = true;
             this.cmbUnidade_De_Medida.Items.AddRange(new object[] {
-            "ML",
             "LT",
             "UN"});
             this.cmbUnidade_De_Medida.Location = new System.Drawing.Point(274, 224);

@@ -253,6 +253,16 @@ namespace Projeto_Tabacaria.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap copo_de_medicao {
+            get {
+                object obj = ResourceManager.GetObject("copo-de-medicao", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap costumer {
             get {
                 object obj = ResourceManager.GetObject("costumer", resourceCulture);

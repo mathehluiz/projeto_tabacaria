@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lblRegisterGroup = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblProduct = new System.Windows.Forms.Label();
             this.cmbSearchProduct = new System.Windows.Forms.ComboBox();
             this.lblMarca = new System.Windows.Forms.Label();
             this.cmbMarca = new System.Windows.Forms.ComboBox();
@@ -41,6 +41,7 @@
             this.lblSendNameProduct = new System.Windows.Forms.Label();
             this.lblReturnDB = new System.Windows.Forms.Label();
             this.lblQuantityBarcode = new System.Windows.Forms.Label();
+            this.btnRegBarcodeCup = new Projeto_Tabacaria.Models.MNButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,16 +56,16 @@
             this.lblRegisterGroup.TabIndex = 47;
             this.lblRegisterGroup.Text = "REGISTRAR CÓDIGO DE BARRA";
             // 
-            // label3
+            // lblProduct
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(176, 67);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 21);
-            this.label3.TabIndex = 46;
-            this.label3.Text = "Produto";
+            this.lblProduct.AutoSize = true;
+            this.lblProduct.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblProduct.ForeColor = System.Drawing.Color.White;
+            this.lblProduct.Location = new System.Drawing.Point(175, 67);
+            this.lblProduct.Name = "lblProduct";
+            this.lblProduct.Size = new System.Drawing.Size(72, 21);
+            this.lblProduct.TabIndex = 46;
+            this.lblProduct.Text = "Produto";
             // 
             // cmbSearchProduct
             // 
@@ -82,7 +83,7 @@
             this.lblMarca.AutoSize = true;
             this.lblMarca.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblMarca.ForeColor = System.Drawing.Color.White;
-            this.lblMarca.Location = new System.Drawing.Point(7, 67);
+            this.lblMarca.Location = new System.Drawing.Point(4, 66);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.Size = new System.Drawing.Size(57, 21);
             this.lblMarca.TabIndex = 44;
@@ -115,7 +116,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 111);
+            this.label1.Location = new System.Drawing.Point(12, 98);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(132, 21);
             this.label1.TabIndex = 49;
@@ -124,7 +125,7 @@
             // txtBarcode
             // 
             this.txtBarcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtBarcode.Location = new System.Drawing.Point(163, 112);
+            this.txtBarcode.Location = new System.Drawing.Point(163, 99);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.PlaceholderText = "CÓDIGO DE BARRA";
             this.txtBarcode.Size = new System.Drawing.Size(239, 22);
@@ -188,11 +189,33 @@
             this.lblQuantityBarcode.AutoSize = true;
             this.lblQuantityBarcode.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblQuantityBarcode.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblQuantityBarcode.Location = new System.Drawing.Point(49, 148);
+            this.lblQuantityBarcode.Location = new System.Drawing.Point(41, 153);
             this.lblQuantityBarcode.Name = "lblQuantityBarcode";
             this.lblQuantityBarcode.Size = new System.Drawing.Size(103, 19);
             this.lblQuantityBarcode.TabIndex = 55;
             this.lblQuantityBarcode.Text = "Return DB1";
+            // 
+            // btnRegBarcodeCup
+            // 
+            this.btnRegBarcodeCup.BackColor = System.Drawing.Color.Teal;
+            this.btnRegBarcodeCup.BackgroundColor = System.Drawing.Color.Teal;
+            this.btnRegBarcodeCup.BorderColor = System.Drawing.Color.Teal;
+            this.btnRegBarcodeCup.BorderRadius = 10;
+            this.btnRegBarcodeCup.BorderSize = 0;
+            this.btnRegBarcodeCup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegBarcodeCup.FlatAppearance.BorderSize = 0;
+            this.btnRegBarcodeCup.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRegBarcodeCup.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRegBarcodeCup.ForeColor = System.Drawing.Color.White;
+            this.btnRegBarcodeCup.Image = global::Projeto_Tabacaria.Properties.Resources.copo_de_medicao;
+            this.btnRegBarcodeCup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRegBarcodeCup.Location = new System.Drawing.Point(356, 196);
+            this.btnRegBarcodeCup.Name = "btnRegBarcodeCup";
+            this.btnRegBarcodeCup.Size = new System.Drawing.Size(46, 51);
+            this.btnRegBarcodeCup.TabIndex = 56;
+            this.btnRegBarcodeCup.TextColor = System.Drawing.Color.White;
+            this.btnRegBarcodeCup.UseVisualStyleBackColor = false;
+            this.btnRegBarcodeCup.Click += new System.EventHandler(this.btnRegBarcodeCup_Click);
             // 
             // RegisterBarcode
             // 
@@ -200,6 +223,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(452, 265);
+            this.Controls.Add(this.btnRegBarcodeCup);
             this.Controls.Add(this.lblQuantityBarcode);
             this.Controls.Add(this.lblReturnDB);
             this.Controls.Add(this.lblSendBrandProduct);
@@ -209,7 +233,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblRegisterGroup);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblProduct);
             this.Controls.Add(this.cmbSearchProduct);
             this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.cmbMarca);
@@ -227,7 +251,7 @@
         #endregion
 
         private Label lblRegisterGroup;
-        private Label label3;
+        private Label lblProduct;
         private ComboBox cmbSearchProduct;
         private Label lblMarca;
         private ComboBox cmbMarca;
@@ -239,5 +263,6 @@
         private Label lblSendNameProduct;
         private Label lblReturnDB;
         private Label lblQuantityBarcode;
+        private Models.MNButton btnRegBarcodeCup;
     }
 }

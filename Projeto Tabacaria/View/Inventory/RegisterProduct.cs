@@ -26,7 +26,7 @@ namespace Projeto_Tabacaria.View.Inventory
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 30, 30));
         }
-            
+
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -35,21 +35,10 @@ namespace Projeto_Tabacaria.View.Inventory
 
         private void txtQtd__TextChanged(object sender, EventArgs e)
         {
-            double parsedValue;
-            if (!double.TryParse(txtQuantity.Text, out parsedValue))
+            if (txtQuantity.Text == "")
             {
                 txtQuantity.Text = "0";
-
-            }
-            if (!double.TryParse(txtSaleValue.Text, out parsedValue))
-            {
-                txtSaleValue.Text = "0";
-
-            }
-            if (!double.TryParse(txtBuyValue.Text, out parsedValue))
-            {
-                txtBuyValue.Text = "0";
-
+                txtQuantity.SelectAll();
             }
             string ml = "ML";
             if (cmbUnidade_De_Medida.Text == ml || cmbUnidade_De_Medida.Text == "LT")
@@ -59,8 +48,8 @@ namespace Projeto_Tabacaria.View.Inventory
             }
             else
             {
-                decimal a = txtQuantity.Text != "" ? Convert.ToDecimal(txtQuantity.Text) : 0;
-                decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
+                decimal a = Convert.ToDecimal(txtQuantity.Text);
+                decimal b = Convert.ToDecimal(txtBuyValue.Text);
                 decimal total = a * b;
 
                 txtTotal.Text = total.ToString();
@@ -71,21 +60,10 @@ namespace Projeto_Tabacaria.View.Inventory
 
         private void txtBuyValue__TextChanged(object sender, EventArgs e)
         {
-            double parsedValue;
-            if (!double.TryParse(txtQuantity.Text, out parsedValue))
-            {
-                txtQuantity.Text = "0";
-
-            }
-            if (!double.TryParse(txtSaleValue.Text, out parsedValue))
-            {
-                txtSaleValue.Text = "0";
-
-            }
-            if (!double.TryParse(txtBuyValue.Text, out parsedValue))
+            if (txtBuyValue.Text == "")
             {
                 txtBuyValue.Text = "0";
-
+                txtBuyValue.SelectAll();
             }
             string ml = "ML";
             if (cmbUnidade_De_Medida.Text == ml)
@@ -95,8 +73,8 @@ namespace Projeto_Tabacaria.View.Inventory
             }
             else
             {
-                decimal a = txtQuantity.Text != "" ? Convert.ToDecimal(txtQuantity.Text) : 0;
-                decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
+                decimal a = Convert.ToDecimal(txtQuantity.Text);
+                decimal b = Convert.ToDecimal(txtBuyValue.Text);
                 decimal total = a * b;
                 total = (decimal)System.Math.Round(total, 2);
                 txtTotal.Text = total.ToString();
@@ -108,21 +86,10 @@ namespace Projeto_Tabacaria.View.Inventory
         }
         private void txtSaleValue__TextChanged(object sender, EventArgs e)
         {
-            double parsedValue;
-            if (!double.TryParse(txtQuantity.Text, out parsedValue))
-            {
-                txtQuantity.Text = "0";
-
-            }
-            if (!double.TryParse(txtSaleValue.Text, out parsedValue))
+            if (txtSaleValue.Text == "")
             {
                 txtSaleValue.Text = "0";
-
-            }
-            if (!double.TryParse(txtBuyValue.Text, out parsedValue))
-            {
-                txtBuyValue.Text = "0";
-
+                txtSaleValue.SelectAll();
             }
             string ml = "ML";
             if (cmbUnidade_De_Medida.Text == ml)
@@ -132,8 +99,8 @@ namespace Projeto_Tabacaria.View.Inventory
             }
             else
             {
-                decimal a = txtQuantity.Text != "" ? Convert.ToDecimal(txtQuantity.Text) : 0;
-                decimal b = txtSaleValue.Text != "" ? Convert.ToDecimal(txtSaleValue.Text) : 0;
+                decimal a = Convert.ToDecimal(txtQuantity.Text);
+                decimal b = Convert.ToDecimal(txtBuyValue.Text);
                 decimal total = a * b;
                 total = (decimal)System.Math.Round(total, 2);
                 txtTotalSale.Text = total.ToString();
@@ -404,6 +371,30 @@ namespace Projeto_Tabacaria.View.Inventory
             RegisterCup registerCup = new RegisterCup();
             registerCup.Show();
             this.Dispose();
+        }
+
+        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBuyValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtSaleValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

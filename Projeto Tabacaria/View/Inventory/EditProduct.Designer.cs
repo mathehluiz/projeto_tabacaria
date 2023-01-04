@@ -283,6 +283,7 @@
             this.txtQtd.TabStop = false;
             this.txtQtd.Text = "0";
             this.txtQtd.TextChanged += new System.EventHandler(this.txtQtd_TextChanged);
+            this.txtQtd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQtd_KeyPress);
             // 
             // txtBuyValue
             // 
@@ -294,6 +295,7 @@
             this.txtBuyValue.TabStop = false;
             this.txtBuyValue.Text = "0";
             this.txtBuyValue.TextChanged += new System.EventHandler(this.txtBuyValue_TextChanged);
+            this.txtBuyValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuyValue_KeyPress);
             // 
             // txtSaleValue
             // 
@@ -305,6 +307,7 @@
             this.txtSaleValue.TabStop = false;
             this.txtSaleValue.Text = "0";
             this.txtSaleValue.TextChanged += new System.EventHandler(this.txtSaleValue_TextChanged);
+            this.txtSaleValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSaleValue_KeyPress);
             // 
             // label3
             // 

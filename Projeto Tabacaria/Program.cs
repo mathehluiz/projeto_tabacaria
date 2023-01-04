@@ -18,7 +18,7 @@ namespace Projeto_Tabacaria
             }
 
             private void Application_Idle(object sender, EventArgs e)
-            {
+                {
                 if (Application.OpenForms.Count == 0)
                 {
                     Application.Exit();

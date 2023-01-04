@@ -32,10 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.picSearchIcon_Sale = new System.Windows.Forms.PictureBox();
             this.btnDeleteItem = new Projeto_Tabacaria.Models.MNButton();
             this.btnEndSale = new Projeto_Tabacaria.Models.MNButton();
-            this.cmbSaleProduct = new System.Windows.Forms.ComboBox();
             this.PRODUTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QUANTIDADE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,30 +61,14 @@
             this.btnCancelSale = new Projeto_Tabacaria.Models.MNButton();
             this.lblReturnDB = new System.Windows.Forms.Label();
             this.lblReturnQuantity = new System.Windows.Forms.Label();
-            this.cmbCups = new System.Windows.Forms.ComboBox();
-            this.txtQtd = new System.Windows.Forms.TextBox();
             this.txtBarCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMoneyPay = new CustomControls.RJControls.RJTextBox();
             this.txtTroco = new CustomControls.RJControls.RJTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picSearchIcon_Sale)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picSearchIcon_Sale
-            // 
-            this.picSearchIcon_Sale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.picSearchIcon_Sale.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picSearchIcon_Sale.Image = global::Projeto_Tabacaria.Properties.Resources.adicionar_a_cesta;
-            this.picSearchIcon_Sale.Location = new System.Drawing.Point(796, 61);
-            this.picSearchIcon_Sale.Name = "picSearchIcon_Sale";
-            this.picSearchIcon_Sale.Size = new System.Drawing.Size(32, 29);
-            this.picSearchIcon_Sale.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picSearchIcon_Sale.TabIndex = 14;
-            this.picSearchIcon_Sale.TabStop = false;
-            this.picSearchIcon_Sale.Click += new System.EventHandler(this.picSearchIcon_Sale_Click);
             // 
             // btnDeleteItem
             // 
@@ -128,20 +110,6 @@
             this.btnEndSale.TextColor = System.Drawing.Color.White;
             this.btnEndSale.UseVisualStyleBackColor = false;
             this.btnEndSale.Click += new System.EventHandler(this.btnEndSale_Click);
-            // 
-            // cmbSaleProduct
-            // 
-            this.cmbSaleProduct.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbSaleProduct.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbSaleProduct.BackColor = System.Drawing.Color.White;
-            this.cmbSaleProduct.FormattingEnabled = true;
-            this.cmbSaleProduct.Location = new System.Drawing.Point(97, 63);
-            this.cmbSaleProduct.Name = "cmbSaleProduct";
-            this.cmbSaleProduct.Size = new System.Drawing.Size(136, 23);
-            this.cmbSaleProduct.TabIndex = 19;
-            this.cmbSaleProduct.TabStop = false;
-            this.cmbSaleProduct.Text = "Selecione um Produto";
-            this.cmbSaleProduct.SelectedIndexChanged += new System.EventHandler(this.cmbSaleProduct_SelectedIndexChanged);
             // 
             // PRODUTO
             // 
@@ -373,7 +341,7 @@
             this.txtSubtotal.TabStop = false;
             this.txtSubtotal.Texts = "";
             this.txtSubtotal.UnderlinedStyle = false;
-            this.txtSubtotal._TextChanged += new System.EventHandler(this.txtSubtotal__TextChanged);
+            this.txtSubtotal._TextChanged += new System.EventHandler(this.txtDiscount__TextChanged);
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -493,33 +461,13 @@
             this.lblReturnQuantity.TabIndex = 30;
             this.lblReturnQuantity.Text = "Return Qtd";
             // 
-            // cmbCups
-            // 
-            this.cmbCups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCups.Enabled = false;
-            this.cmbCups.FormattingEnabled = true;
-            this.cmbCups.Location = new System.Drawing.Point(330, 63);
-            this.cmbCups.Name = "cmbCups";
-            this.cmbCups.Size = new System.Drawing.Size(90, 23);
-            this.cmbCups.TabIndex = 31;
-            // 
-            // txtQtd
-            // 
-            this.txtQtd.Location = new System.Drawing.Point(239, 63);
-            this.txtQtd.Name = "txtQtd";
-            this.txtQtd.PlaceholderText = "Quantidade";
-            this.txtQtd.Size = new System.Drawing.Size(85, 23);
-            this.txtQtd.TabIndex = 32;
-            this.txtQtd.TabStop = false;
-            // 
             // txtBarCode
             // 
-            this.txtBarCode.Location = new System.Drawing.Point(426, 63);
+            this.txtBarCode.Location = new System.Drawing.Point(103, 63);
             this.txtBarCode.Name = "txtBarCode";
             this.txtBarCode.PlaceholderText = "Codigo de Barras";
-            this.txtBarCode.Size = new System.Drawing.Size(146, 23);
-            this.txtBarCode.TabIndex = 33;
-            this.txtBarCode.TabStop = false;
+            this.txtBarCode.Size = new System.Drawing.Size(469, 23);
+            this.txtBarCode.TabIndex = 0;
             this.txtBarCode.Visible = false;
             this.txtBarCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBarCode_KeyPress);
             // 
@@ -603,8 +551,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBarCode);
-            this.Controls.Add(this.txtQtd);
-            this.Controls.Add(this.cmbCups);
             this.Controls.Add(this.lblReturnQuantity);
             this.Controls.Add(this.lblReturnDB);
             this.Controls.Add(this.lblTotalValue);
@@ -619,16 +565,13 @@
             this.Controls.Add(this.txtSubtotal);
             this.Controls.Add(this.cmbCostumer);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.cmbSaleProduct);
             this.Controls.Add(this.btnDeleteItem);
             this.Controls.Add(this.btnEndSale);
-            this.Controls.Add(this.picSearchIcon_Sale);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SaleForm";
             this.Text = "SaleForm";
             this.Load += new System.EventHandler(this.SaleForm_Load);
             this.Leave += new System.EventHandler(this.SaleForm_Leave_1);
-            ((System.ComponentModel.ISupportInitialize)(this.picSearchIcon_Sale)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.ResumeLayout(false);
@@ -637,10 +580,8 @@
         }
 
         #endregion
-        private PictureBox picSearchIcon_Sale;
         private Models.MNButton btnDeleteItem;
         private Models.MNButton btnEndSale;
-        private ComboBox cmbSaleProduct;
         private DataGridViewTextBoxColumn PRODUTO;
         private DataGridViewTextBoxColumn QUANTIDADE;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -663,13 +604,11 @@
         private Models.MNButton btnCancelSale;
         private Label lblReturnDB;
         private Label lblReturnQuantity;
-        private ComboBox cmbCups;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private DataGridViewTextBoxColumn Tamanho;
         private DataGridViewTextBoxColumn Valor_unitario;
         private DataGridViewTextBoxColumn Subtotal;
-        private TextBox txtQtd;
         private TextBox txtBarCode;
         private Label label1;
         private Label label2;
