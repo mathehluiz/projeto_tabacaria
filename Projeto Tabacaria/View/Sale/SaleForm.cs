@@ -4,7 +4,8 @@ using System.Data;
 using System.Globalization;
 using Projeto_Tabacaria.Validations;
 using System.Windows.Forms;
-
+using Org.BouncyCastle.Cms;
+using System.Reflection.Metadata;
 
 namespace Projeto_Tabacaria.View
 {
@@ -57,73 +58,79 @@ namespace Projeto_Tabacaria.View
         
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
+            double SumAmounts = 0;
+
             if (dgvProducts.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Nenhum Item Selecionado", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            else
+
+            if (dgvProducts.SelectedRows.Count >= 1)
             {
+                
                 if (dbConnections.connection.State != ConnectionState.Open)
                 {
                     dbConnections.OpenConnection();
                 }
-                double SumAmounts = 0;
+                var getNameProduct = dgvProducts.SelectedCells[0];
+                var nameProduct = getNameProduct.Value;
+                
 
-                foreach (var row in this.dgvProducts.Rows)
+
+                string searchCodProd = "SELECT prod_cod FROM tb_produtos WHERE prod_nome = '" + nameProduct + "'";
+                MySqlCommand cmdsearchCodProd = new MySqlCommand(searchCodProd, dbConnections.connection);
+                int codProd = Convert.ToInt32(cmdsearchCodProd.ExecuteScalar());
+
+                string unidade = "SELECT prod_unidade FROM tb_produtos WHERE prod_cod = '" + codProd + "'";
+                MySqlCommand cmdUnidade = new MySqlCommand(unidade, dbConnections.connection);
+                string unidadeProd = cmdUnidade.ExecuteScalar().ToString();
+
+                //devolvendo a quantidade de produtos removidos.
+                if (unidadeProd == "LT" && txtBarCode.Enabled == true)
                 {
-                    var dataGridViewRow = row as DataGridViewRow;
-
-                    var cellName = dataGridViewRow.Cells[0];
-                    var valueName = cellName.Value;
-                    string valueConverted = valueName.ToString();
-
-                    var cellQ = dataGridViewRow.Cells[2];
-                    var value = cellQ.Value;
-                    string value1 = value.ToString();
-
-                    string unidade = "SELECT prod_unidade from tb_produtos where prod_nome = '"+valueConverted+"'";
-                    MySqlCommand cmdGetUnity = new MySqlCommand(unidade, dbConnections.connection);
-                    var unityDB = Convert.ToString(cmdGetUnity.ExecuteScalar());
-
-
-                    var cellQtd = dataGridViewRow.Cells[2].Value;//célula 2, seleciona tamanho e de
-                    if (txtBarCode.Enabled == true && unityDB == "LT")
-                    {
-                        intQtd = 1000;
-                    }
-                    else if (txtBarCode.Enabled == true)
-                    {
-                        intQtd= 1;
-                    }
-                    else
-                    {
-                        int tet2 = Convert.ToInt32(cellQtd.ToString());
-                        intQtd = tet2;
-                    }
-
-                    string searchCodProd = "SELECT prod_cod FROM tb_produtos WHERE prod_nome = '" + valueConverted + "'";
-                    MySqlCommand cmdsearchCodProd = new MySqlCommand(searchCodProd, dbConnections.connection);
-                    int codProd = Convert.ToInt32(cmdsearchCodProd.ExecuteScalar());
+                    var CellQtd = dgvProducts.SelectedCells[1];
+                    var valueQtd = CellQtd.Value;
+                    int Qtd = Convert.ToInt32(valueQtd);
+                    intQtd = Qtd;
 
                     string updateInventory = "update tb_estoque set estoque_quantidade='" + valQtd.AddQuantity(intQtd, codProd) + "' where estoque_cod = '" + codProd + "'";
                     MySqlCommand cmdupdateInvetory = new MySqlCommand(updateInventory, dbConnections.connection);
                     cmdupdateInvetory.ExecuteNonQuery();
 
-                    dgvProducts.Rows.RemoveAt(dgvProducts.CurrentRow.Index);
-
-                    double oma = 0;
-                    foreach (DataGridViewRow rows in dgvProducts.Rows)
-                    {
-                        double amount = Convert.ToDouble(rows.Cells[dgvProducts.Columns[4].Index].Value);
-                        oma += amount;
-                        oma = (double)System.Math.Round(oma, 2);
-                        txtSubtotal.Texts = oma.ToString();
-                    }
-
                 }
+                else
+                {
+                    string updateInventory = "update tb_estoque set estoque_quantidade='" + valQtd.AddQuantity(1, codProd) + "' where estoque_cod = '" + codProd + "'";
+                    MySqlCommand cmdupdateInvetory = new MySqlCommand(updateInventory, dbConnections.connection);
+                    cmdupdateInvetory.ExecuteNonQuery();
+              
+                }
+                
+                dgvProducts.Rows.RemoveAt(dgvProducts.CurrentRow.Index);
+                
+
             }
+            else
+            {
+                MessageBox.Show("Mais que um produto selecionado, delete 1 por vez");
+                dbConnections.CloseConnection();
+            }
+            if(dgvProducts.RowCount == 0)
+            {
+                txtTotalValue.Texts = "";
+                txtSubtotal.Texts = "";
+            }
+
             dbConnections.CloseConnection();
+            foreach (DataGridViewRow row in dgvProducts.Rows)
+            {
+                double amount = Convert.ToDouble(row.Cells[dgvProducts.Columns[3].Index].Value);
+                SumAmounts += amount;
+                SumAmounts = (double)System.Math.Round(SumAmounts, 2);
+                txtSubtotal.Texts = SumAmounts.ToString();
+            }
+
         }
 
         public void txtSubtotal__TextChanged(object sender, EventArgs e)
@@ -159,12 +166,14 @@ namespace Projeto_Tabacaria.View
             lblReturnDB.Visible = false;
             lblReturnQuantity.Visible = false;
 
-            if (dbConnections.connection.State != ConnectionState.Open)
-            {
-                dbConnections.OpenConnection();
-            }
+            
             try
-            {  //Seleciona o código do cliente
+            {
+                if (dbConnections.connection.State != ConnectionState.Open)
+                {
+                    dbConnections.OpenConnection();
+                }
+                //Seleciona o código do cliente
                 string searchCodClient = "select cli_cod from tb_clientes where cli_nome = '"+cmbCostumer.Text+"'";
                 MySqlCommand cmdsearcCodClient = new MySqlCommand(searchCodClient, dbConnections.connection);
                 var codClient1 = Convert.ToInt32(cmdsearcCodClient.ExecuteScalar());
@@ -188,7 +197,7 @@ namespace Projeto_Tabacaria.View
 
                     if (dataGridViewRow.Cells[2].Value != "")
                     {
-                        var cellQtd = dataGridViewRow.Cells[1].Value;
+                        var cellQtd = 1;
                         var cellTam = dataGridViewRow.Cells[2].Value;
 
                         int tet = Convert.ToInt32(cellTam.ToString());
@@ -343,13 +352,16 @@ namespace Projeto_Tabacaria.View
                         //devolvendo a quantidade de produtos cancelados.
                         if (unidadeProd == "LT" && txtBarCode.Enabled == true)
                         {
-                            string updateInventory = "update tb_estoque set estoque_quantidade='" + valQtd.AddQuantity(1000, codProd) + "' where estoque_cod = '" + codProd + "'";
+                            var CellQtd = dataGridViewRow.Cells[1];
+                            var valueQtd = CellQtd.Value;
+                            int Qtd = Convert.ToInt32(valueQtd);
+                            intQtd = Qtd;
+
+                            string updateInventory = "update tb_estoque set estoque_quantidade='" + valQtd.AddQuantity(intQtd, codProd) + "' where estoque_cod = '" + codProd + "'";
                             MySqlCommand cmdupdateInvetory = new MySqlCommand(updateInventory, dbConnections.connection);
                             cmdupdateInvetory.ExecuteNonQuery();
 
-                            var cellQ = dataGridViewRow.Cells[2];
-                            var value = cellQ.Value;
-                            string value1 = value.ToString();
+                          
 
                         }
                         else
@@ -435,99 +447,288 @@ namespace Projeto_Tabacaria.View
                     dbConnections.OpenConnection();
 
                 }
-
-
-                intQtd = 1;
-                //quando eu apertar enter, preciso saber se o produto é da tabela unidade ou da tabela produto.
-
-
-                //Seleciona o código de barra do produto
-                string searchCodProduct = "SELECT cod_barra_prod FROM tb_codigo_barra where cod_barra = '" + txtBarCode.Text + "'";
-                MySqlCommand cmdsearchCodProduct = new MySqlCommand(searchCodProduct, dbConnections.connection);
-                var codProduct = Convert.ToInt32(cmdsearchCodProduct.ExecuteScalar());
-
-                string selectQuantityInInventory = "SELECT estoque_quantidade FROM tb_estoque WHERE estoque_cod = '" + codProduct + "'";
-                MySqlCommand cmdSelectQuantityInInventory = new MySqlCommand(selectQuantityInInventory, dbConnections.connection);
-                var quantityInv = Convert.ToDouble(cmdSelectQuantityInInventory.ExecuteScalar());
-                var aa = quantityInv - 1000;
-
-                if (quantityInv <= 0)
+                try
                 {
-                    MessageBox.Show("Quantidade Zerada");
+                    intQtd = 1;
+                    //Seleciona o código de barra do produto
+                    string searchCodProduct = "SELECT cod_barra_prod,cod_barra_copo FROM tb_codigo_barra where cod_barra = '" + txtBarCode.Text + "'";
+                    MySqlCommand cmdSearchProductOrCup = new MySqlCommand(searchCodProduct, dbConnections.connection);
+                    MySqlDataReader readerProductOrCup;
+                    readerProductOrCup = cmdSearchProductOrCup.ExecuteReader();
+                    readerProductOrCup.Read();
+                    var codProduct1 = readerProductOrCup.IsDBNull(0) ? null : readerProductOrCup.GetString(0);//cod barra do produto
+                    var codCup1 = readerProductOrCup.IsDBNull(1) ? null : readerProductOrCup.GetString(1);//cod barra do copo
+
+                    var codProduct = Convert.ToInt32(codProduct1);
+                    var codCup = Convert.ToInt32(codCup1);
                     dbConnections.CloseConnection();
-                }
-                else
-                {
-                    //Seleciona o tipo de unidade do produto
-                    string getUnity = "SELECT prod_unidade FROM tb_produtos WHERE prod_cod = '" + codProduct + "'";
-                    MySqlCommand cmdGetUnity = new MySqlCommand(getUnity, dbConnections.connection);
-                    var unityDB = Convert.ToString(cmdGetUnity.ExecuteScalar());
 
-                    //Remove o produto do estoque pelo código.
-                    if (unityDB == "LT")
+                    if (codProduct != 0)//0 representa nulo
                     {
-                        MySqlCommand updateInvetory = new MySqlCommand("update tb_estoque set estoque_quantidade='" + aa + "' where estoque_cod = '" + codProduct + "'", dbConnections.connection);
-                        updateInvetory.ExecuteNonQuery();
+                        if (dbConnections.connection.State != ConnectionState.Open)
+                        {
+                            dbConnections.OpenConnection();
 
-                    }
-                    else
-                    {
-                        MySqlCommand updateInvetory = new MySqlCommand("update tb_estoque set estoque_quantidade='" + valQtd.CalculateCurrentQuantity(intQtd, codProduct) + "' where estoque_cod = '" + codProduct + "'", dbConnections.connection);
-                        updateInvetory.ExecuteNonQuery();
-                    }
-                    //Remove o código de barra
-                    //string deleteBarCode = "DELETE FROM tb_codigo_barra where cod_barra ='" + txtBarCode.Text + "' ";
-                    //MySqlCommand deleteBarcode = new MySqlCommand(deleteBarCode, dbConnections.connection);
-                    //deleteBarcode.ExecuteNonQuery();
+                        }
+                        //aqui vai o reader para pegar possição do DGV
 
-                    MySqlDataReader reader;
-                    //Seleciona o nome e o preço unitário de venda do produto
-                    string consultProduct = "select prod_nome,preco_unit_venda from tb_produtos,tb_precos where prod_cod = '" + codProduct + "' AND id_produto = prod_cod";
-                    MySqlCommand cmdInsertProduct = new MySqlCommand(consultProduct, dbConnections.connection);
-                    reader = cmdInsertProduct.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        //Faz a validação se o produto é LT ou ML.
+                        string getUnity = "SELECT prod_unidade FROM tb_produtos WHERE prod_cod = '" + codProduct + "'";
+                        MySqlCommand cmdGetUnity = new MySqlCommand(getUnity, dbConnections.connection);
+                        var unityDB = Convert.ToString(cmdGetUnity.ExecuteScalar());
                         if (unityDB == "LT")
                         {
-                            double price = double.Parse(intQtd.ToString()) * double.Parse(reader[1].ToString());
-                            dgvProducts.Rows.Add(reader[0], 1000, txtBarCode.Text, reader[1], reader[1]);
-                            dgvProducts.Columns[2].HeaderText = "Código";
-                            dgvProducts.Columns[3].DefaultCellStyle.Format = "c2";
-                            dgvProducts.Columns[3].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
-                            dgvProducts.Columns[4].DefaultCellStyle.Format = "c2";
-                            dgvProducts.Columns[4].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                            string selectQuantityInInventory = "SELECT estoque_quantidade FROM tb_estoque WHERE estoque_cod = '" + codProduct + "'";
+                            MySqlCommand cmdSelectQuantityInInventory = new MySqlCommand(selectQuantityInInventory, dbConnections.connection);
+                            var quantityInv = Convert.ToDouble(cmdSelectQuantityInInventory.ExecuteScalar());
+                            var aa = quantityInv - 1000;
+                            var retInventory = quantityInv - aa;
+
+                            if (quantityInv <= 0)
+                            {
+                                MessageBox.Show("Quantidade zerada");
+                                dbConnections.CloseConnection();
+                            }
+                            else if (quantityInv < retInventory)
+                            {
+                                MessageBox.Show("Quantidade inserida é maior do que o estoque");
+                            }
+                            else
+                            {
+                                MySqlCommand updateInvetory = new MySqlCommand("update tb_estoque set estoque_quantidade='" + aa + "' where estoque_cod = '" + codProduct + "'", dbConnections.connection);
+                                updateInvetory.ExecuteNonQuery();
+
+                                MySqlDataReader reader;
+                                //Seleciona o nome e o preço unitário de venda do produto
+                                string consultProduct = "select prod_nome,preco_unit_venda from tb_produtos,tb_precos where prod_cod = '" + codProduct + "' AND id_produto = prod_cod";
+                                MySqlCommand cmdInsertProduct = new MySqlCommand(consultProduct, dbConnections.connection);
+                                reader = cmdInsertProduct.ExecuteReader();
+                                while (reader.Read())
+                                {
+                                    //Faz a validação se o produto é LT ou ML.
+                                    if (unityDB == "LT")
+                                    {
+                                        double price = double.Parse(intQtd.ToString()) * double.Parse(reader[1].ToString());
+                                        dgvProducts.Rows.Add(reader[0], 1000, txtBarCode.Text, reader[1], reader[1]);
+                                        dgvProducts.Columns[2].HeaderText = "Código";
+                                        dgvProducts.Columns[3].DefaultCellStyle.Format = "c2";
+                                        dgvProducts.Columns[3].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                                        dgvProducts.Columns[4].DefaultCellStyle.Format = "c2";
+                                        dgvProducts.Columns[4].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                                    }
+                                    else
+                                    {
+                                        double price = double.Parse(intQtd.ToString()) * double.Parse(reader[1].ToString());
+                                        dgvProducts.Rows.Add(reader[0], intQtd.ToString().Trim(), txtBarCode.Text, reader[1], double.Parse(intQtd.ToString()) * double.Parse(reader[1].ToString()));
+                                        dgvProducts.Columns[2].HeaderText = "Código";
+                                        dgvProducts.Columns[3].DefaultCellStyle.Format = "c2";
+                                        dgvProducts.Columns[3].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                                        dgvProducts.Columns[4].DefaultCellStyle.Format = "c2";
+                                        dgvProducts.Columns[4].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                                    }
+
+                                }
+                                btnDeleteItem.Enabled = true;
+                                btnEndSale.Enabled = true;
+                                dbConnections.CloseConnection();
+                                double SumAmounts = 0;
+                                foreach (DataGridViewRow row in dgvProducts.Rows)
+                                {
+                                    double amount = Convert.ToDouble(row.Cells[dgvProducts.Columns[4].Index].Value);
+                                    SumAmounts += amount;
+                                    SumAmounts = (double)System.Math.Round(SumAmounts, 2);
+                                    txtSubtotal.Texts = SumAmounts.ToString();
+                                }
+                                txtBarCode.Clear();
+                                txtBarCode.Select();
+
+                            }
+
+
+
                         }
                         else
                         {
-                            double price = double.Parse(intQtd.ToString()) * double.Parse(reader[1].ToString());
-                            dgvProducts.Rows.Add(reader[0], intQtd.ToString().Trim(), txtBarCode.Text, reader[1], double.Parse(intQtd.ToString()) * double.Parse(reader[1].ToString()));
-                            dgvProducts.Columns[2].HeaderText = "Código";
-                            dgvProducts.Columns[3].DefaultCellStyle.Format = "c2";
-                            dgvProducts.Columns[3].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
-                            dgvProducts.Columns[4].DefaultCellStyle.Format = "c2";
-                            dgvProducts.Columns[4].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                            string selectQuantityInInventory = "SELECT estoque_quantidade FROM tb_estoque WHERE estoque_cod = '" + codProduct + "'";
+                            MySqlCommand cmdSelectQuantityInInventory = new MySqlCommand(selectQuantityInInventory, dbConnections.connection);
+                            var quantityInv = Convert.ToDouble(cmdSelectQuantityInInventory.ExecuteScalar());
+                            var aa = quantityInv - 1;
+
+                            if (quantityInv <= 0)
+                            {
+                                MessageBox.Show("Quantidade zerada");
+                                dbConnections.CloseConnection();
+                            }
+                            else
+                            {
+                                MySqlCommand updateInvetory = new MySqlCommand("update tb_estoque set estoque_quantidade='" + aa + "' where estoque_cod = '" + codProduct + "'", dbConnections.connection);
+                                updateInvetory.ExecuteNonQuery();
+
+                                MySqlDataReader reader;
+                                //Seleciona o nome e o preço unitário de venda do produto
+                                string consultProduct = "select prod_nome,preco_unit_venda from tb_produtos,tb_precos where prod_cod = '" + codProduct + "' AND id_produto = prod_cod";
+                                MySqlCommand cmdInsertProduct = new MySqlCommand(consultProduct, dbConnections.connection);
+                                reader = cmdInsertProduct.ExecuteReader();
+                                while (reader.Read())
+                                {
+                                    //Faz a validação se o produto é LT ou ML.
+                                    if (unityDB == "LT")
+                                    {
+                                        double price = double.Parse(intQtd.ToString()) * double.Parse(reader[1].ToString());
+                                        dgvProducts.Rows.Add(reader[0], 1000, txtBarCode.Text, reader[1], reader[1]);
+                                        dgvProducts.Columns[2].HeaderText = "Código";
+                                        dgvProducts.Columns[3].DefaultCellStyle.Format = "c2";
+                                        dgvProducts.Columns[3].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                                        dgvProducts.Columns[4].DefaultCellStyle.Format = "c2";
+                                        dgvProducts.Columns[4].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                                    }
+                                    else
+                                    {
+                                        double price = double.Parse(intQtd.ToString()) * double.Parse(reader[1].ToString());
+                                        dgvProducts.Rows.Add(reader[0], intQtd.ToString().Trim(), txtBarCode.Text, reader[1], double.Parse(intQtd.ToString()) * double.Parse(reader[1].ToString()));
+                                        dgvProducts.Columns[2].HeaderText = "Código";
+                                        dgvProducts.Columns[3].DefaultCellStyle.Format = "c2";
+                                        dgvProducts.Columns[3].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                                        dgvProducts.Columns[4].DefaultCellStyle.Format = "c2";
+                                        dgvProducts.Columns[4].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                                    }
+
+                                }
+                                btnDeleteItem.Enabled = true;
+                                btnEndSale.Enabled = true;
+                                dbConnections.CloseConnection();
+                                double SumAmounts = 0;
+                                foreach (DataGridViewRow row in dgvProducts.Rows)
+                                {
+                                    double amount = Convert.ToDouble(row.Cells[dgvProducts.Columns[4].Index].Value);
+                                    SumAmounts += amount;
+                                    SumAmounts = (double)System.Math.Round(SumAmounts, 2);
+                                    txtSubtotal.Texts = SumAmounts.ToString();
+                                }
+                                txtBarCode.Clear();
+                                txtBarCode.Select();
+
+                            }
+
+
+                        }
+                    }
+                    else
+                    {
+                        if (dbConnections.connection.State != ConnectionState.Open)
+                        {
+                            dbConnections.OpenConnection();
+
                         }
 
+                        //busca o nome do produto vinculado ao código do copo
+                        string nameProdCup = "select prod_nome from tb_unidade where cod_unidade='" + codCup + "'";
+                        MySqlCommand cmdNameProdCup = new MySqlCommand(nameProdCup, dbConnections.connection);
+                        var getNameProdCup = cmdNameProdCup.ExecuteScalar();
+
+                        //Busca o o código do produto através do nome do produto
+                        string selectCodProd = "Select prod_cod from tb_produtos where prod_nome = '" + getNameProdCup + "'";
+                        MySqlCommand cmdSelectProdCod = new MySqlCommand(selectCodProd, dbConnections.connection);
+                        var codigoProduto = Convert.ToInt32(cmdSelectProdCod.ExecuteScalar());
+
+                        //Seleciona quantidade em estoque deste produto.
+                        string selectQuantityInInventory = "SELECT estoque_quantidade FROM tb_estoque WHERE estoque_cod = '" + codigoProduto + "'";
+                        MySqlCommand cmdSelectQuantityInInventory = new MySqlCommand(selectQuantityInInventory, dbConnections.connection);
+                        var quantityInv = Convert.ToDouble(cmdSelectQuantityInInventory.ExecuteScalar());
+
+                        string selectQuantityCup = "select unidade_quantidade from tb_unidade where cod_unidade = '" + codCup + "'";
+                        MySqlCommand cmdselectQuantityCup = new MySqlCommand(selectQuantityCup, dbConnections.connection);
+                        var QuantityCup = Convert.ToInt32(cmdselectQuantityCup.ExecuteScalar());
+
+
+                        var aa = quantityInv - QuantityCup;
+
+                        if (quantityInv <= 0)
+                        {
+                            MessageBox.Show("Quantidade Zerada");
+                            dbConnections.CloseConnection();
+                        }
+                        else
+                        {
+                            //Seleciona o tipo de unidade do produto
+                            string getUnity = "SELECT prod_unidade FROM tb_produtos WHERE prod_cod = '" + codigoProduto + "'";
+                            MySqlCommand cmdGetUnity = new MySqlCommand(getUnity, dbConnections.connection);
+                            var unityDB = Convert.ToString(cmdGetUnity.ExecuteScalar());
+
+                            //Remove o produto do estoque pelo código.
+                            if (unityDB == "LT")
+                            {
+                                MySqlCommand updateInvetory = new MySqlCommand("update tb_estoque set estoque_quantidade='" + aa + "' where estoque_cod = '" + codigoProduto + "'", dbConnections.connection);
+                                updateInvetory.ExecuteNonQuery();
+
+                            }
+                            else
+                            {
+                                MySqlCommand updateInvetory = new MySqlCommand("update tb_estoque set estoque_quantidade='" + valQtd.CalculateCurrentQuantity(intQtd, codigoProduto) + "' where estoque_cod = '" + codigoProduto + "'", dbConnections.connection);
+                                updateInvetory.ExecuteNonQuery();
+                            }
+
+
+                            MySqlDataReader reader;
+
+                            //Seleciona o nome e o preço unitário de venda do produto
+                            string consultProduct = "select unidade_quantidade,unidade_valor,prod_nome from tb_unidade where prod_nome = '" + getNameProdCup + "'";
+                            MySqlCommand cmdInsertProduct = new MySqlCommand(consultProduct, dbConnections.connection);
+                            reader = cmdInsertProduct.ExecuteReader();
+                            while (reader.Read())
+                            {
+                                //Faz a validação se o produto é LT ou ML.
+                                if (unityDB == "LT")
+                                {
+                                    //reader 2 = nome do produto
+                                    //reader 0 = quantidade do copo
+                                    //reader 1 = valor da unidade
+                                    double price = double.Parse(intQtd.ToString()) * double.Parse(reader[1].ToString());
+                                    dgvProducts.Rows.Add(reader[2], reader[0], txtBarCode.Text, reader[1], reader[1]);
+                                    dgvProducts.Columns[2].HeaderText = "Código";
+                                    dgvProducts.Columns[3].DefaultCellStyle.Format = "c2";
+                                    dgvProducts.Columns[3].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                                    dgvProducts.Columns[4].DefaultCellStyle.Format = "c2";
+                                    dgvProducts.Columns[4].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                                }
+                                else
+                                {
+                                    double price = double.Parse(intQtd.ToString()) * double.Parse(reader[1].ToString());
+                                    dgvProducts.Rows.Add(reader[0], intQtd.ToString().Trim(), txtBarCode.Text, reader[1], double.Parse(intQtd.ToString()) * double.Parse(reader[1].ToString()));
+                                    dgvProducts.Columns[2].HeaderText = "Código";
+                                    dgvProducts.Columns[3].DefaultCellStyle.Format = "c2";
+                                    dgvProducts.Columns[3].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                                    dgvProducts.Columns[4].DefaultCellStyle.Format = "c2";
+                                    dgvProducts.Columns[4].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-BR");
+                                }
+
+                            }
+                            btnDeleteItem.Enabled = true;
+                            btnEndSale.Enabled = true;
+                            dbConnections.CloseConnection();
+                            double SumAmounts = 0;
+                            foreach (DataGridViewRow row in dgvProducts.Rows)
+                            {
+                                double amount = Convert.ToDouble(row.Cells[dgvProducts.Columns[4].Index].Value);
+                                SumAmounts += amount;
+                                SumAmounts = (double)System.Math.Round(SumAmounts, 2);
+                                txtSubtotal.Texts = SumAmounts.ToString();
+                            }
+
+
+                        }
+                        txtBarCode.Clear();
+                        txtBarCode.Select();
+
                     }
-                    btnDeleteItem.Enabled = true;
-                    btnEndSale.Enabled = true;
-                    dbConnections.CloseConnection();
-                    double SumAmounts = 0;
-                    foreach (DataGridViewRow row in dgvProducts.Rows)
-                    {
-                        double amount = Convert.ToDouble(row.Cells[dgvProducts.Columns[4].Index].Value);
-                        SumAmounts += amount;
-                        SumAmounts = (double)System.Math.Round(SumAmounts, 2);
-                        txtSubtotal.Texts = SumAmounts.ToString();
-                    }
-                    
 
                 }
-                txtBarCode.Clear();
-                txtBarCode.Select();
+                catch
+                {
+                    MessageBox.Show("Código de barra não encontado!");
+                    dbConnections.CloseConnection();
 
-            }
+                }
+           }
             
         }
 
@@ -573,6 +774,15 @@ namespace Projeto_Tabacaria.View
             cmdregisterSale.Parameters.Add("@Data", MySqlDbType.Date).Value = dateSaleDate;
             cmdregisterSale.ExecuteNonQuery();
             dbConnections.CloseConnection();
+
+        }
+
+        private void SaleForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnNewSale_Click(sender, e);
+            }
 
         }
     }

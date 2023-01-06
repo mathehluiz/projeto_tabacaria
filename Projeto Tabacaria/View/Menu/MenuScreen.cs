@@ -1,6 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using Projeto_Tabacaria.DB;
+using Projeto_Tabacaria.View.Barcode;
 using Projeto_Tabacaria.View.Group_and_Brand;
+using Projeto_Tabacaria.View.Inventory;
 using System.Runtime.InteropServices;
 
 namespace Projeto_Tabacaria.View
@@ -157,6 +159,20 @@ namespace Projeto_Tabacaria.View
             this.PnlFormLoader.Controls.Add(groupbrandScreen);
             groupbrandScreen.Show();
 
+        }
+
+        private void btnOpenRegCodeBar_Click(object sender, EventArgs e)
+        {
+
+            pnlNav.Height = btnStock.Height;
+            pnlNav.Top = btnStock.Top;
+            btnStock.BackColor = Color.FromArgb(46, 51, 73);
+
+            this.PnlFormLoader.Controls.Clear();
+            BarcodeScreen barcodeScreen = new() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            barcodeScreen.FormBorderStyle = FormBorderStyle.None;
+            this.PnlFormLoader.Controls.Add(barcodeScreen);
+            barcodeScreen.Show();
         }
     }
 }

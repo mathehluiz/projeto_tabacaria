@@ -95,7 +95,7 @@
             this.txtCupName.Name = "txtCupName";
             this.txtCupName.PlaceholderText = "Nome do Copo";
             this.txtCupName.Size = new System.Drawing.Size(207, 22);
-            this.txtCupName.TabIndex = 47;
+            this.txtCupName.TabIndex = 0;
             this.txtCupName.TabStop = false;
             // 
             // label1
@@ -127,8 +127,9 @@
             this.txtQtd.Name = "txtQtd";
             this.txtQtd.PlaceholderText = "Quantidade";
             this.txtQtd.Size = new System.Drawing.Size(207, 22);
-            this.txtQtd.TabIndex = 49;
+            this.txtQtd.TabIndex = 1;
             this.txtQtd.Text = "0";
+            this.txtQtd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQtd_KeyPress);
             // 
             // butRegisterProduct
             // 
@@ -172,8 +173,9 @@
             this.txtValueCup.Name = "txtValueCup";
             this.txtValueCup.PlaceholderText = "Quantidade";
             this.txtValueCup.Size = new System.Drawing.Size(207, 22);
-            this.txtValueCup.TabIndex = 53;
+            this.txtValueCup.TabIndex = 2;
             this.txtValueCup.Text = "0";
+            this.txtValueCup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValueCup_KeyPress);
             // 
             // lblReturnDB
             // 

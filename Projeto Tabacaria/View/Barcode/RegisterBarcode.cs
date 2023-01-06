@@ -15,11 +15,10 @@ namespace Projeto_Tabacaria.View.Inventory
     public partial class RegisterBarcode : Form
     {
         DBConnections dbConnections = new();
-        public RegisterBarcode(string nameProduct, string nameBrand)
+        public RegisterBarcode()
         {
             InitializeComponent();
-            lblSendBrandProduct.Text = nameBrand;
-            lblSendNameProduct.Text = nameProduct;
+            
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -76,7 +75,6 @@ namespace Projeto_Tabacaria.View.Inventory
                 dbConnections.OpenConnection();
             }
 
-
             //obter cod do produto
             MySqlCommand cmdSelectProdCod = new MySqlCommand("SELECT prod_cod FROM tb_produtos where prod_nome = '"+cmbSearchProduct.Text+"'", dbConnections.connection);
             var codprod = cmdSelectProdCod.ExecuteScalar();
@@ -98,61 +96,73 @@ namespace Projeto_Tabacaria.View.Inventory
                 dbConnections.OpenConnection();
             }
 
-            string consultBarCode = "SELECT cod_barra_prod FROM tb_codigo_barra WHERE cod_barra = '" + txtBarcode.Text + "'";
-            MySqlCommand cmdConsultBarcode = new MySqlCommand(consultBarCode, dbConnections.connection);
-            var consult = cmdConsultBarcode.ExecuteScalar();
-            if (consult == null)
+            if(txtBarcode.Text == "")
             {
-                try
-                {
-                    
-                    //selecionar cod do produto
-                    MySqlCommand cmdSelectProdCod = new MySqlCommand("SELECT prod_cod FROM tb_produtos where prod_nome = '" + cmbSearchProduct.Text + "'", dbConnections.connection);
-                    var codprod = cmdSelectProdCod.ExecuteScalar();
-
-                    //registrar codigo de barra
-                    MySqlCommand cmdRegisterBarcode = new MySqlCommand("insert into tb_codigo_barra (cod_barra,cod_barra_prod) values (@BarCode,@Cod_prod)", dbConnections.connection);
-                    cmdRegisterBarcode.Parameters.Add("@BarCode", MySqlDbType.VarChar, 20).Value = txtBarcode.Text;
-                    cmdRegisterBarcode.Parameters.Add("@Cod_prod", MySqlDbType.Int32, 10).Value = codprod;
-                    cmdRegisterBarcode.ExecuteNonQuery();
-
-
-                    //pega a quantidade de códigos de barra
-                    string quantityProd = "SELECT COUNT(cod_barra) FROM tb_codigo_barra WHERE cod_barra_prod = '" + codprod + "'";
-                    MySqlCommand cmdQuantityProd = new MySqlCommand(quantityProd, dbConnections.connection);
-                    lblQuantityBarcode.Text = "Existem " + Convert.ToString(cmdQuantityProd.ExecuteScalar()) + " códigos de barra deste produto";
-
-                    dbConnections.CloseConnection();
-                    txtBarcode.Clear();
-                    txtBarcode.Select();
-                    lblReturnDB.Visible = true;
-                    lblReturnDB.Text = "Código registrado";
-                }
-                catch
-                {
-
-                }
+                MessageBox.Show("É necessário inserir código de barra");
 
             }
             else
             {
-                string consultProduct = "select prod_nome from tb_produtos where prod_cod = '"+ consult + "'";
-                MySqlCommand nameProduct = new MySqlCommand(consultProduct,dbConnections.connection);
-                var name = nameProduct.ExecuteScalar();
-                MessageBox.Show("O produto ['"+name+"] está registrado com esse código");
-                dbConnections.CloseConnection();
+                string consultBarCode = "SELECT cod_barra_prod FROM tb_codigo_barra WHERE cod_barra = '" + txtBarcode.Text + "'";
+                MySqlCommand cmdConsultBarcode = new MySqlCommand(consultBarCode, dbConnections.connection);
+                var consult = cmdConsultBarcode.ExecuteScalar();
+                if (consult == null)
+                {
+                    try
+                    {
+
+                        //selecionar cod do produto
+                        MySqlCommand cmdSelectProdCod = new MySqlCommand("SELECT prod_cod FROM tb_produtos where prod_nome = '" + cmbSearchProduct.Text + "'", dbConnections.connection);
+                        var codprod = cmdSelectProdCod.ExecuteScalar();
+
+                        //registrar codigo de barra
+                        MySqlCommand cmdRegisterBarcode = new MySqlCommand("insert into tb_codigo_barra (cod_barra,cod_barra_prod) values (@BarCode,@Cod_prod)", dbConnections.connection);
+                        cmdRegisterBarcode.Parameters.Add("@BarCode", MySqlDbType.VarChar, 20).Value = txtBarcode.Text;
+                        cmdRegisterBarcode.Parameters.Add("@Cod_prod", MySqlDbType.Int32, 10).Value = codprod;
+                        cmdRegisterBarcode.ExecuteNonQuery();
+
+
+                        //pega a quantidade de códigos de barra
+                        string quantityProd = "SELECT COUNT(cod_barra) FROM tb_codigo_barra WHERE cod_barra_prod = '" + codprod + "'";
+                        MySqlCommand cmdQuantityProd = new MySqlCommand(quantityProd, dbConnections.connection);
+                        lblQuantityBarcode.Text = "Existem " + Convert.ToString(cmdQuantityProd.ExecuteScalar()) + " códigos de barra deste produto";
+
+                        dbConnections.CloseConnection();
+                        txtBarcode.Clear();
+                        txtBarcode.Select();
+                        lblReturnDB.Visible = true;
+                        lblReturnDB.Text = "Código registrado";
+                    }
+                    catch
+                    {
+
+                    }
+
+                }
+                else
+                {
+                    string consultProduct = "select prod_nome from tb_produtos where prod_cod = '" + consult + "'";
+                    MySqlCommand nameProduct = new MySqlCommand(consultProduct, dbConnections.connection);
+                    var name = nameProduct.ExecuteScalar();
+                    MessageBox.Show("O produto ['" + name + "] está registrado com esse código");
+                    dbConnections.CloseConnection();
+                }
+
             }
-            
-            
 
         }
 
         private void txtBarcode_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
             if (e.KeyChar == (char)Keys.Enter)
             {
                 btnRegBarcode_Click(sender, e);   
             }
+
         }
 
         private void cmbSearchProduct_TextChanged(object sender, EventArgs e)
@@ -176,8 +186,7 @@ namespace Projeto_Tabacaria.View.Inventory
 
         private void btnRegBarcodeCup_Click(object sender, EventArgs e)
         {
-            RegisterBarcodeCup registerBarcodeCup = new RegisterBarcodeCup();
-            registerBarcodeCup.Show();
+            
         }
     }
 }

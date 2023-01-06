@@ -433,6 +433,16 @@ namespace Projeto_Tabacaria.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap leitor_de_codigos_de_barra {
+            get {
+                object obj = ResourceManager.GetObject("leitor-de-codigos-de-barra", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lixeira_de_reciclagem {
             get {
                 object obj = ResourceManager.GetObject("lixeira-de-reciclagem", resourceCulture);

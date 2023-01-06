@@ -221,7 +221,7 @@
             // 
             // Tamanho
             // 
-            this.Tamanho.HeaderText = "Tamanho";
+            this.Tamanho.HeaderText = "Código";
             this.Tamanho.Name = "Tamanho";
             this.Tamanho.ReadOnly = true;
             // 
@@ -571,6 +571,7 @@
             this.Name = "SaleForm";
             this.Text = "SaleForm";
             this.Load += new System.EventHandler(this.SaleForm_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SaleForm_KeyPress);
             this.Leave += new System.EventHandler(this.SaleForm_Leave_1);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
@@ -604,15 +605,15 @@
         private Models.MNButton btnCancelSale;
         private Label lblReturnDB;
         private Label lblReturnQuantity;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private DataGridViewTextBoxColumn Tamanho;
-        private DataGridViewTextBoxColumn Valor_unitario;
-        private DataGridViewTextBoxColumn Subtotal;
         private TextBox txtBarCode;
         private Label label1;
         private Label label2;
         private CustomControls.RJControls.RJTextBox txtMoneyPay;
         private CustomControls.RJControls.RJTextBox txtTroco;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn Tamanho;
+        private DataGridViewTextBoxColumn Valor_unitario;
+        private DataGridViewTextBoxColumn Subtotal;
     }
 }

@@ -58,6 +58,7 @@
             this.txtTotalPay.TabIndex = 1;
             this.txtTotalPay.Text = "0";
             this.txtTotalPay.TextChanged += new System.EventHandler(this.txtTotalPay_TextChanged);
+            this.txtTotalPay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalPay_KeyPress);
             // 
             // btnPayDebit
             // 
@@ -98,6 +99,7 @@
             this.txtTotalDebit.TabIndex = 4;
             this.txtTotalDebit.Text = "0";
             this.txtTotalDebit.TextChanged += new System.EventHandler(this.txtTotalDebit_TextChanged);
+            this.txtTotalDebit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalDebit_KeyPress);
             // 
             // picCloseEditProduct
             // 

@@ -132,7 +132,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(298, 368);
+            this.ClientSize = new System.Drawing.Size(1094, 690);
             this.Controls.Add(this.btnDeleteBrand);
             this.Controls.Add(this.btnDeleteGroup);
             this.Controls.Add(this.btnRegGroup);

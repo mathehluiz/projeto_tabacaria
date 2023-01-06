@@ -72,6 +72,7 @@
             this.txtBarcode.PlaceholderText = "CÓDIGO DE BARRA";
             this.txtBarcode.Size = new System.Drawing.Size(239, 22);
             this.txtBarcode.TabIndex = 56;
+            this.txtBarcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBarcode_KeyPress);
             // 
             // label1
             // 

@@ -45,6 +45,7 @@
             this.PnlFormLoader = new System.Windows.Forms.Panel();
             this.picCloseForm = new System.Windows.Forms.PictureBox();
             this.picMinimizeForm = new System.Windows.Forms.PictureBox();
+            this.btnOpenRegCodeBar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -56,6 +57,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.panel1.Controls.Add(this.btnOpenRegCodeBar);
             this.panel1.Controls.Add(this.btnGroupAndBrand);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.btnCostumer);
@@ -271,6 +273,23 @@
             this.picMinimizeForm.TabStop = false;
             this.picMinimizeForm.Click += new System.EventHandler(this.picMinimizeForm_Click);
             // 
+            // btnOpenRegCodeBar
+            // 
+            this.btnOpenRegCodeBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnOpenRegCodeBar.FlatAppearance.BorderSize = 0;
+            this.btnOpenRegCodeBar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenRegCodeBar.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnOpenRegCodeBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnOpenRegCodeBar.Image = global::Projeto_Tabacaria.Properties.Resources.leitor_de_codigos_de_barra;
+            this.btnOpenRegCodeBar.Location = new System.Drawing.Point(0, 396);
+            this.btnOpenRegCodeBar.Name = "btnOpenRegCodeBar";
+            this.btnOpenRegCodeBar.Size = new System.Drawing.Size(184, 42);
+            this.btnOpenRegCodeBar.TabIndex = 7;
+            this.btnOpenRegCodeBar.Text = "Código de Barra";
+            this.btnOpenRegCodeBar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnOpenRegCodeBar.UseVisualStyleBackColor = false;
+            this.btnOpenRegCodeBar.Click += new System.EventHandler(this.btnOpenRegCodeBar_Click);
+            // 
             // MenuScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -316,5 +335,6 @@
         private PictureBox picCloseForm;
         private PictureBox picMinimizeForm;
         private Button btnGroupAndBrand;
+        private Button btnOpenRegCodeBar;
     }
 }

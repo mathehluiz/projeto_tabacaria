@@ -177,15 +177,16 @@ namespace Projeto_Tabacaria.View
             }
         }
 
-        private void btnRegBarcode_Click(object sender, EventArgs e)
+
+        private void InventoryScreen_KeyPress(object sender, KeyPressEventArgs e)
         {
-            lblSendBrandProduct.Text = "";
-            lblSendNameProduct.Text = "";
-            RegisterBarcode registerBarcode = new RegisterBarcode(lblSendBrandProduct.Text, lblSendNameProduct.Text);
-            registerBarcode.Show();
+            if (e.KeyChar == (char)Keys.F5)
+            {
+                picRefresh_Click(sender, e);
+            }
         }
 
-        private void picCloseEditProduct_Click(object sender, EventArgs e)
+        private void picRefresh_Click(object sender, EventArgs e)
         {
             if (dbConnections.connection.State != ConnectionState.Open)
             {
@@ -232,6 +233,7 @@ namespace Projeto_Tabacaria.View
                 }
                 dgvProducts.Update();
             }
+
         }
     }
 }
