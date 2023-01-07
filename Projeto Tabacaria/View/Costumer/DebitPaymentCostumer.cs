@@ -32,6 +32,8 @@ namespace Projeto_Tabacaria.View.Costumer
         {
             lblReturnDB.Visible = false;
             txtNameCostumer.Enabled = false;
+            txtTotalPay.Focus();
+            txtTotalPay.Select();
 
 
         }
@@ -59,13 +61,34 @@ namespace Projeto_Tabacaria.View.Costumer
                 MySqlCommand cmdselectCodClient = new MySqlCommand(selectCodClient, dbConnections.connection);
                 int codClient = Convert.ToInt32(cmdselectCodClient.ExecuteScalar());
 
+                string noClient = "[A] Sem cliente";
+
+                string selectCodNoClient = "Select cli_cod from tb_clientes where cli_nome = '"+ noClient + "'";
+                MySqlCommand cmdselectCodNoClient = new MySqlCommand(selectCodNoClient, dbConnections.connection);
+                int codNoClient = Convert.ToInt32(cmdselectCodNoClient.ExecuteScalar());
+                
+                DateTime dateSale = DateTime.Now;
+                var dateSaleDate = DateOnly.FromDateTime(dateSale);
+
+                decimal totalPay = Convert.ToDecimal(txtTotalPay.Text);
+                string resultValueSale = totalPay.ToString().Replace(",", ".");
+
+                string updateValueSale = "insert into tb_vendas (id_venda_cliente,venda_valor_total,venda_data) values (@Cliente,'"+ resultValueSale + "',@Data)";
+                MySqlCommand cmdUpdateValueSale = new MySqlCommand(updateValueSale,dbConnections.connection);
+                cmdUpdateValueSale.Parameters.Add("@Cliente", MySqlDbType.Int32, 10).Value = codNoClient;
+                cmdUpdateValueSale.Parameters.Add("@Data", MySqlDbType.Date).Value = dateSaleDate;
+                cmdUpdateValueSale.ExecuteNonQuery();
+
+
                 string querySaveDebit = "UPDATE tb_clientes set cli_total = '"+ result + "' where cli_cod = '"+codClient+"'";
                 MySqlCommand cmdquerySaveDebit = new MySqlCommand(querySaveDebit, dbConnections.connection);
                 cmdquerySaveDebit.ExecuteNonQuery();
                 dbConnections.CloseConnection();
                 lblReturnDB.Visible = true;
                 lblReturnDB.Text = "Debitado";
-
+                txtTotalPay.Text = "";
+                txtTotalPay.Focus();
+                
             }
 
         }
@@ -82,18 +105,39 @@ namespace Projeto_Tabacaria.View.Costumer
 
         private void txtTotalDebit_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
-            {
-                e.Handled = true;
-            }
+            
         }
 
         private void txtTotalPay_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+
+
+            if (e.KeyChar == '.' || e.KeyChar == ',')
+            {
+                //troca o . pela virgula
+                e.KeyChar = ',';
+
+                //Verifica se já existe alguma vírgula na string
+                if (txtTotalPay.Text.Contains(","))
+                {
+                    e.Handled = true; // Caso exista, aborte 
+                }
+            }
+
+            //aceita apenas números, tecla backspace.
+            else if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
             {
                 e.Handled = true;
             }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnPayDebit_Click(sender, e);
+            }
+        }
+
+        private void btnPayDebit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
         }
     }
 }

@@ -317,6 +317,7 @@
             this.txtDiscount.Texts = "";
             this.txtDiscount.UnderlinedStyle = false;
             this.txtDiscount._TextChanged += new System.EventHandler(this.txtDiscount__TextChanged);
+            this.txtDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiscount_KeyPress);
             // 
             // txtSubtotal
             // 

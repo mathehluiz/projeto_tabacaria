@@ -185,11 +185,5 @@ namespace Projeto_Tabacaria.View.Inventory
 
         }
 
-        private void mnButton1_Click(object sender, EventArgs e)
-        {
-            DeteCup deleteCup = new();
-            deleteCup.Show();
-            this.Dispose();
-        }
     }
 }

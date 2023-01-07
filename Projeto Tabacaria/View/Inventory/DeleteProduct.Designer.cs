@@ -41,7 +41,6 @@
             this.lblSendBrandProduct = new System.Windows.Forms.Label();
             this.lblSendNameProduct = new System.Windows.Forms.Label();
             this.lblSendGroupName = new System.Windows.Forms.Label();
-            this.mnButton1 = new Projeto_Tabacaria.Models.MNButton();
             ((System.ComponentModel.ISupportInitialize)(this.picCloseEditProduct)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +48,7 @@
             // 
             this.cmbProductName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProductName.FormattingEnabled = true;
-            this.cmbProductName.Location = new System.Drawing.Point(125, 88);
+            this.cmbProductName.Location = new System.Drawing.Point(40, 91);
             this.cmbProductName.Name = "cmbProductName";
             this.cmbProductName.Size = new System.Drawing.Size(269, 23);
             this.cmbProductName.TabIndex = 3;
@@ -59,7 +58,7 @@
             // 
             this.cmbBrand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBrand.FormattingEnabled = true;
-            this.cmbBrand.Location = new System.Drawing.Point(273, 49);
+            this.cmbBrand.Location = new System.Drawing.Point(188, 52);
             this.cmbBrand.Name = "cmbBrand";
             this.cmbBrand.Size = new System.Drawing.Size(121, 23);
             this.cmbBrand.TabIndex = 2;
@@ -70,7 +69,7 @@
             // 
             this.cmbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGroup.FormattingEnabled = true;
-            this.cmbGroup.Location = new System.Drawing.Point(125, 49);
+            this.cmbGroup.Location = new System.Drawing.Point(40, 52);
             this.cmbGroup.Name = "cmbGroup";
             this.cmbGroup.Size = new System.Drawing.Size(121, 23);
             this.cmbGroup.TabIndex = 1;
@@ -81,7 +80,7 @@
             // 
             this.picCloseEditProduct.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picCloseEditProduct.Image = global::Projeto_Tabacaria.Properties.Resources.close_correto;
-            this.picCloseEditProduct.Location = new System.Drawing.Point(527, 0);
+            this.picCloseEditProduct.Location = new System.Drawing.Point(323, 1);
             this.picCloseEditProduct.Name = "picCloseEditProduct";
             this.picCloseEditProduct.Size = new System.Drawing.Size(28, 24);
             this.picCloseEditProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -103,7 +102,7 @@
             this.btnDeleteProduct.ForeColor = System.Drawing.Color.White;
             this.btnDeleteProduct.Image = global::Projeto_Tabacaria.Properties.Resources.lixeira_de_reciclagem;
             this.btnDeleteProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteProduct.Location = new System.Drawing.Point(87, 187);
+            this.btnDeleteProduct.Location = new System.Drawing.Point(73, 187);
             this.btnDeleteProduct.Name = "btnDeleteProduct";
             this.btnDeleteProduct.Size = new System.Drawing.Size(189, 58);
             this.btnDeleteProduct.TabIndex = 4;
@@ -117,7 +116,7 @@
             this.lblRegisterGroup.AutoSize = true;
             this.lblRegisterGroup.Font = new System.Drawing.Font("Segoe UI Black", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblRegisterGroup.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblRegisterGroup.Location = new System.Drawing.Point(169, 0);
+            this.lblRegisterGroup.Location = new System.Drawing.Point(84, 3);
             this.lblRegisterGroup.Name = "lblRegisterGroup";
             this.lblRegisterGroup.Size = new System.Drawing.Size(208, 28);
             this.lblRegisterGroup.TabIndex = 41;
@@ -128,7 +127,7 @@
             this.lblReturnDB.AutoSize = true;
             this.lblReturnDB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblReturnDB.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblReturnDB.Location = new System.Drawing.Point(216, 147);
+            this.lblReturnDB.Location = new System.Drawing.Point(101, 151);
             this.lblReturnDB.Name = "lblReturnDB";
             this.lblReturnDB.Size = new System.Drawing.Size(93, 19);
             this.lblReturnDB.TabIndex = 42;
@@ -161,36 +160,12 @@
             this.lblSendGroupName.TabIndex = 47;
             this.lblSendGroupName.Text = "SendGroupName";
             // 
-            // mnButton1
-            // 
-            this.mnButton1.BackColor = System.Drawing.Color.Teal;
-            this.mnButton1.BackgroundColor = System.Drawing.Color.Teal;
-            this.mnButton1.BorderColor = System.Drawing.Color.Black;
-            this.mnButton1.BorderRadius = 10;
-            this.mnButton1.BorderSize = 0;
-            this.mnButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mnButton1.FlatAppearance.BorderSize = 0;
-            this.mnButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.mnButton1.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.mnButton1.ForeColor = System.Drawing.Color.White;
-            this.mnButton1.Image = global::Projeto_Tabacaria.Properties.Resources.lixeira_de_reciclagem;
-            this.mnButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mnButton1.Location = new System.Drawing.Point(282, 187);
-            this.mnButton1.Name = "mnButton1";
-            this.mnButton1.Size = new System.Drawing.Size(189, 58);
-            this.mnButton1.TabIndex = 48;
-            this.mnButton1.Text = "       Deletar Copos";
-            this.mnButton1.TextColor = System.Drawing.Color.White;
-            this.mnButton1.UseVisualStyleBackColor = false;
-            this.mnButton1.Click += new System.EventHandler(this.mnButton1_Click);
-            // 
             // DeleteProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(557, 257);
-            this.Controls.Add(this.mnButton1);
+            this.ClientSize = new System.Drawing.Size(353, 257);
             this.Controls.Add(this.lblSendGroupName);
             this.Controls.Add(this.lblSendBrandProduct);
             this.Controls.Add(this.lblSendNameProduct);
@@ -226,6 +201,5 @@
         private Label lblSendBrandProduct;
         private Label lblSendNameProduct;
         private Label lblSendGroupName;
-        private Models.MNButton mnButton1;
     }
 }

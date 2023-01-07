@@ -79,6 +79,7 @@
             this.btnPayDebit.TextColor = System.Drawing.Color.White;
             this.btnPayDebit.UseVisualStyleBackColor = false;
             this.btnPayDebit.Click += new System.EventHandler(this.btnPayDebit_Click);
+            this.btnPayDebit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.btnPayDebit_KeyPress);
             // 
             // label1
             // 

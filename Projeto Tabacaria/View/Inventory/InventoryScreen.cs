@@ -36,6 +36,21 @@ namespace Projeto_Tabacaria.View
             registerProduct.Show();
 
         }
+        private void mnButton1_Click(object sender, EventArgs e)
+        {
+            RegisterCup registerCup = new RegisterCup();
+            registerCup.FormBorderStyle = FormBorderStyle.None;
+            registerCup.Show();
+            
+        }
+
+        private void mnButton2_Click_1(object sender, EventArgs e)
+        {
+            DeteCup deleteCup = new();
+            deleteCup.FormBorderStyle = FormBorderStyle.None;
+            deleteCup.Show();
+           
+        }
 
         private void btnEditProduct_Click(object sender, EventArgs e)
         {
@@ -235,5 +250,7 @@ namespace Projeto_Tabacaria.View
             }
 
         }
+
+        
     }
 }

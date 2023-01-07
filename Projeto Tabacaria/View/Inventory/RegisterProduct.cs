@@ -366,12 +366,6 @@ namespace Projeto_Tabacaria.View.Inventory
             dbConnections.CloseConnection();
         }
 
-        private void mnButton1_Click(object sender, EventArgs e)
-        {
-            RegisterCup registerCup = new RegisterCup();
-            registerCup.Show();
-            this.Dispose();
-        }
 
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -383,7 +377,20 @@ namespace Projeto_Tabacaria.View.Inventory
 
         private void txtBuyValue_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            if (e.KeyChar == '.' || e.KeyChar == ',')
+            {
+                //troca o . pela virgula
+                e.KeyChar = ',';
+
+                //Verifica se já existe alguma vírgula na string
+                if (txtBuyValue.Text.Contains(","))
+                {
+                    e.Handled = true; // Caso exista, aborte 
+                }
+            }
+
+            //aceita apenas números, tecla backspace.
+            else if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
             {
                 e.Handled = true;
             }
@@ -391,7 +398,20 @@ namespace Projeto_Tabacaria.View.Inventory
 
         private void txtSaleValue_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            if (e.KeyChar == '.' || e.KeyChar == ',')
+            {
+                //troca o . pela virgula
+                e.KeyChar = ',';
+
+                //Verifica se já existe alguma vírgula na string
+                if (txtSaleValue.Text.Contains(","))
+                {
+                    e.Handled = true; // Caso exista, aborte 
+                }
+            }
+
+            //aceita apenas números, tecla backspace.
+            else if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
             {
                 e.Handled = true;
             }

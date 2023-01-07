@@ -56,7 +56,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.mnButton1 = new Projeto_Tabacaria.Models.MNButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -238,7 +237,7 @@
             this.butRegisterProduct.ForeColor = System.Drawing.Color.White;
             this.butRegisterProduct.Image = global::Projeto_Tabacaria.Properties.Resources.registrar;
             this.butRegisterProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.butRegisterProduct.Location = new System.Drawing.Point(12, 403);
+            this.butRegisterProduct.Location = new System.Drawing.Point(106, 403);
             this.butRegisterProduct.Name = "butRegisterProduct";
             this.butRegisterProduct.Size = new System.Drawing.Size(168, 49);
             this.butRegisterProduct.TabIndex = 8;
@@ -351,37 +350,12 @@
             this.label8.TabIndex = 52;
             this.label8.Text = "Lucro";
             // 
-            // mnButton1
-            // 
-            this.mnButton1.BackColor = System.Drawing.Color.Teal;
-            this.mnButton1.BackgroundColor = System.Drawing.Color.Teal;
-            this.mnButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mnButton1.BorderColor = System.Drawing.Color.Teal;
-            this.mnButton1.BorderRadius = 10;
-            this.mnButton1.BorderSize = 0;
-            this.mnButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mnButton1.FlatAppearance.BorderSize = 0;
-            this.mnButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.mnButton1.Font = new System.Drawing.Font("Gadugi", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.mnButton1.ForeColor = System.Drawing.Color.White;
-            this.mnButton1.Image = global::Projeto_Tabacaria.Properties.Resources.registrar;
-            this.mnButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mnButton1.Location = new System.Drawing.Point(189, 403);
-            this.mnButton1.Name = "mnButton1";
-            this.mnButton1.Size = new System.Drawing.Size(168, 49);
-            this.mnButton1.TabIndex = 53;
-            this.mnButton1.Text = "        Registrar Copo";
-            this.mnButton1.TextColor = System.Drawing.Color.White;
-            this.mnButton1.UseVisualStyleBackColor = false;
-            this.mnButton1.Click += new System.EventHandler(this.mnButton1_Click);
-            // 
             // RegisterProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(382, 464);
-            this.Controls.Add(this.mnButton1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
@@ -447,6 +421,5 @@
         private Label label6;
         private Label label7;
         private Label label8;
-        private Models.MNButton mnButton1;
     }
 }

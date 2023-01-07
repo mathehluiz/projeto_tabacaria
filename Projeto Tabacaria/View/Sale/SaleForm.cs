@@ -734,6 +734,23 @@ namespace Projeto_Tabacaria.View
 
         private void txtMoneyPay_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == '.' || e.KeyChar == ',')
+            {
+                //troca o . pela virgula
+                e.KeyChar = ',';
+
+                //Verifica se já existe alguma vírgula na string
+                if (txtMoneyPay.Text.Contains(","))
+                {
+                    e.Handled = true; // Caso exista, aborte 
+                }
+            }
+
+            //aceita apenas números, tecla backspace.
+            else if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
             if (e.KeyChar == (char)Keys.Enter)
             {
                 char[] amount = { 'R', '$' };
@@ -784,6 +801,27 @@ namespace Projeto_Tabacaria.View
                 btnNewSale_Click(sender, e);
             }
 
+        }
+
+        private void txtDiscount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '.' || e.KeyChar == ',')
+            {
+                //troca o . pela virgula
+                e.KeyChar = ',';
+
+                //Verifica se já existe alguma vírgula na string
+                if (txtDiscount.Text.Contains(","))
+                {
+                    e.Handled = true; // Caso exista, aborte 
+                }
+            }
+
+            //aceita apenas números, tecla backspace.
+            else if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
