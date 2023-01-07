@@ -99,6 +99,7 @@
             this.txtBrandName.PlaceholderText = "Nome da Marca";
             this.txtBrandName.Size = new System.Drawing.Size(286, 22);
             this.txtBrandName.TabIndex = 2;
+            this.txtBrandName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBrandName_KeyPress);
             // 
             // cmbGroup
             // 

@@ -66,7 +66,7 @@
             this.btnCreateProduct.ForeColor = System.Drawing.Color.White;
             this.btnCreateProduct.Image = global::Projeto_Tabacaria.Properties.Resources.registrar;
             this.btnCreateProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCreateProduct.Location = new System.Drawing.Point(12, 145);
+            this.btnCreateProduct.Location = new System.Drawing.Point(12, 12);
             this.btnCreateProduct.Name = "btnCreateProduct";
             this.btnCreateProduct.Size = new System.Drawing.Size(204, 51);
             this.btnCreateProduct.TabIndex = 14;
@@ -89,7 +89,7 @@
             this.btnEditProduct.ForeColor = System.Drawing.Color.White;
             this.btnEditProduct.Image = global::Projeto_Tabacaria.Properties.Resources.editar1;
             this.btnEditProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditProduct.Location = new System.Drawing.Point(12, 202);
+            this.btnEditProduct.Location = new System.Drawing.Point(12, 69);
             this.btnEditProduct.Name = "btnEditProduct";
             this.btnEditProduct.Size = new System.Drawing.Size(204, 51);
             this.btnEditProduct.TabIndex = 15;
@@ -112,7 +112,7 @@
             this.btnDeleteProduct.ForeColor = System.Drawing.Color.White;
             this.btnDeleteProduct.Image = global::Projeto_Tabacaria.Properties.Resources.lixeira_de_reciclagem;
             this.btnDeleteProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteProduct.Location = new System.Drawing.Point(12, 259);
+            this.btnDeleteProduct.Location = new System.Drawing.Point(12, 126);
             this.btnDeleteProduct.Name = "btnDeleteProduct";
             this.btnDeleteProduct.Size = new System.Drawing.Size(204, 51);
             this.btnDeleteProduct.TabIndex = 16;
@@ -125,9 +125,9 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(22)))), ((int)(((byte)(9)))));
             this.panel1.Controls.Add(this.dgvProducts);
-            this.panel1.Location = new System.Drawing.Point(222, 91);
+            this.panel1.Location = new System.Drawing.Point(222, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(860, 587);
+            this.panel1.Size = new System.Drawing.Size(860, 666);
             this.panel1.TabIndex = 17;
             // 
             // dgvProducts
@@ -190,7 +190,7 @@
             this.dgvProducts.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvProducts.RowTemplate.Height = 25;
             this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProducts.Size = new System.Drawing.Size(860, 587);
+            this.dgvProducts.Size = new System.Drawing.Size(860, 666);
             this.dgvProducts.TabIndex = 0;
             this.dgvProducts.TabStop = false;
             this.dgvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellContentClick);
@@ -225,7 +225,7 @@
             // lblSendNameProduct
             // 
             this.lblSendNameProduct.AutoSize = true;
-            this.lblSendNameProduct.Location = new System.Drawing.Point(160, 70);
+            this.lblSendNameProduct.Location = new System.Drawing.Point(25, 663);
             this.lblSendNameProduct.Name = "lblSendNameProduct";
             this.lblSendNameProduct.Size = new System.Drawing.Size(107, 15);
             this.lblSendNameProduct.TabIndex = 20;
@@ -234,7 +234,7 @@
             // lblSendBrandProduct
             // 
             this.lblSendBrandProduct.AutoSize = true;
-            this.lblSendBrandProduct.Location = new System.Drawing.Point(294, 70);
+            this.lblSendBrandProduct.Location = new System.Drawing.Point(26, 637);
             this.lblSendBrandProduct.Name = "lblSendBrandProduct";
             this.lblSendBrandProduct.Size = new System.Drawing.Size(106, 15);
             this.lblSendBrandProduct.TabIndex = 21;
@@ -243,7 +243,7 @@
             // lblSendGroupName
             // 
             this.lblSendGroupName.AutoSize = true;
-            this.lblSendGroupName.Location = new System.Drawing.Point(451, 73);
+            this.lblSendGroupName.Location = new System.Drawing.Point(34, 613);
             this.lblSendGroupName.Name = "lblSendGroupName";
             this.lblSendGroupName.Size = new System.Drawing.Size(98, 15);
             this.lblSendGroupName.TabIndex = 48;
@@ -253,7 +253,7 @@
             // 
             this.picRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picRefresh.Image = global::Projeto_Tabacaria.Properties.Resources.refresh;
-            this.picRefresh.Location = new System.Drawing.Point(1014, 18);
+            this.picRefresh.Location = new System.Drawing.Point(90, 211);
             this.picRefresh.Name = "picRefresh";
             this.picRefresh.Size = new System.Drawing.Size(42, 38);
             this.picRefresh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -276,7 +276,7 @@
             this.mnButton1.ForeColor = System.Drawing.Color.White;
             this.mnButton1.Image = global::Projeto_Tabacaria.Properties.Resources.registrar;
             this.mnButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mnButton1.Location = new System.Drawing.Point(12, 88);
+            this.mnButton1.Location = new System.Drawing.Point(12, 280);
             this.mnButton1.Name = "mnButton1";
             this.mnButton1.Size = new System.Drawing.Size(204, 51);
             this.mnButton1.TabIndex = 54;
@@ -299,11 +299,11 @@
             this.mnButton2.ForeColor = System.Drawing.Color.White;
             this.mnButton2.Image = global::Projeto_Tabacaria.Properties.Resources.lixeira_de_reciclagem;
             this.mnButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mnButton2.Location = new System.Drawing.Point(12, 316);
+            this.mnButton2.Location = new System.Drawing.Point(12, 337);
             this.mnButton2.Name = "mnButton2";
             this.mnButton2.Size = new System.Drawing.Size(204, 51);
             this.mnButton2.TabIndex = 55;
-            this.mnButton2.Text = "       Deletar Copos";
+            this.mnButton2.Text = "       Deletar Copo";
             this.mnButton2.TextColor = System.Drawing.Color.White;
             this.mnButton2.UseVisualStyleBackColor = false;
             this.mnButton2.Click += new System.EventHandler(this.mnButton2_Click_1);

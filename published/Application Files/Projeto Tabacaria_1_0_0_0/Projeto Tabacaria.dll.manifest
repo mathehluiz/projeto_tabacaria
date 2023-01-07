@@ -116,13 +116,13 @@
       <dsig:DigestValue>3Sc4kJABQmrJTdLFlEsoUh60D3r23XRBSuTZfL5y/hY=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Projeto Tabacaria.dll" size="4486656">
+  <file name="Projeto Tabacaria.dll" size="4515840">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>UY68z6zhf6NGEfz07N6TONTMf4EgHPlAGxUTUErJibI=</dsig:DigestValue>
+      <dsig:DigestValue>bqJ0tF1Q2GpVE75xmQsbmMjrgkfYwXxeyVJetk+hGdM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Projeto Tabacaria.exe" size="147968">

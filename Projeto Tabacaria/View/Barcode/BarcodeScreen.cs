@@ -35,6 +35,9 @@ namespace Projeto_Tabacaria.View.Barcode
 
         private void BarcodeScreen_Load(object sender, EventArgs e)
         {
+            lblSendBarcodeProduct.Visible = false;
+            lblSendGroupName.Visible = false;
+            lblSendNameProduct.Visible = false;
             if (dbConnections.connection.State != ConnectionState.Open)
             {
                 dbConnections.OpenConnection();
@@ -70,21 +73,17 @@ namespace Projeto_Tabacaria.View.Barcode
                 string nameProd = dgvBarCodeProducts.Rows[e.RowIndex].Cells["prod_nome"].Value.ToString();
                 string numberBarCode = dgvBarCodeProducts.Rows[e.RowIndex].Cells["cod_barra"].Value.ToString();
                 //lblSendNameProduct.Text = nameProd;
-                //lblSendBrandProduct.Text = nameBrand;
+                //lblSendBarcodeProduct.Text = numberBarCode;
 
-                //abrir o menu para editar barcode
+                EditBarCodeProduct editBarCodeProduct = new EditBarCodeProduct(nameProd, numberBarCode);
+                editBarCodeProduct.Show();
 
-                //EditProduct editProduct = new EditProduct(nameProd, numberBarCode);
-                //editProduct.Show();
 
             }
             if (dgvBarCodeProducts.Columns[e.ColumnIndex] == dgvBarCodeProducts.Columns["excluir"])
             {
-
-                string nameProd = dgvBarCodeProducts.Rows[e.RowIndex].Cells["prod_nome"].Value.ToString();
-                //string nameBrand = dgvProducts.Rows[e.RowIndex].Cells["marca_nome"].Value.ToString();
-                string selectGroupName = "SELECT grupo_nome from tb_grupos,tb_produtos WHERE prod_nome = '" + nameProd + "' AND prod_id_grupo = grupo_id";
-                dbConnections.OpenConnection();
+               
+                string barcodeProduct = dgvBarCodeProducts.Rows[e.RowIndex].Cells["cod_barra"].Value.ToString();
 
                 if (dbConnections.connection.State != ConnectionState.Open)
                 {
@@ -93,12 +92,14 @@ namespace Projeto_Tabacaria.View.Barcode
 
                 try
                 {
-                    MySqlCommand cmd_delete_product = new MySqlCommand("DELETE FROM tb_produtos WHERE prod_nome = '" + nameProd + "'", dbConnections.connection);
-                    cmd_delete_product.CommandType = CommandType.Text;
-                    cmd_delete_product.ExecuteNonQuery();
+                    MySqlCommand cmdDeleteBarcode = new MySqlCommand("DELETE FROM tb_codigo_barra WHERE cod_barra = '" + barcodeProduct + "'", dbConnections.connection);
+                    cmdDeleteBarcode.ExecuteNonQuery();
                     dbConnections.CloseConnection();
-                    //timer1_Tick(sender, e);
-
+                    if (MessageBox.Show("Código excluído", "Código de Barra",
+          MessageBoxButtons.OK) == DialogResult.OK)
+                    {
+                        picRefresh_Click(sender, e);
+                    }
                 }
                 catch
                 {
@@ -111,6 +112,87 @@ namespace Projeto_Tabacaria.View.Barcode
         {
             dgvBarCodeProducts.Rows[e.RowIndex].Cells["editar"].ToolTipText = "Clique aqui para editar";
             dgvBarCodeProducts.Rows[e.RowIndex].Cells["excluir"].ToolTipText = "Clique aqui para excluir";
+        }
+
+        private void picRefresh_Click(object sender, EventArgs e)
+        {
+
+            if (dbConnections.connection.State != ConnectionState.Open)
+            {
+                dbConnections.OpenConnection();
+            }
+
+            string loadBarCodeProducts = "Select tb_produtos.prod_nome,tb_codigo_barra.cod_barra FROM tb_produtos " +
+                "INNER JOIN tb_codigo_barra ON tb_codigo_barra.cod_barra_prod = tb_produtos.prod_cod ";
+
+            MySqlDataAdapter daLoadBarCode = new MySqlDataAdapter(loadBarCodeProducts, dbConnections.connection);
+            DataTable dtLoadBarCode = new DataTable();
+            daLoadBarCode.Fill(dtLoadBarCode);
+            dgvBarCodeProducts.DataSource = dtLoadBarCode;
+            dgvBarCodeProducts.Columns["prod_nome"].HeaderText = "Produto";
+            dgvBarCodeProducts.Columns["cod_barra"].HeaderText = "Código";
+
+            string loadBarCodeCups = "Select tb_unidade.unidade_nome,tb_codigo_barra.cod_barra FROM tb_unidade " +
+                "INNER JOIN tb_codigo_barra ON tb_codigo_barra.cod_barra_copo = tb_unidade.cod_unidade";
+
+            MySqlDataAdapter daLoadBarCodeCup = new MySqlDataAdapter(loadBarCodeCups, dbConnections.connection);
+            DataTable dtLoadBarCodeCup = new DataTable();
+            daLoadBarCodeCup.Fill(dtLoadBarCodeCup);
+            dgvBarCodeCups.DataSource = dtLoadBarCodeCup;
+            dgvBarCodeCups.Columns["unidade_nome"].HeaderText = "Copo";
+            dgvBarCodeCups.Columns["cod_barra"].HeaderText = "Código";
+
+            dbConnections.CloseConnection();
+
+        }
+
+        private void dgvBarCodeCups_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            dgvBarCodeCups.Rows[e.RowIndex].Cells["editar1"].ToolTipText = "Clique aqui para editar";
+            dgvBarCodeCups.Rows[e.RowIndex].Cells["excluir1"].ToolTipText = "Clique aqui para excluir";
+        }
+
+        private void dgvBarCodeCups_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvBarCodeCups.Columns[e.ColumnIndex] == dgvBarCodeProducts.Columns["editar1"])
+            {
+                string nameProd = dgvBarCodeCups.Rows[e.RowIndex].Cells["unidade_nome"].Value.ToString();
+                string numberBarCode = dgvBarCodeCups.Rows[e.RowIndex].Cells["cod_barra"].Value.ToString();
+                //lblSendNameProduct.Text = nameProd;
+                //lblSendBarcodeProduct.Text = numberBarCode;
+
+                EditBarCodeCup editBarCodeCup = new EditBarCodeCup(nameProd, numberBarCode);
+                editBarCodeCup.Show();
+
+
+            }
+            if (dgvBarCodeCups.Columns[e.ColumnIndex] == dgvBarCodeCups.Columns["excluir1"])
+            {
+
+                string barcodeCup = dgvBarCodeCups.Rows[e.RowIndex].Cells["cod_barra"].Value.ToString();
+
+                if (dbConnections.connection.State != ConnectionState.Open)
+                {
+                    dbConnections.OpenConnection();
+                }
+
+                try
+                {
+                    MySqlCommand cmdDeleteBarcode = new MySqlCommand("DELETE FROM tb_codigo_barra WHERE cod_barra = '" + barcodeCup + "'", dbConnections.connection);
+                    cmdDeleteBarcode.ExecuteNonQuery();
+                    dbConnections.CloseConnection();
+                    if (MessageBox.Show("Código excluído", "Código de Barra",
+          MessageBoxButtons.OK) == DialogResult.OK)
+                    {
+                        picRefresh_Click(sender, e);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Erro");
+                }
+            }
+
         }
     }
 }

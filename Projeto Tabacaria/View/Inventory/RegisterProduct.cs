@@ -48,8 +48,11 @@ namespace Projeto_Tabacaria.View.Inventory
             }
             else
             {
-                decimal a = Convert.ToDecimal(txtQuantity.Text);
-                decimal b = Convert.ToDecimal(txtBuyValue.Text);
+                var buyvalue = txtBuyValue.Text.ToString().Replace(",", ".");
+                var quantity = txtQuantity.Text.ToString().Replace(",", ".");
+
+                decimal a = Convert.ToDecimal(quantity);
+                decimal b = Convert.ToDecimal(buyvalue);
                 decimal total = a * b;
 
                 txtTotal.Text = total.ToString();
@@ -73,8 +76,12 @@ namespace Projeto_Tabacaria.View.Inventory
             }
             else
             {
-                decimal a = Convert.ToDecimal(txtQuantity.Text);
-                decimal b = Convert.ToDecimal(txtBuyValue.Text);
+                //parei aqui
+                var buyvalue = txtBuyValue.Text.ToString().Replace(",", ".");
+                var quantity = txtQuantity.Text.ToString().Replace(",", ".");
+
+                decimal a = Convert.ToDecimal(quantity);
+                decimal b = Convert.ToDecimal(buyvalue);
                 decimal total = a * b;
                 total = (decimal)System.Math.Round(total, 2);
                 txtTotal.Text = total.ToString();
@@ -99,12 +106,14 @@ namespace Projeto_Tabacaria.View.Inventory
             }
             else
             {
-                decimal a = Convert.ToDecimal(txtQuantity.Text);
-                decimal b = Convert.ToDecimal(txtBuyValue.Text);
-                decimal total = a * b;
-                total = (decimal)System.Math.Round(total, 2);
-                txtTotalSale.Text = total.ToString();
-                txtTotalSale.Text = (Convert.ToDouble(txtQuantity.Text) * Convert.ToDouble(txtSaleValue.Text)).ToString();
+                var salevalue = txtSaleValue.Text.ToString().Replace(",", ".");
+
+                //decimal a = Convert.ToDecimal(txtQuantity.Text);
+                //decimal b = Convert.ToDecimal(buyvalue);
+                //decimal total = a * b;
+                //total = (decimal)System.Math.Round(total, 2);
+                //txtTotalSale.Text = total.ToString();
+                txtTotalSale.Text = (Convert.ToDecimal(txtQuantity.Text) * Convert.ToDecimal(salevalue)).ToString();
             }
 
 
@@ -157,11 +166,16 @@ namespace Projeto_Tabacaria.View.Inventory
                         MySqlCommand cmdSelectProdCod = new MySqlCommand("SELECT prod_cod FROM tb_produtos ORDER BY prod_cod DESC LIMIT 1", dbConnections.connection);
                         var codprod = cmdSelectProdCod.ExecuteScalar();
 
+                        var buyvalue = txtBuyValue.Text.ToString().Replace(",", ".");
+                        var salevalue = txtSaleValue.Text.ToString().Replace(",", ".");
+
+
+
                         //registar preço
                         MySqlCommand cmdRegisterPrice = new MySqlCommand("insert into tb_precos (id_produto,preco_unit_compra, preco_unit_venda,preco_lucro) values ('"+ codprod + "',@Valor_Unitario_Compra, @Valor_Unitario_Venda,@Lucro)", dbConnections.connection);
-                        cmdRegisterPrice.Parameters.Add("@Valor_Unitario_Compra", MySqlDbType.Decimal, 9).Value = Convert.ToDouble(txtBuyValue.Text);
-                        cmdRegisterPrice.Parameters.Add("@Valor_Unitario_Venda", MySqlDbType.Decimal, 9).Value = Convert.ToDouble(txtSaleValue.Text);
-                        cmdRegisterPrice.Parameters.Add("@Lucro", MySqlDbType.Decimal, 9).Value = (Convert.ToDecimal(txtSaleValue.Text) - Convert.ToDecimal(txtBuyValue.Text));
+                        cmdRegisterPrice.Parameters.Add("@Valor_Unitario_Compra", MySqlDbType.Decimal, 9).Value = Convert.ToDecimal(buyvalue);
+                        cmdRegisterPrice.Parameters.Add("@Valor_Unitario_Venda", MySqlDbType.Decimal, 9).Value = Convert.ToDecimal(salevalue);
+                        cmdRegisterPrice.Parameters.Add("@Lucro", MySqlDbType.Decimal, 9).Value = (Convert.ToDecimal(salevalue) - Convert.ToDecimal(buyvalue));
                         cmdRegisterPrice.ExecuteNonQuery();
 
                         //registra estoque
@@ -398,7 +412,11 @@ namespace Projeto_Tabacaria.View.Inventory
 
         private void txtSaleValue_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == '.' || e.KeyChar == ',')
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                butRegisterProduct_Click(sender, e);
+            }
+                if (e.KeyChar == '.' || e.KeyChar == ',')
             {
                 //troca o . pela virgula
                 e.KeyChar = ',';
@@ -412,6 +430,14 @@ namespace Projeto_Tabacaria.View.Inventory
 
             //aceita apenas números, tecla backspace.
             else if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtInventoryMin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
             {
                 e.Handled = true;
             }

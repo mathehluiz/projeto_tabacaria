@@ -342,7 +342,7 @@
             this.txtSubtotal.TabStop = false;
             this.txtSubtotal.Texts = "";
             this.txtSubtotal.UnderlinedStyle = false;
-            this.txtSubtotal._TextChanged += new System.EventHandler(this.txtDiscount__TextChanged);
+            this.txtSubtotal._TextChanged += new System.EventHandler(this.txtSubtotal__TextChanged);
             // 
             // dataGridViewTextBoxColumn3
             // 

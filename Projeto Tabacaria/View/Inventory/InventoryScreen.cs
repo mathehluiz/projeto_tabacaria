@@ -167,8 +167,6 @@ namespace Projeto_Tabacaria.View
             {
                 
                 string nameProd = dgvProducts.Rows[e.RowIndex].Cells["prod_nome"].Value.ToString();
-                //string nameBrand = dgvProducts.Rows[e.RowIndex].Cells["marca_nome"].Value.ToString();
-                string selectGroupName = "SELECT grupo_nome from tb_grupos,tb_produtos WHERE prod_nome = '" + nameProd + "' AND prod_id_grupo = grupo_id";
                 dbConnections.OpenConnection();
 
                 if (dbConnections.connection.State != ConnectionState.Open)
@@ -182,7 +180,11 @@ namespace Projeto_Tabacaria.View
                     cmd_delete_product.CommandType = CommandType.Text;
                     cmd_delete_product.ExecuteNonQuery();
                     dbConnections.CloseConnection();
-                    //timer1_Tick(sender, e);
+                    if (MessageBox.Show("Produto excluído", "ESTOQUE",
+          MessageBoxButtons.OK) == DialogResult.OK)
+                    {
+                        picRefresh_Click(sender, e);
+                    }
 
                 }
                 catch

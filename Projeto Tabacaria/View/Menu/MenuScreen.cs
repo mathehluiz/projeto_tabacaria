@@ -149,9 +149,9 @@ namespace Projeto_Tabacaria.View
 
         private void btnGroupAndBrand_Click(object sender, EventArgs e)
         {
-            pnlNav.Height = btnStock.Height;
-            pnlNav.Top = btnStock.Top;
-            btnStock.BackColor = Color.FromArgb(46, 51, 73);
+            pnlNav.Height = btnGroupAndBrand.Height;
+            pnlNav.Top = btnGroupAndBrand.Top;
+            btnGroupAndBrand.BackColor = Color.FromArgb(46, 51, 73);
 
             this.PnlFormLoader.Controls.Clear();
             GroupBrandScreen groupbrandScreen = new() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
@@ -164,15 +164,25 @@ namespace Projeto_Tabacaria.View
         private void btnOpenRegCodeBar_Click(object sender, EventArgs e)
         {
 
-            pnlNav.Height = btnStock.Height;
-            pnlNav.Top = btnStock.Top;
-            btnStock.BackColor = Color.FromArgb(46, 51, 73);
+            pnlNav.Height = btnOpenRegCodeBar.Height;
+            pnlNav.Top = btnOpenRegCodeBar.Top;
+            btnOpenRegCodeBar.BackColor = Color.FromArgb(46, 51, 73);
 
             this.PnlFormLoader.Controls.Clear();
             BarcodeScreen barcodeScreen = new() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             barcodeScreen.FormBorderStyle = FormBorderStyle.None;
             this.PnlFormLoader.Controls.Add(barcodeScreen);
             barcodeScreen.Show();
+        }
+
+        private void btnGroupAndBrand_Leave(object sender, EventArgs e)
+        {
+            btnGroupAndBrand.BackColor = Color.FromArgb(24, 30, 54);
+        }
+
+        private void btnOpenRegCodeBar_Leave(object sender, EventArgs e)
+        {
+            btnOpenRegCodeBar.BackColor = Color.FromArgb(24, 30, 54);
         }
     }
 }

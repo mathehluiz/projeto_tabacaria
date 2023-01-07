@@ -45,6 +45,7 @@
             this.txtGroupName.PlaceholderText = "Nome do Grupo";
             this.txtGroupName.Size = new System.Drawing.Size(287, 22);
             this.txtGroupName.TabIndex = 1;
+            this.txtGroupName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGroupName_KeyPress);
             // 
             // bntRegGroup
             // 

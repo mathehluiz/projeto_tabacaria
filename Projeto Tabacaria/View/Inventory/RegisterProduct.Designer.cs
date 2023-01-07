@@ -77,6 +77,7 @@
             this.txtInventoryMin.Name = "txtInventoryMin";
             this.txtInventoryMin.Size = new System.Drawing.Size(83, 22);
             this.txtInventoryMin.TabIndex = 4;
+            this.txtInventoryMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInventoryMin_KeyPress);
             // 
             // lblRegisterGroup
             // 

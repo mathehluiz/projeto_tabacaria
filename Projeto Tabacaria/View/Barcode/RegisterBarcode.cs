@@ -28,6 +28,8 @@ namespace Projeto_Tabacaria.View.Inventory
 
         private void RegisterBarcode_Load(object sender, EventArgs e)
         {
+            lblSendNameProduct.Visible = false;
+            lblSendBrandProduct.Visible = false;
             txtBarcode.Select();
             lblReturnDB.Visible = false;
             dbConnections.OpenConnection();

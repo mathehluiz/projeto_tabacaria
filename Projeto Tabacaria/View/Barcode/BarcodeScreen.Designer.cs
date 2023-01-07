@@ -39,9 +39,18 @@
             this.btnRegBarcode = new Projeto_Tabacaria.Models.MNButton();
             this.btnRegBarcodeCup = new Projeto_Tabacaria.Models.MNButton();
             this.dgvBarCodeProducts = new System.Windows.Forms.DataGridView();
+            this.editar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.excluir = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgvBarCodeCups = new System.Windows.Forms.DataGridView();
+            this.picRefresh = new System.Windows.Forms.PictureBox();
+            this.lblSendGroupName = new System.Windows.Forms.Label();
+            this.lblSendBarcodeProduct = new System.Windows.Forms.Label();
+            this.lblSendNameProduct = new System.Windows.Forms.Label();
+            this.editar1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.excluir1 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBarCodeProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBarCodeCups)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picRefresh)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRegBarcode
@@ -112,6 +121,9 @@
             this.dgvBarCodeProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBarCodeProducts.ColumnHeadersHeight = 30;
             this.dgvBarCodeProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvBarCodeProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.editar,
+            this.excluir});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -152,6 +164,24 @@
             this.dgvBarCodeProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBarCodeProducts_CellContentClick);
             this.dgvBarCodeProducts.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBarCodeProducts_CellFormatting);
             // 
+            // editar
+            // 
+            this.editar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.editar.HeaderText = "";
+            this.editar.Image = global::Projeto_Tabacaria.Properties.Resources.caneta_esferografica;
+            this.editar.Name = "editar";
+            this.editar.ReadOnly = true;
+            this.editar.Width = 30;
+            // 
+            // excluir
+            // 
+            this.excluir.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.excluir.HeaderText = "";
+            this.excluir.Image = global::Projeto_Tabacaria.Properties.Resources.cross;
+            this.excluir.Name = "excluir";
+            this.excluir.ReadOnly = true;
+            this.excluir.Width = 30;
+            // 
             // dgvBarCodeCups
             // 
             this.dgvBarCodeCups.AllowUserToAddRows = false;
@@ -174,6 +204,9 @@
             this.dgvBarCodeCups.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvBarCodeCups.ColumnHeadersHeight = 30;
             this.dgvBarCodeCups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvBarCodeCups.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.editar1,
+            this.excluir1});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -211,6 +244,65 @@
             this.dgvBarCodeCups.Size = new System.Drawing.Size(483, 569);
             this.dgvBarCodeCups.TabIndex = 59;
             this.dgvBarCodeCups.TabStop = false;
+            this.dgvBarCodeCups.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBarCodeCups_CellContentClick);
+            this.dgvBarCodeCups.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBarCodeCups_CellFormatting);
+            // 
+            // picRefresh
+            // 
+            this.picRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picRefresh.Image = global::Projeto_Tabacaria.Properties.Resources.refresh;
+            this.picRefresh.Location = new System.Drawing.Point(499, 12);
+            this.picRefresh.Name = "picRefresh";
+            this.picRefresh.Size = new System.Drawing.Size(42, 38);
+            this.picRefresh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picRefresh.TabIndex = 60;
+            this.picRefresh.TabStop = false;
+            this.picRefresh.Click += new System.EventHandler(this.picRefresh_Click);
+            // 
+            // lblSendGroupName
+            // 
+            this.lblSendGroupName.AutoSize = true;
+            this.lblSendGroupName.Location = new System.Drawing.Point(12, 9);
+            this.lblSendGroupName.Name = "lblSendGroupName";
+            this.lblSendGroupName.Size = new System.Drawing.Size(98, 15);
+            this.lblSendGroupName.TabIndex = 63;
+            this.lblSendGroupName.Text = "SendGroupName";
+            // 
+            // lblSendBarcodeProduct
+            // 
+            this.lblSendBarcodeProduct.AutoSize = true;
+            this.lblSendBarcodeProduct.Location = new System.Drawing.Point(12, 24);
+            this.lblSendBarcodeProduct.Name = "lblSendBarcodeProduct";
+            this.lblSendBarcodeProduct.Size = new System.Drawing.Size(106, 15);
+            this.lblSendBarcodeProduct.TabIndex = 62;
+            this.lblSendBarcodeProduct.Text = "SendBrandProduct";
+            // 
+            // lblSendNameProduct
+            // 
+            this.lblSendNameProduct.AutoSize = true;
+            this.lblSendNameProduct.Location = new System.Drawing.Point(12, 39);
+            this.lblSendNameProduct.Name = "lblSendNameProduct";
+            this.lblSendNameProduct.Size = new System.Drawing.Size(107, 15);
+            this.lblSendNameProduct.TabIndex = 61;
+            this.lblSendNameProduct.Text = "SendNameProduct";
+            // 
+            // editar1
+            // 
+            this.editar1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.editar1.HeaderText = "";
+            this.editar1.Image = global::Projeto_Tabacaria.Properties.Resources.caneta_esferografica;
+            this.editar1.Name = "editar1";
+            this.editar1.ReadOnly = true;
+            this.editar1.Width = 30;
+            // 
+            // excluir1
+            // 
+            this.excluir1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.excluir1.HeaderText = "";
+            this.excluir1.Image = global::Projeto_Tabacaria.Properties.Resources.cross;
+            this.excluir1.Name = "excluir1";
+            this.excluir1.ReadOnly = true;
+            this.excluir1.Width = 30;
             // 
             // BarcodeScreen
             // 
@@ -218,6 +310,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(1078, 651);
+            this.Controls.Add(this.lblSendGroupName);
+            this.Controls.Add(this.lblSendBarcodeProduct);
+            this.Controls.Add(this.lblSendNameProduct);
+            this.Controls.Add(this.picRefresh);
             this.Controls.Add(this.dgvBarCodeCups);
             this.Controls.Add(this.dgvBarCodeProducts);
             this.Controls.Add(this.btnRegBarcodeCup);
@@ -229,7 +325,9 @@
             this.Load += new System.EventHandler(this.BarcodeScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBarCodeProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBarCodeCups)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picRefresh)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -239,5 +337,13 @@
         private Models.MNButton btnRegBarcodeCup;
         private DataGridView dgvBarCodeProducts;
         private DataGridView dgvBarCodeCups;
+        private PictureBox picRefresh;
+        private Label lblSendGroupName;
+        private Label lblSendBarcodeProduct;
+        private Label lblSendNameProduct;
+        private DataGridViewImageColumn editar;
+        private DataGridViewImageColumn excluir;
+        private DataGridViewImageColumn editar1;
+        private DataGridViewImageColumn excluir1;
     }
 }

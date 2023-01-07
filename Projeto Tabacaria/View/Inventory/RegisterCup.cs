@@ -38,6 +38,9 @@ namespace Projeto_Tabacaria.View.Inventory
             this.cmbProduct.ValueMember = "prod_cod";
             this.cmbProduct.DataSource = ds_products.Tables["tb_produtos"];
             dbConnections.CloseConnection();
+
+            txtCupName.Focus();
+            txtCupName.Select();
         }
 
         private void butRegisterProduct_Click(object sender, EventArgs e)
@@ -68,6 +71,10 @@ namespace Projeto_Tabacaria.View.Inventory
 
         private void txtValueCup_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                butRegisterProduct_Click(sender, e);
+            }
             if (e.KeyChar == '.' || e.KeyChar == ',')
             {
                 //troca o . pela virgula

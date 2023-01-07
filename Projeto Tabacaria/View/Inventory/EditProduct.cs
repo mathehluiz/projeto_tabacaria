@@ -331,6 +331,10 @@ namespace Projeto_Tabacaria.View.Inventory
 
         private void txtSaleValue_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnEditProduct_Click(sender, e);
+            }
             if (e.KeyChar == '.' || e.KeyChar == ',')
             {
                 //troca o . pela virgula

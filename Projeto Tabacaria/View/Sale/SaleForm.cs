@@ -135,6 +135,11 @@ namespace Projeto_Tabacaria.View
 
         public void txtSubtotal__TextChanged(object sender, EventArgs e)
         {
+            if (txtSubtotal.Text == "")
+            {
+                txtSubtotal.Text = "0";
+                txtSubtotal.Select();
+            }
             txtDiscount.Texts = "0";
             double returnClass = totalPrice.SumPrice(txtSubtotal.Texts, txtDiscount.Texts);
             if (returnClass == -12345)
@@ -149,6 +154,11 @@ namespace Projeto_Tabacaria.View
         }
         private void txtDiscount__TextChanged(object sender, EventArgs e)
         {
+            if (txtDiscount.Text == "")
+            {
+                txtDiscount.Text = "0";
+                txtDiscount.Select();
+            }
             double returnClass = totalPrice.SumPrice(txtSubtotal.Texts, txtDiscount.Texts);
             if (returnClass == -12345)
             {
