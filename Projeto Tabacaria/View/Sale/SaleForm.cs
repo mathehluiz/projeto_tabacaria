@@ -340,6 +340,7 @@ namespace Projeto_Tabacaria.View
                         if (dataGridViewRow.Cells[2].Value == "")
                         {
                             MessageBox.Show("Erro no código de barras");
+
                         }
                         else
                         {
