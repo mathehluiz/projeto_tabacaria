@@ -29,6 +29,7 @@ namespace Projeto_Tabacaria.View
             lblReturnDB.Visible = false;
             lblReturnQuantity.Visible = false;
             cmbCostumer.Items.Clear();
+            dgvProducts.Rows.Clear();
             txtSubtotal.Enabled = false;
             txtTroco.Enabled = false;
             txtDiscount.Enabled = false;
@@ -205,14 +206,15 @@ namespace Projeto_Tabacaria.View
                     var valueName = cellName.Value;
                     string valueConverted = valueName.ToString();
 
-                    if (dataGridViewRow.Cells[2].Value != "")
+                    if (dataGridViewRow.Cells[2].Value == "")
                     {
-                        var cellQtd = 1;
-                        var cellTam = dataGridViewRow.Cells[2].Value;
+                        MessageBox.Show("Erro no código");
+                        //var cellQtd = 1;
+                        //var cellTam = dataGridViewRow.Cells[2].Value;
 
-                        int tet = Convert.ToInt32(cellTam.ToString());
-                        int tet2 = Convert.ToInt32(cellQtd.ToString());
-                        intQtd = tet * tet2;
+                        //int tet = Convert.ToInt32(cellTam.ToString());
+                        //int tet2 = Convert.ToInt32(cellQtd.ToString());
+                        //intQtd = tet * tet2;
                     }
                     else
                     {
@@ -335,14 +337,9 @@ namespace Projeto_Tabacaria.View
                         var valueName = cellName.Value;
                         string valueConverted = valueName.ToString();
 
-                        if (dataGridViewRow.Cells[2].Value != "")
+                        if (dataGridViewRow.Cells[2].Value == "")
                         {
-                            var cellQtd = dataGridViewRow.Cells[2].Value;
-                            var cellTam = dataGridViewRow.Cells[1].Value;
-
-                            int tet = Convert.ToInt32(cellTam.ToString());
-                            int tet2 = Convert.ToInt32(cellQtd.ToString());
-                            intQtd = tet * tet2;
+                            MessageBox.Show("Erro no código de barras");
                         }
                         else
                         {
@@ -450,8 +447,9 @@ namespace Projeto_Tabacaria.View
 
         private void txtBarCode_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar== (char)Keys.Enter)
-            {
+            
+                if(e.KeyChar== (char)Keys.Enter)
+                {
                 if (dbConnections.connection.State != ConnectionState.Open)
                 {
                     dbConnections.OpenConnection();
@@ -496,11 +494,17 @@ namespace Projeto_Tabacaria.View
                             if (quantityInv <= 0)
                             {
                                 MessageBox.Show("Quantidade zerada");
+                                txtBarCode.Text = "";
+                                txtBarCode.Focus();
+                                txtBarCode.Select();
                                 dbConnections.CloseConnection();
                             }
                             else if (quantityInv < retInventory)
                             {
                                 MessageBox.Show("Quantidade inserida é maior do que o estoque");
+                                txtBarCode.Text = "";
+                                txtBarCode.Focus();
+                                txtBarCode.Select();
                             }
                             else
                             {
@@ -566,6 +570,9 @@ namespace Projeto_Tabacaria.View
                             if (quantityInv <= 0)
                             {
                                 MessageBox.Show("Quantidade zerada");
+                                txtBarCode.Text = "";
+                                txtBarCode.Focus();
+                                txtBarCode.Select();
                                 dbConnections.CloseConnection();
                             }
                             else
