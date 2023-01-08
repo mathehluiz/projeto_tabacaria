@@ -265,6 +265,7 @@ namespace Projeto_Tabacaria.View
                 btnEndSale.Enabled = false;
                 btnDeleteItem.Enabled = false;
                 btnCancelSale.Enabled = false;
+                cmbCostumer.Enabled = true;
 
                 btnNewSale.Enabled = true;
                 txtBarCode.Visible = false;
@@ -340,7 +341,6 @@ namespace Projeto_Tabacaria.View
                         if (dataGridViewRow.Cells[2].Value == "")
                         {
                             MessageBox.Show("Erro no código de barras");
-
                         }
                         else
                         {
