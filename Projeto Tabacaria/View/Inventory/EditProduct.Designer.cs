@@ -126,7 +126,7 @@
             this.cmbUnidade_De_Medida.Location = new System.Drawing.Point(326, 205);
             this.cmbUnidade_De_Medida.Name = "cmbUnidade_De_Medida";
             this.cmbUnidade_De_Medida.Size = new System.Drawing.Size(92, 23);
-            this.cmbUnidade_De_Medida.TabIndex = 4;
+            this.cmbUnidade_De_Medida.TabIndex = 3;
             this.cmbUnidade_De_Medida.TabStop = false;
             // 
             // label2
@@ -150,7 +150,7 @@
             this.cmbActiveProd.Location = new System.Drawing.Point(326, 234);
             this.cmbActiveProd.Name = "cmbActiveProd";
             this.cmbActiveProd.Size = new System.Drawing.Size(92, 23);
-            this.cmbActiveProd.TabIndex = 5;
+            this.cmbActiveProd.TabIndex = 4;
             this.cmbActiveProd.TabStop = false;
             // 
             // btnEditProduct
@@ -192,7 +192,7 @@
             this.txtProdName.Name = "txtProdName";
             this.txtProdName.PlaceholderText = "Nome do Produto";
             this.txtProdName.Size = new System.Drawing.Size(393, 23);
-            this.txtProdName.TabIndex = 3;
+            this.txtProdName.TabIndex = 0;
             this.txtProdName.TabStop = false;
             // 
             // txtQtd
@@ -201,7 +201,7 @@
             this.txtQtd.Name = "txtQtd";
             this.txtQtd.PlaceholderText = "Quantidade";
             this.txtQtd.Size = new System.Drawing.Size(92, 23);
-            this.txtQtd.TabIndex = 4;
+            this.txtQtd.TabIndex = 1;
             this.txtQtd.TabStop = false;
             this.txtQtd.Text = "0";
             this.txtQtd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQtd_KeyPress);
@@ -212,7 +212,7 @@
             this.txtBuyValue.Name = "txtBuyValue";
             this.txtBuyValue.PlaceholderText = "Valor de Compra";
             this.txtBuyValue.Size = new System.Drawing.Size(92, 23);
-            this.txtBuyValue.TabIndex = 6;
+            this.txtBuyValue.TabIndex = 5;
             this.txtBuyValue.TabStop = false;
             this.txtBuyValue.Text = "0";
             this.txtBuyValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuyValue_KeyPress);
@@ -223,7 +223,7 @@
             this.txtSaleValue.Name = "txtSaleValue";
             this.txtSaleValue.PlaceholderText = "Valor de Venda";
             this.txtSaleValue.Size = new System.Drawing.Size(92, 23);
-            this.txtSaleValue.TabIndex = 7;
+            this.txtSaleValue.TabIndex = 6;
             this.txtSaleValue.TabStop = false;
             this.txtSaleValue.Text = "0";
             this.txtSaleValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSaleValue_KeyPress);
@@ -339,7 +339,7 @@
             this.txtInventoryMin.Name = "txtInventoryMin";
             this.txtInventoryMin.PlaceholderText = "Quantidade mínima de estoque";
             this.txtInventoryMin.Size = new System.Drawing.Size(92, 22);
-            this.txtInventoryMin.TabIndex = 55;
+            this.txtInventoryMin.TabIndex = 2;
             // 
             // EditProduct
             // 
