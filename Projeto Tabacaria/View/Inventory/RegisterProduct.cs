@@ -33,92 +33,6 @@ namespace Projeto_Tabacaria.View.Inventory
             this.Dispose();
         }
 
-        private void txtQtd__TextChanged(object sender, EventArgs e)
-        {
-            if (txtQuantity.Text == "")
-            {
-                txtQuantity.Text = "0";
-                txtQuantity.SelectAll();
-            }
-            string ml = "ML";
-            if (cmbUnidade_De_Medida.Text == ml || cmbUnidade_De_Medida.Text == "LT")
-            {
-                txtTotal.Text = txtBuyValue.Text;
-                txtTotalSale.Text = txtSaleValue.Text;
-            }
-            else
-            {
-                var buyvalue = txtBuyValue.Text.ToString().Replace(",", ".");
-                var quantity = txtQuantity.Text.ToString().Replace(",", ".");
-
-                decimal a = Convert.ToDecimal(quantity);
-                decimal b = Convert.ToDecimal(buyvalue);
-                decimal total = a * b;
-
-                txtTotal.Text = total.ToString();
-                txtTotalSale.Text = (Convert.ToDouble(txtQuantity.Text) * Convert.ToDouble(txtSaleValue.Text)).ToString();
-            }
-            txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
-        }
-
-        private void txtBuyValue__TextChanged(object sender, EventArgs e)
-        {
-            if (txtBuyValue.Text == "")
-            {
-                txtBuyValue.Text = "0";
-                txtBuyValue.SelectAll();
-            }
-            string ml = "ML";
-            if (cmbUnidade_De_Medida.Text == ml)
-            {
-                txtTotal.Text = txtBuyValue.Text;
-                txtTotalSale.Text = txtSaleValue.Text;
-            }
-            else
-            {
-                //parei aqui
-                var buyvalue = txtBuyValue.Text.ToString().Replace(",", ".");
-                var quantity = txtQuantity.Text.ToString().Replace(",", ".");
-
-                decimal a = Convert.ToDecimal(quantity);
-                decimal b = Convert.ToDecimal(buyvalue);
-                decimal total = a * b;
-                total = (decimal)System.Math.Round(total, 2);
-                txtTotal.Text = total.ToString();
-                txtTotalSale.Text = (Convert.ToDouble(txtQuantity.Text) * Convert.ToDouble(txtSaleValue.Text)).ToString();
-            }
-
-
-            txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
-        }
-        private void txtSaleValue__TextChanged(object sender, EventArgs e)
-        {
-            if (txtSaleValue.Text == "")
-            {
-                txtSaleValue.Text = "0";
-                txtSaleValue.SelectAll();
-            }
-            string ml = "ML";
-            if (cmbUnidade_De_Medida.Text == ml)
-            {
-                txtTotal.Text = txtBuyValue.Text;
-                txtTotalSale.Text = txtSaleValue.Text;
-            }
-            else
-            {
-                var salevalue = txtSaleValue.Text.ToString().Replace(",", ".");
-
-                //decimal a = Convert.ToDecimal(txtQuantity.Text);
-                //decimal b = Convert.ToDecimal(buyvalue);
-                //decimal total = a * b;
-                //total = (decimal)System.Math.Round(total, 2);
-                //txtTotalSale.Text = total.ToString();
-                txtTotalSale.Text = (Convert.ToDecimal(txtQuantity.Text) * Convert.ToDecimal(salevalue)).ToString();
-            }
-
-
-            txtTotalProfit.Text = (Convert.ToDecimal(txtTotalSale.Text) - Convert.ToDecimal(txtTotal.Text)).ToString();
-        }
 
         public void butRegisterProduct_Click(object sender, EventArgs e)
         {
@@ -172,10 +86,9 @@ namespace Projeto_Tabacaria.View.Inventory
 
 
                         //registar preço
-                        MySqlCommand cmdRegisterPrice = new MySqlCommand("insert into tb_precos (id_produto,preco_unit_compra, preco_unit_venda,preco_lucro) values ('"+ codprod + "',@Valor_Unitario_Compra, @Valor_Unitario_Venda,@Lucro)", dbConnections.connection);
+                        MySqlCommand cmdRegisterPrice = new MySqlCommand("insert into tb_precos (id_produto,preco_unit_compra, preco_unit_venda) values ('"+ codprod + "',@Valor_Unitario_Compra, @Valor_Unitario_Venda)", dbConnections.connection);
                         cmdRegisterPrice.Parameters.Add("@Valor_Unitario_Compra", MySqlDbType.Decimal, 9).Value = Convert.ToDecimal(buyvalue);
-                        cmdRegisterPrice.Parameters.Add("@Valor_Unitario_Venda", MySqlDbType.Decimal, 9).Value = Convert.ToDecimal(salevalue);
-                        cmdRegisterPrice.Parameters.Add("@Lucro", MySqlDbType.Decimal, 9).Value = (Convert.ToDecimal(salevalue) - Convert.ToDecimal(buyvalue));
+                        cmdRegisterPrice.Parameters.Add("@Valor_Unitario_Venda", MySqlDbType.Decimal, 9).Value = Convert.ToDecimal(salevalue);        
                         cmdRegisterPrice.ExecuteNonQuery();
 
                         //registra estoque
@@ -209,8 +122,7 @@ namespace Projeto_Tabacaria.View.Inventory
                             txtProdName.Text = "";
                             txtQuantity.Text = "0";
                             txtBuyValue.Text = "0";
-                            txtSaleValue.Text = "0";
-                            txtTotal.Text = "0";
+                            txtSaleValue.Text = "0";   
                             txtInventoryMin.Text = "";
                         }
                     }
@@ -322,7 +234,6 @@ namespace Projeto_Tabacaria.View.Inventory
                 dbConnections.CloseConnection();
 
                 txtSaleValue.Text = "0";
-                txtTotal.Text = "0";
                 txtBuyValue.Text = "0";
                 txtQuantity.Text = "0";
             }

@@ -37,7 +37,6 @@
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.txtBuyValue = new System.Windows.Forms.TextBox();
             this.txtSaleValue = new System.Windows.Forms.TextBox();
-            this.txtTotal = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbUnidade_De_Medida = new System.Windows.Forms.ComboBox();
             this.lblMarca = new System.Windows.Forms.Label();
@@ -47,15 +46,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.butRegisterProduct = new Projeto_Tabacaria.Models.MNButton();
             this.RefreshForm = new System.Windows.Forms.Timer(this.components);
-            this.txtTotalSale = new System.Windows.Forms.TextBox();
-            this.txtTotalProfit = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +58,7 @@
             this.lblReturnDB.AutoSize = true;
             this.lblReturnDB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblReturnDB.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblReturnDB.Location = new System.Drawing.Point(129, 373);
+            this.lblReturnDB.Location = new System.Drawing.Point(119, 326);
             this.lblReturnDB.Name = "lblReturnDB";
             this.lblReturnDB.Size = new System.Drawing.Size(93, 19);
             this.lblReturnDB.TabIndex = 43;
@@ -109,7 +103,6 @@
             this.txtQuantity.Size = new System.Drawing.Size(83, 22);
             this.txtQuantity.TabIndex = 3;
             this.txtQuantity.Text = "0";
-            this.txtQuantity.TextChanged += new System.EventHandler(this.txtQtd__TextChanged);
             this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
             // 
             // txtBuyValue
@@ -121,7 +114,6 @@
             this.txtBuyValue.Size = new System.Drawing.Size(83, 22);
             this.txtBuyValue.TabIndex = 6;
             this.txtBuyValue.Text = "0";
-            this.txtBuyValue.TextChanged += new System.EventHandler(this.txtBuyValue__TextChanged);
             this.txtBuyValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuyValue_KeyPress);
             // 
             // txtSaleValue
@@ -133,20 +125,7 @@
             this.txtSaleValue.Size = new System.Drawing.Size(83, 22);
             this.txtSaleValue.TabIndex = 7;
             this.txtSaleValue.Text = "0";
-            this.txtSaleValue.TextChanged += new System.EventHandler(this.txtSaleValue__TextChanged);
             this.txtSaleValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSaleValue_KeyPress);
-            // 
-            // txtTotal
-            // 
-            this.txtTotal.Enabled = false;
-            this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTotal.Location = new System.Drawing.Point(15, 321);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.PlaceholderText = "Total Compra";
-            this.txtTotal.Size = new System.Drawing.Size(105, 22);
-            this.txtTotal.TabIndex = 9;
-            this.txtTotal.TabStop = false;
-            this.txtTotal.Text = "0";
             // 
             // label1
             // 
@@ -238,7 +217,7 @@
             this.butRegisterProduct.ForeColor = System.Drawing.Color.White;
             this.butRegisterProduct.Image = global::Projeto_Tabacaria.Properties.Resources.registrar;
             this.butRegisterProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.butRegisterProduct.Location = new System.Drawing.Point(106, 403);
+            this.butRegisterProduct.Location = new System.Drawing.Point(96, 356);
             this.butRegisterProduct.Name = "butRegisterProduct";
             this.butRegisterProduct.Size = new System.Drawing.Size(168, 49);
             this.butRegisterProduct.TabIndex = 8;
@@ -250,29 +229,6 @@
             // RefreshForm
             // 
             this.RefreshForm.Tick += new System.EventHandler(this.RefreshForm_Tick);
-            // 
-            // txtTotalSale
-            // 
-            this.txtTotalSale.Enabled = false;
-            this.txtTotalSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTotalSale.Location = new System.Drawing.Point(135, 321);
-            this.txtTotalSale.Name = "txtTotalSale";
-            this.txtTotalSale.PlaceholderText = "Total Venda";
-            this.txtTotalSale.Size = new System.Drawing.Size(105, 22);
-            this.txtTotalSale.TabIndex = 10;
-            this.txtTotalSale.TabStop = false;
-            this.txtTotalSale.Text = "0";
-            // 
-            // txtTotalProfit
-            // 
-            this.txtTotalProfit.Enabled = false;
-            this.txtTotalProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTotalProfit.Location = new System.Drawing.Point(250, 321);
-            this.txtTotalProfit.Name = "txtTotalProfit";
-            this.txtTotalProfit.PlaceholderText = "Lucro";
-            this.txtTotalProfit.Size = new System.Drawing.Size(105, 22);
-            this.txtTotalProfit.TabIndex = 45;
-            this.txtTotalProfit.TabStop = false;
             // 
             // label2
             // 
@@ -318,54 +274,16 @@
             this.label5.TabIndex = 49;
             this.label5.Text = "Valor de Venda";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(143, 346);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 16);
-            this.label6.TabIndex = 51;
-            this.label6.Text = "Valor de Venda";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(17, 346);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 16);
-            this.label7.TabIndex = 50;
-            this.label7.Text = "Valor de Compra";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(286, 346);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 16);
-            this.label8.TabIndex = 52;
-            this.label8.Text = "Lucro";
-            // 
             // RegisterProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(382, 464);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
+            this.ClientSize = new System.Drawing.Size(382, 425);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtTotalProfit);
-            this.Controls.Add(this.txtTotalSale);
             this.Controls.Add(this.lblReturnDB);
             this.Controls.Add(this.txtInventoryMin);
             this.Controls.Add(this.lblRegisterGroup);
@@ -373,7 +291,6 @@
             this.Controls.Add(this.txtQuantity);
             this.Controls.Add(this.txtBuyValue);
             this.Controls.Add(this.txtSaleValue);
-            this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbUnidade_De_Medida);
             this.Controls.Add(this.lblMarca);
@@ -403,7 +320,6 @@
         private TextBox txtQuantity;
         private TextBox txtBuyValue;
         private TextBox txtSaleValue;
-        private TextBox txtTotal;
         private Label label1;
         private ComboBox cmbUnidade_De_Medida;
         private Label lblMarca;
@@ -413,14 +329,9 @@
         private PictureBox pictureBox1;
         private Models.MNButton butRegisterProduct;
         private System.Windows.Forms.Timer RefreshForm;
-        private TextBox txtTotalSale;
-        private TextBox txtTotalProfit;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
-        private Label label6;
-        private Label label7;
-        private Label label8;
     }
 }

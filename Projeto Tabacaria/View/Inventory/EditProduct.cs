@@ -108,33 +108,7 @@ namespace Projeto_Tabacaria.View.Inventory
                 txtInventoryMin.Text = reader_Products.GetString(4);
                 txtBuyValue.Text = reader_Products.GetString(5);//preco de compra
                 txtSaleValue.Text = reader_Products.GetString(6);//preco de venda
-                txtTotalSpent.Texts = reader_Products.GetString(7);//preco total gasto
-
-                decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
-                decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
-                decimal total = a * b;
-
-                decimal c = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
-                decimal d = txtSaleValue.Text != "" ? Convert.ToDecimal(txtSaleValue.Text) : 0;
-
-                decimal total1 = c * d;
-                if (cmbUnidade_De_Medida.Text == "ML" || cmbUnidade_De_Medida.Text == "LT")
-                {
-                    txtTotalSpent.Texts = txtBuyValue.Text;
-                    txtTotalSale.Texts = txtSaleValue.Text;
-                    total1 = Convert.ToDecimal(txtBuyValue.Text);
-                    decimal total2 = Convert.ToDecimal(txtSaleValue.Text);
-                    decimal value = total2 - total1;
-
-                    txtTotalProfitPresumed.Texts = value.ToString();
-                }
-                else
-                {
-                    txtTotalSpent.Texts = total.ToString();
-                    txtTotalSale.Texts = total1.ToString();
-                    txtTotalProfitPresumed.Texts = (total1 - total).ToString();
-                }
-                
+   
             }
             catch (Exception ex)
             {
@@ -176,14 +150,15 @@ namespace Projeto_Tabacaria.View.Inventory
                     MySqlCommand cmd_save = new MySqlCommand("update tb_estoque,tb_produtos,tb_precos set prod_nome='" + txtProdName.Text + "',prod_unidade='" + cmbUnidade_De_Medida.Text + "',prod_ativo='" + cmbActiveProd.Text + "',estoque_quantidade='" + txtQtd.Text + "',estoque_minimo='" + txtInventoryMin.Text + "',preco_unit_compra='" + txtBuyValue.Text + "',preco_unit_venda='" + txtSaleValue.Text + "' where estoque_cod = '" + prodCod + "' and prod_cod = '" + prodCod + "' and id_produto= '" + prodCod + "'", dbConnections.connection);
                     cmd_save.ExecuteNonQuery();
                 }
-
                 dbConnections.CloseConnection();
                 lblReturnDB.Visible = true;
                 lblReturnDB.Text = "Produto alterado";
-
-                EditProduct_Load(sender, e);
-
-
+                txtProdName.Text = "";
+                txtQtd.Text = "";
+                cmbUnidade_De_Medida.Text = "";
+                cmbActiveProd.Text = "";
+                txtBuyValue.Text = "";
+                txtSaleValue.Text = "";
             }
             catch (Exception ex)
             {
@@ -192,114 +167,7 @@ namespace Projeto_Tabacaria.View.Inventory
             }
             dbConnections.CloseConnection();
         }
-
-        private void txtQtd_TextChanged(object sender, EventArgs e)
-        {
-
-            double parsedValue;
-            if (!double.TryParse(txtQtd.Text, out parsedValue))
-            {
-                txtQtd.Text = "";
-
-            }
-            decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
-            decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
-            decimal total = a * b;
-
-            decimal c = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
-            decimal d = txtSaleValue.Text != "" ? Convert.ToDecimal(txtSaleValue.Text) : 0;
-
-            decimal total1 = c * d;
-            if (cmbUnidade_De_Medida.Text == "ML" || cmbUnidade_De_Medida.Text == "LT")
-            {
-                txtTotalSpent.Texts = txtBuyValue.Text;
-                txtTotalSale.Texts = txtSaleValue.Text;
-                decimal total3 = Convert.ToDecimal(txtBuyValue.Text);
-                decimal total2 = Convert.ToDecimal(txtSaleValue.Text);
-                decimal value = total2 - total3;
-
-                txtTotalProfitPresumed.Texts = value.ToString();
-            }
-            else
-            {
-                txtTotalSpent.Texts = total.ToString();
-                txtTotalSale.Texts = total1.ToString();
-                txtTotalProfitPresumed.Texts = (total1 - total).ToString();
-            }
-        }
-
-        private void txtBuyValue_TextChanged(object sender, EventArgs e)
-        {
-            double parsedValue;
-            if (!double.TryParse(txtBuyValue.Text, out parsedValue))
-            {
-                txtBuyValue.Text = "";
-
-            }
-            decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
-            decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
-            decimal total = a * b;
-
-            decimal c = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
-            decimal d = txtSaleValue.Text != "" ? Convert.ToDecimal(txtSaleValue.Text) : 0;
-
-            decimal total1 = c * d;
-
-            if (cmbUnidade_De_Medida.Text == "ML" || cmbUnidade_De_Medida.Text == "LT")
-            {
-                txtTotalSpent.Texts = txtBuyValue.Text;
-                txtTotalSale.Texts = txtSaleValue.Text;
-                decimal total3 = Convert.ToDecimal(txtBuyValue.Text);
-                decimal total2 = Convert.ToDecimal(txtSaleValue.Text);
-                decimal value = total2 - total3;
-
-                txtTotalProfitPresumed.Texts = value.ToString();
-            }
-            else
-            {
-                txtTotalSpent.Texts = total.ToString();
-                txtTotalSale.Texts = total1.ToString();
-                txtTotalProfitPresumed.Texts = (total1 - total).ToString();
-            }
-
-            
-        }
-
-        private void txtSaleValue_TextChanged(object sender, EventArgs e)
-        {
-            double parsedValue;
-            if (!double.TryParse(txtSaleValue.Text, out parsedValue))
-            {
-                txtSaleValue.Text = "";
-
-            }
-            decimal a = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
-            decimal b = txtBuyValue.Text != "" ? Convert.ToDecimal(txtBuyValue.Text) : 0;
-            decimal total = a * b;
-
-            decimal c = txtQtd.Text != "" ? Convert.ToDecimal(txtQtd.Text) : 0;
-            decimal d = txtSaleValue.Text != "" ? Convert.ToDecimal(txtSaleValue.Text) : 0;
-
-            decimal total1 = c * d;
-
-            if (cmbUnidade_De_Medida.Text == "ML" || cmbUnidade_De_Medida.Text == "LT")
-            {
-                txtTotalSpent.Texts = txtBuyValue.Text;
-                txtTotalSale.Texts = txtSaleValue.Text;
-                decimal total3 = Convert.ToDecimal(txtBuyValue.Text);
-                decimal total2 = Convert.ToDecimal(txtSaleValue.Text);
-                decimal value = total2 - total3;
-
-                txtTotalProfitPresumed.Texts = value.ToString();
-            }
-            else
-            {
-                txtTotalSpent.Texts = total.ToString();
-                txtTotalSale.Texts = total1.ToString();
-                txtTotalProfitPresumed.Texts = (total1 - total).ToString();
-            }
-        }
-
+    
         private void txtQtd_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
@@ -331,6 +199,7 @@ namespace Projeto_Tabacaria.View.Inventory
 
         private void txtSaleValue_KeyPress(object sender, KeyPressEventArgs e)
         {
+
             if (e.KeyChar == (char)Keys.Enter)
             {
                 btnEditProduct_Click(sender, e);
@@ -341,7 +210,7 @@ namespace Projeto_Tabacaria.View.Inventory
                 e.KeyChar = ',';
 
                 //Verifica se já existe alguma vírgula na string
-                if (txtBuyValue.Text.Contains(","))
+                if (txtSaleValue.Text.Contains(","))
                 {
                     e.Handled = true; // Caso exista, aborte 
                 }

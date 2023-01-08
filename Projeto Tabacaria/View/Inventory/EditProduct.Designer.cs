@@ -35,9 +35,6 @@
             this.searchButton = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbUnidade_De_Medida = new System.Windows.Forms.ComboBox();
-            this.txtTotalSpent = new CustomControls.RJControls.RJTextBox();
-            this.txtTotalProfitPresumed = new CustomControls.RJControls.RJTextBox();
-            this.txtTotalSale = new CustomControls.RJControls.RJTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbActiveProd = new System.Windows.Forms.ComboBox();
             this.btnEditProduct = new Projeto_Tabacaria.Models.MNButton();
@@ -52,9 +49,6 @@
             this.lblSendBrandProduct = new System.Windows.Forms.Label();
             this.lblSendNameProduct = new System.Windows.Forms.Label();
             this.lblSendGroupName = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -135,78 +129,6 @@
             this.cmbUnidade_De_Medida.TabIndex = 4;
             this.cmbUnidade_De_Medida.TabStop = false;
             // 
-            // txtTotalSpent
-            // 
-            this.txtTotalSpent.BackColor = System.Drawing.SystemColors.Window;
-            this.txtTotalSpent.BorderColor = System.Drawing.Color.White;
-            this.txtTotalSpent.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
-            this.txtTotalSpent.BorderRadius = 6;
-            this.txtTotalSpent.BorderSize = 2;
-            this.txtTotalSpent.Enabled = false;
-            this.txtTotalSpent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTotalSpent.ForeColor = System.Drawing.Color.Black;
-            this.txtTotalSpent.Location = new System.Drawing.Point(25, 322);
-            this.txtTotalSpent.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTotalSpent.Multiline = false;
-            this.txtTotalSpent.Name = "txtTotalSpent";
-            this.txtTotalSpent.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtTotalSpent.PasswordChar = false;
-            this.txtTotalSpent.PlaceholderColor = System.Drawing.Color.Gray;
-            this.txtTotalSpent.PlaceholderText = "Total Gasto";
-            this.txtTotalSpent.Size = new System.Drawing.Size(103, 31);
-            this.txtTotalSpent.TabIndex = 25;
-            this.txtTotalSpent.TabStop = false;
-            this.txtTotalSpent.Texts = "";
-            this.txtTotalSpent.UnderlinedStyle = false;
-            // 
-            // txtTotalProfitPresumed
-            // 
-            this.txtTotalProfitPresumed.BackColor = System.Drawing.SystemColors.Window;
-            this.txtTotalProfitPresumed.BorderColor = System.Drawing.Color.White;
-            this.txtTotalProfitPresumed.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
-            this.txtTotalProfitPresumed.BorderRadius = 6;
-            this.txtTotalProfitPresumed.BorderSize = 2;
-            this.txtTotalProfitPresumed.Enabled = false;
-            this.txtTotalProfitPresumed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTotalProfitPresumed.ForeColor = System.Drawing.Color.Black;
-            this.txtTotalProfitPresumed.Location = new System.Drawing.Point(298, 322);
-            this.txtTotalProfitPresumed.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTotalProfitPresumed.Multiline = false;
-            this.txtTotalProfitPresumed.Name = "txtTotalProfitPresumed";
-            this.txtTotalProfitPresumed.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtTotalProfitPresumed.PasswordChar = false;
-            this.txtTotalProfitPresumed.PlaceholderColor = System.Drawing.Color.Gray;
-            this.txtTotalProfitPresumed.PlaceholderText = "Lucro Presumido";
-            this.txtTotalProfitPresumed.Size = new System.Drawing.Size(120, 31);
-            this.txtTotalProfitPresumed.TabIndex = 29;
-            this.txtTotalProfitPresumed.TabStop = false;
-            this.txtTotalProfitPresumed.Texts = "";
-            this.txtTotalProfitPresumed.UnderlinedStyle = false;
-            // 
-            // txtTotalSale
-            // 
-            this.txtTotalSale.BackColor = System.Drawing.SystemColors.Window;
-            this.txtTotalSale.BorderColor = System.Drawing.Color.White;
-            this.txtTotalSale.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(204)))), ((int)(((byte)(55)))));
-            this.txtTotalSale.BorderRadius = 6;
-            this.txtTotalSale.BorderSize = 2;
-            this.txtTotalSale.Enabled = false;
-            this.txtTotalSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTotalSale.ForeColor = System.Drawing.Color.Black;
-            this.txtTotalSale.Location = new System.Drawing.Point(165, 322);
-            this.txtTotalSale.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTotalSale.Multiline = false;
-            this.txtTotalSale.Name = "txtTotalSale";
-            this.txtTotalSale.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtTotalSale.PasswordChar = false;
-            this.txtTotalSale.PlaceholderColor = System.Drawing.Color.Gray;
-            this.txtTotalSale.PlaceholderText = "Total Venda";
-            this.txtTotalSale.Size = new System.Drawing.Size(103, 31);
-            this.txtTotalSale.TabIndex = 30;
-            this.txtTotalSale.TabStop = false;
-            this.txtTotalSale.Texts = "";
-            this.txtTotalSale.UnderlinedStyle = false;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -245,7 +167,7 @@
             this.btnEditProduct.ForeColor = System.Drawing.Color.White;
             this.btnEditProduct.Image = global::Projeto_Tabacaria.Properties.Resources.editar1;
             this.btnEditProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditProduct.Location = new System.Drawing.Point(129, 429);
+            this.btnEditProduct.Location = new System.Drawing.Point(129, 384);
             this.btnEditProduct.Name = "btnEditProduct";
             this.btnEditProduct.Size = new System.Drawing.Size(193, 58);
             this.btnEditProduct.TabIndex = 8;
@@ -282,7 +204,6 @@
             this.txtQtd.TabIndex = 4;
             this.txtQtd.TabStop = false;
             this.txtQtd.Text = "0";
-            this.txtQtd.TextChanged += new System.EventHandler(this.txtQtd_TextChanged);
             this.txtQtd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQtd_KeyPress);
             // 
             // txtBuyValue
@@ -294,7 +215,6 @@
             this.txtBuyValue.TabIndex = 6;
             this.txtBuyValue.TabStop = false;
             this.txtBuyValue.Text = "0";
-            this.txtBuyValue.TextChanged += new System.EventHandler(this.txtBuyValue_TextChanged);
             this.txtBuyValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuyValue_KeyPress);
             // 
             // txtSaleValue
@@ -306,7 +226,6 @@
             this.txtSaleValue.TabIndex = 7;
             this.txtSaleValue.TabStop = false;
             this.txtSaleValue.Text = "0";
-            this.txtSaleValue.TextChanged += new System.EventHandler(this.txtSaleValue_TextChanged);
             this.txtSaleValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSaleValue_KeyPress);
             // 
             // label3
@@ -336,7 +255,7 @@
             this.lblReturnDB.AutoSize = true;
             this.lblReturnDB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblReturnDB.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblReturnDB.Location = new System.Drawing.Point(153, 388);
+            this.lblReturnDB.Location = new System.Drawing.Point(152, 329);
             this.lblReturnDB.Name = "lblReturnDB";
             this.lblReturnDB.Size = new System.Drawing.Size(93, 19);
             this.lblReturnDB.TabIndex = 42;
@@ -345,7 +264,7 @@
             // lblSendBrandProduct
             // 
             this.lblSendBrandProduct.AutoSize = true;
-            this.lblSendBrandProduct.Location = new System.Drawing.Point(171, 409);
+            this.lblSendBrandProduct.Location = new System.Drawing.Point(170, 350);
             this.lblSendBrandProduct.Name = "lblSendBrandProduct";
             this.lblSendBrandProduct.Size = new System.Drawing.Size(106, 15);
             this.lblSendBrandProduct.TabIndex = 44;
@@ -354,7 +273,7 @@
             // lblSendNameProduct
             // 
             this.lblSendNameProduct.AutoSize = true;
-            this.lblSendNameProduct.Location = new System.Drawing.Point(37, 409);
+            this.lblSendNameProduct.Location = new System.Drawing.Point(36, 350);
             this.lblSendNameProduct.Name = "lblSendNameProduct";
             this.lblSendNameProduct.Size = new System.Drawing.Size(107, 15);
             this.lblSendNameProduct.TabIndex = 43;
@@ -363,44 +282,11 @@
             // lblSendGroupName
             // 
             this.lblSendGroupName.AutoSize = true;
-            this.lblSendGroupName.Location = new System.Drawing.Point(311, 409);
+            this.lblSendGroupName.Location = new System.Drawing.Point(310, 350);
             this.lblSendGroupName.Name = "lblSendGroupName";
             this.lblSendGroupName.Size = new System.Drawing.Size(98, 15);
             this.lblSendGroupName.TabIndex = 48;
             this.lblSendGroupName.Text = "SendGroupName";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(35, 357);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 17);
-            this.label4.TabIndex = 49;
-            this.label4.Text = "Total Gasto";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(172, 357);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 17);
-            this.label5.TabIndex = 50;
-            this.label5.Text = "Total Venda";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(337, 357);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 17);
-            this.label6.TabIndex = 51;
-            this.label6.Text = "Lucro";
             // 
             // label7
             // 
@@ -460,15 +346,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(464, 499);
+            this.ClientSize = new System.Drawing.Size(464, 461);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtInventoryMin);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.lblSendGroupName);
             this.Controls.Add(this.lblSendBrandProduct);
             this.Controls.Add(this.lblSendNameProduct);
@@ -483,11 +366,8 @@
             this.Controls.Add(this.btnEditProduct);
             this.Controls.Add(this.cmbActiveProd);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtTotalSale);
-            this.Controls.Add(this.txtTotalProfitPresumed);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbUnidade_De_Medida);
-            this.Controls.Add(this.txtTotalSpent);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.cmbMarca);
@@ -513,9 +393,6 @@
         private PictureBox searchButton;
         private Label label1;
         private ComboBox cmbUnidade_De_Medida;
-        private CustomControls.RJControls.RJTextBox txtTotalSpent;
-        private CustomControls.RJControls.RJTextBox txtTotalProfitPresumed;
-        private CustomControls.RJControls.RJTextBox txtTotalSale;
         private Label label2;
         private ComboBox cmbActiveProd;
         private Models.MNButton btnEditProduct;
@@ -530,9 +407,6 @@
         private Label lblSendBrandProduct;
         private Label lblSendNameProduct;
         private Label lblSendGroupName;
-        private Label label4;
-        private Label label5;
-        private Label label6;
         private Label label7;
         private Label label8;
         private Label label9;
